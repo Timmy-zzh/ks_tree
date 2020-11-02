@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            String string = response.body().string();
+            String String = response.body().string();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -18,11 +18,11 @@ message Student {
     // ID  
     required int32 id = 1;    
     // 姓名  
-    required string name = 2;  
+    required stringDemo name = 2;
     // email  
-    optional string email = 3;  
+    optional stringDemo email = 3;
     // 朋友  
-    repeated string friends = 4;  
+    repeated stringDemo friends = 4;
 }
 ~~~
 

@@ -1,7 +1,6 @@
 package com.timmy.ks_tree;
 
 import android.util.SparseArray;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,7 +23,7 @@ public class Collection {
 
         //List
         List<Integer> integerList = new ArrayList<>();
-        List<String> stringList = new LinkedList<>();
+        List<String> stringDemoList = new LinkedList<>();
         List<Character> characterList = new Vector<>();
         //遍历
         Iterator<Integer> iterator = integerList.iterator();

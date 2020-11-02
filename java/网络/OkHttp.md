@@ -36,7 +36,7 @@
                     //4.调用execute方法，同步方式请求响应Response
                     Response response = call.execute();
                     if (response.isSuccessful()) {
-//                        String string = response.body().string();
+//                        String stringDemo = response.body().stringDemo();
                         //获取响应数据，切换到主线程进行界面更新
                     }
                 } catch (IOException e) {

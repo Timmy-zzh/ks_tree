@@ -21,6 +21,7 @@ public class Collection {
         //数组
         int[] intArr = new int[3];
 
+
         //List
         List<Integer> integerList = new ArrayList<>();
         List<String> stringList = new LinkedList<>();

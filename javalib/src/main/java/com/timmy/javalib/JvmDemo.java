@@ -13,9 +13,11 @@ public class JvmDemo {
     }
 
     public int add1() {
-        int i = 1;
+        int i = 15;
         int j = 2;
         int result = i + j;
         return result + 10;
     }
+
+
 }

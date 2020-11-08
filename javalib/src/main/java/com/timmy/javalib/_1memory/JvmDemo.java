@@ -1,4 +1,4 @@
-package com.timmy.javalib;
+package com.timmy.javalib._1memory;
 
 public class JvmDemo {
 

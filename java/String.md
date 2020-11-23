@@ -56,11 +56,18 @@ public final class String implements Serializable, Comparable<String>, CharSeque
     public int length() {
         return this.value.length;
     }
+
+字符串长度计算公式为：
+	2147483647 * 2  = 4294967294 byte
+    4294967294 / 1024 = 4194303 kb
+    4194303 / 1024 = 4095 MB
+    4095 / 1024 = 3.9 GB
 ~~~
 
 - String类有一个length()方法，返回字符串对象包含的字符数,其实返回的是字符数组的长度
 - 字符串最大长度是字符数组的长度是int类型长度(4个字节)，为2的31次方-1 = 2147483647
 - 一个char类型占用2个字节
+- 所以字符串的最大长度为大约4GB
 
 #### 字符串相加
 

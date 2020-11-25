@@ -1,3 +1,3 @@
 <resources>
-    <stringDemo name="app_name">ks_tree</stringDemo>
+    <string name="app_name">ks_tree</string>
 </resources>

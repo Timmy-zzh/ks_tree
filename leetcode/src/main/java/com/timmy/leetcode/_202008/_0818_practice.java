@@ -1,5 +1,7 @@
 package com.timmy.leetcode._202008;
 
+import com.timmy.common.ListNode;
+
 import java.util.ArrayList;
 import java.util.List;
 

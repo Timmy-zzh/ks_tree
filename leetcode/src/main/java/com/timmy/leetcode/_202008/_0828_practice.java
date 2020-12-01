@@ -1,6 +1,6 @@
 package com.timmy.leetcode._202008;
 
-import com.timmy.leetcode.PrintUtils;
+import com.timmy.common.PrintUtils;
 
 import java.util.Arrays;
 

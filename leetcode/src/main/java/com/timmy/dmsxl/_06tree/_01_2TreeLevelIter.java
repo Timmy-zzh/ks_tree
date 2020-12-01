@@ -1,6 +1,6 @@
 package com.timmy.dmsxl._06tree;
 
-import com.timmy.leetcode.PrintUtils;
+import com.timmy.common.PrintUtils;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

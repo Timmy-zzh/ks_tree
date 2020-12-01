@@ -1,6 +1,6 @@
 package com.timmy.dmsxl._04string;
 
-import com.timmy.leetcode.PrintUtils;
+import com.timmy.common.PrintUtils;
 
 public class _03kmp {
 

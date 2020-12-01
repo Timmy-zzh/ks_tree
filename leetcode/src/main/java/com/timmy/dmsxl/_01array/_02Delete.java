@@ -1,6 +1,6 @@
 package com.timmy.dmsxl._01array;
 
-import com.timmy.leetcode.PrintUtils;
+import com.timmy.common.PrintUtils;
 
 public class _02Delete {
 

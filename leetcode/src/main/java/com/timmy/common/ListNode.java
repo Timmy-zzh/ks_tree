@@ -1,4 +1,4 @@
-package com.timmy.leetcode._202008;
+package com.timmy.common;
 
 public class ListNode {
     public int value;

@@ -1,6 +1,6 @@
 package com.timmy.dmsxl._05stack;
 
-import com.timmy.leetcode.PrintUtils;
+import com.timmy.common.PrintUtils;
 
 import java.util.Comparator;
 import java.util.HashMap;

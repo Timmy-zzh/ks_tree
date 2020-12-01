@@ -1,6 +1,6 @@
-package com.timmy.dmsxl._02linked;
+package com.timmy.algorithm._01linked;
 
-import com.timmy.leetcode._202008.ListNode;
+import com.timmy.common.ListNode;
 
 /**
  * 自己设计链表实现，功能如下：
@@ -16,10 +16,10 @@ import com.timmy.leetcode._202008.ListNode;
  * 1。动态链表头
  * 2。size表示链表数量
  */
-public class _02MyLinkedList {
+public class _MyLinkedList {
 
     public static void main(String[] args) {
-        _02MyLinkedList linkedList = new _02MyLinkedList();
+        _MyLinkedList linkedList = new _MyLinkedList();
         System.out.println("--------addAtHead----------");
         linkedList.addAtHead(1);
         linkedList.printL();
@@ -43,7 +43,7 @@ public class _02MyLinkedList {
     private ListNode dynamicHead;
     private int size = 0;
 
-    public _02MyLinkedList() {
+    public _MyLinkedList() {
         dynamicHead = new ListNode(0);
     }
 

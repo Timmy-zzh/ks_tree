@@ -1,7 +1,7 @@
-package com.timmy.leetcode;
+package com.timmy.common;
 
 import com.timmy.dmsxl._06tree.TreeNode;
-import com.timmy.leetcode._202008.ListNode;
+import com.timmy.common.ListNode;
 
 import java.util.List;
 

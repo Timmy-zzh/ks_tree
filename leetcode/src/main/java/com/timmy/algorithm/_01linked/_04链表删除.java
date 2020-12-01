@@ -1,11 +1,11 @@
-package com.timmy.dmsxl._02linked;
+package com.timmy.algorithm._01linked;
 
-import com.timmy.leetcode._202008.ListNode;
+import com.timmy.common.ListNode;
 
 /**
  * 删除链表元素
  */
-public class _01delete {
+public class _04链表删除 {
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
@@ -29,7 +29,7 @@ public class _01delete {
         System.out.println();
         System.out.println("------------------------");
 
-        _01delete prac = new _01delete();
+        _04链表删除 prac = new _04链表删除();
 //        ListNode result = prac.removeEle(head, 1);
         ListNode result = prac.removeEle2(head, 1);
         System.out.println("reslult:" + result.value);

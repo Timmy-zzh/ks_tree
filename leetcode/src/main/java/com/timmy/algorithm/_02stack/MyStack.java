@@ -1,4 +1,4 @@
-package com.timmy.dmsxl._05stack;
+package com.timmy.algorithm._02stack;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

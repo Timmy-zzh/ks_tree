@@ -1,4 +1,4 @@
-package com.timmy.dmsxl._05stack;
+package com.timmy.algorithm._02stack;
 
 import java.util.Stack;
 
@@ -20,7 +20,7 @@ public class MyQueue {
     /**
      * 将一个元素放入队列的尾部
      */
-    public void push(int val) {
+    public void add(int val) {
         inputStack.push(val);
     }
 

@@ -2,13 +2,13 @@ package com.timmy.javalib._2gc;
 
 
 /**
- * Ïß³ÌGCRoot³¡¾°2:·½·¨Çø¾²Ì¬±äÁ¿
+ * çº¿ç¨‹GCRootåœºæ™¯2:æ–¹æ³•åŒºé™æ€å˜é‡
  * <p>
- * ÈÕÖ¾´òÓ¡½á¹û£º
+ * æ—¥å¿—æ‰“å°ç»“æœï¼š
  * <p>
- * ¿ªÊ¼Ê±
+ * å¼€å§‹æ—¶
  * free is 117M ,total is 119M
- * ¶ÔÏóÖÃÎªnull
+ * å¯¹è±¡ç½®ä¸ºnull
  * free is 77M ,total is 119M
  */
 public class _2GCRootStaticVariable {
@@ -22,7 +22,7 @@ public class _2GCRootStaticVariable {
     }
 
     public static void main(String[] args) {
-        System.out.println("¿ªÊ¼Ê±");
+        System.out.println("å¼€å§‹æ—¶");
         printMemeory();
 
         _2GCRootStaticVariable g = new _2GCRootStaticVariable(4 * _10MB);
@@ -30,11 +30,11 @@ public class _2GCRootStaticVariable {
 
         g = null;
         System.gc();
-        System.out.println("¶ÔÏóÖÃÎªnull");
+        System.out.println("å¯¹è±¡ç½®ä¸ºnull");
         printMemeory();
     }
 
-    //´òÓ¡µ±Ç°jvmÊ£Óà¿Õ¼äºÍ×ÜµÄ¿Õ¼ä´óĞ¡
+    //æ‰“å°å½“å‰jvmå‰©ä½™ç©ºé—´å’Œæ€»çš„ç©ºé—´å¤§å°
     private static void printMemeory() {
         System.out.print("free is " + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M");
         System.out.println(" ,total is " + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "M");

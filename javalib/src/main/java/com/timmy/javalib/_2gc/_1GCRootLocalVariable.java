@@ -2,15 +2,15 @@ package com.timmy.javalib._2gc;
 
 
 /**
- * Ïß³ÌGCRoot³¡¾°1£ºjavaĞéÄâ»úÕ»ÖĞ¾Ö²¿±äÁ¿±íÖĞµÄÒıÓÃ¶ÔÏó
+ * çº¿ç¨‹GCRootåœºæ™¯1ï¼šjavaè™šæ‹Ÿæœºæ ˆä¸­å±€éƒ¨å˜é‡è¡¨ä¸­çš„å¼•ç”¨å¯¹è±¡
  * <p>
- * ÈÕÖ¾´òÓ¡½á¹û£º
+ * æ—¥å¿—æ‰“å°ç»“æœï¼š
  * <p>
- * ¿ªÊ¼Ê±
+ * å¼€å§‹æ—¶
  * free is 117M ,total is 119M
- * ¾Ö²¿±äÁ¿ÉêÇëÄÚ´æºógc
+ * å±€éƒ¨å˜é‡ç”³è¯·å†…å­˜ågc
  * free is 37M ,total is 119M
- * ·½·¨Ö´ĞĞÍê£¬Ö´ĞĞgc
+ * æ–¹æ³•æ‰§è¡Œå®Œï¼Œæ‰§è¡Œgc
  * free is 117M ,total is 119M
  */
 public class _1GCRootLocalVariable {
@@ -19,23 +19,23 @@ public class _1GCRootLocalVariable {
     private byte[] memory = new byte[8 * _10MB];
 
     public static void main(String[] args) {
-        System.out.println("¿ªÊ¼Ê±");
+        System.out.println("å¼€å§‹æ—¶");
         printMemeory();
         memthod();
         System.gc();
-        System.out.println("·½·¨Ö´ĞĞÍê£¬Ö´ĞĞgc");
+        System.out.println("æ–¹æ³•æ‰§è¡Œå®Œï¼Œæ‰§è¡Œgc");
         printMemeory();
     }
 
-    //ÔÚ·½·¨ÖĞµÄ¾Ö²¿±äÁ¿ÉêÇëÄÚ´æ
+    //åœ¨æ–¹æ³•ä¸­çš„å±€éƒ¨å˜é‡ç”³è¯·å†…å­˜
     private static void memthod() {
         _1GCRootLocalVariable g = new _1GCRootLocalVariable();
         System.gc();
-        System.out.println("¾Ö²¿±äÁ¿ÉêÇëÄÚ´æºógc");
+        System.out.println("å±€éƒ¨å˜é‡ç”³è¯·å†…å­˜ågc");
         printMemeory();
     }
 
-    //´òÓ¡µ±Ç°jvmÊ£Óà¿Õ¼äºÍ×ÜµÄ¿Õ¼ä´óĞ¡
+    //æ‰“å°å½“å‰jvmå‰©ä½™ç©ºé—´å’Œæ€»çš„ç©ºé—´å¤§å°
     private static void printMemeory() {
         System.out.print("free is " + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M");
         System.out.println(" ,total is " + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "M");

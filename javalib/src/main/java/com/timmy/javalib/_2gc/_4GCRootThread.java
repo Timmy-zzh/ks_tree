@@ -2,16 +2,16 @@ package com.timmy.javalib._2gc;
 
 
 /**
- * Ïß³ÌGCRoot³¡¾°4:ÑéÖ¤»îÔ¾µÄÏß³ÌÊÇ·ñ¿ÉÒÔ×÷ÎªGCRoot
- * ÑéÖ¤ÑéÖ¤Ö´ĞĞ¹ı³ÌÖĞ£¬½øĞĞGC²Ù×÷£¬ÄÚ´æÊÇ·ñ±»»ØÊÕ£¿
+ * çº¿ç¨‹GCRootåœºæ™¯4:éªŒè¯æ´»è·ƒçš„çº¿ç¨‹æ˜¯å¦å¯ä»¥ä½œä¸ºGCRoot
+ * éªŒè¯éªŒè¯æ‰§è¡Œè¿‡ç¨‹ä¸­ï¼Œè¿›è¡ŒGCæ“ä½œï¼Œå†…å­˜æ˜¯å¦è¢«å›æ”¶ï¼Ÿ
  * <p>
- * ÈÕÖ¾´òÓ¡½á¹û£º
+ * æ—¥å¿—æ‰“å°ç»“æœï¼š
  * <p>
- * ¿ªÊ¼Ê±
+ * å¼€å§‹æ—¶
  * free is 117M ,total is 119M
- * Ïß³ÌÖ´ĞĞ¹ı³ÌÖĞGC
+ * çº¿ç¨‹æ‰§è¡Œè¿‡ç¨‹ä¸­GC
  * free is 37M ,total is 119M
- * Ïß³ÌÖ´ĞĞ½áÊøºóÔÙGC
+ * çº¿ç¨‹æ‰§è¡Œç»“æŸåå†GC
  * free is 117M ,total is 119M
  */
 public class _4GCRootThread {
@@ -25,7 +25,7 @@ public class _4GCRootThread {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("¿ªÊ¼Ê±");
+        System.out.println("å¼€å§‹æ—¶");
         printMemeory();
 
         TestRunnable testRunnable = new TestRunnable(new _4GCRootThread(8 * _10MB));
@@ -33,18 +33,18 @@ public class _4GCRootThread {
         thread.start();
 
         System.gc();
-        System.out.println("Ïß³ÌÖ´ĞĞ¹ı³ÌÖĞGC");
+        System.out.println("çº¿ç¨‹æ‰§è¡Œè¿‡ç¨‹ä¸­GC");
         printMemeory();
 
-        //±£Ö¤µ±Ç°Ïß³Ì½áÊøºóÔÙµ÷ÓÃºóÃæµÄ´úÂë
+        //ä¿è¯å½“å‰çº¿ç¨‹ç»“æŸåå†è°ƒç”¨åé¢çš„ä»£ç 
         thread.join();
         testRunnable = null;
         System.gc();
-        System.out.println("Ïß³ÌÖ´ĞĞ½áÊøºóÔÙGC");
+        System.out.println("çº¿ç¨‹æ‰§è¡Œç»“æŸåå†GC");
         printMemeory();
     }
 
-    //´òÓ¡µ±Ç°jvmÊ£Óà¿Õ¼äºÍ×ÜµÄ¿Õ¼ä´óĞ¡
+    //æ‰“å°å½“å‰jvmå‰©ä½™ç©ºé—´å’Œæ€»çš„ç©ºé—´å¤§å°
     private static void printMemeory() {
         System.out.print("free is " + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "M");
         System.out.println(" ,total is " + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "M");

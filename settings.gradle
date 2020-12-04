@@ -1,2 +1,3 @@
-include ':app', ':leetcode', ':javalib'
+include ':algorithm'
+include ':app', ':javalib'
 rootProject.name='ks_tree'

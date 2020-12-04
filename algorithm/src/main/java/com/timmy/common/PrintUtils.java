@@ -1,7 +1,6 @@
 package com.timmy.common;
 
 import com.timmy.dmsxl._06tree.TreeNode;
-import com.timmy.common.ListNode;
 
 import java.util.List;
 

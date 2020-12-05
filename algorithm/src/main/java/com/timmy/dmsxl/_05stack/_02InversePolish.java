@@ -48,33 +48,33 @@ public class _02InversePolish {
      * 2。如果是数字则入栈，如果遇到运算符则从栈中取栈顶两个元素，计算后，结果再入栈
      * 3。全部遍历完取出栈内的元素就是计算机计算的结果
      */
-    public int evalRPN(String[] tokens) {
-        Stack<String> stack = new Stack<>();
-        for (int i = 0; i < tokens.length; i++) {
-            String token = tokens[i];
-            if ("+".equals(token) || "-".equals(token) || "*".equals(token) || "/".equals(token)) {
-                String pop1 = stack.pop();
-                String pop2 = stack.pop();
-                if ("+".equals(token)) {
-                    int result = Integer.valueOf(pop1) + Integer.valueOf(pop2);
-                    stack.push(String.valueOf(result));
-                } else if ("-".equals(token)) {
-                    int result = Integer.valueOf(pop2) - Integer.valueOf(pop1);
-                    stack.push(String.valueOf(result));
-                } else if ("*".equals(token)) {
-                    int result = Integer.valueOf(pop1) * Integer.valueOf(pop2);
-                    stack.push(String.valueOf(result));
-                } else {
-                    int result = Integer.valueOf(pop2) / Integer.valueOf(pop1);
-                    stack.push(String.valueOf(result));
-                }
-            } else {
-                stack.push(token);
-            }
-        }
-        String pop = stack.pop();
-        return Integer.valueOf(pop);
-    }
+//    public int evalRPN(String[] tokens) {
+//        Stack<String> stack = new Stack<>();
+//        for (int i = 0; i < tokens.length; i++) {
+//            String token = tokens[i];
+//            if ("+".equals(token) || "-".equals(token) || "*".equals(token) || "/".equals(token)) {
+//                String pop1 = stack.pop();
+//                String pop2 = stack.pop();
+//                if ("+".equals(token)) {
+//                    int result = Integer.valueOf(pop1) + Integer.valueOf(pop2);
+//                    stack.push(String.valueOf(result));
+//                } else if ("-".equals(token)) {
+//                    int result = Integer.valueOf(pop2) - Integer.valueOf(pop1);
+//                    stack.push(String.valueOf(result));
+//                } else if ("*".equals(token)) {
+//                    int result = Integer.valueOf(pop1) * Integer.valueOf(pop2);
+//                    stack.push(String.valueOf(result));
+//                } else {
+//                    int result = Integer.valueOf(pop2) / Integer.valueOf(pop1);
+//                    stack.push(String.valueOf(result));
+//                }
+//            } else {
+//                stack.push(token);
+//            }
+//        }
+//        String pop = stack.pop();
+//        return Integer.valueOf(pop);
+//    }
 
     /**
      * 239. 滑动窗口最大值

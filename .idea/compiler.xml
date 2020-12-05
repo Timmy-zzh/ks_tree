@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
+      <module name="algorithm" target="1.7" />
       <module name="javalib" target="1.7" />
       <module name="ks_tree.app" target="1.8" />
       <module name="leetcode" target="1.7" />

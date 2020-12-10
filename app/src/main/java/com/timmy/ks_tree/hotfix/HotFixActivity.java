@@ -5,6 +5,7 @@ import dalvik.system.DexClassLoader;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class HotFixActivity extends AppCompatActivity {
                 Toast.makeText(HotFixActivity.this, iDo.doSomething(), Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.e("Tim", e.toString());
             }
         }
 

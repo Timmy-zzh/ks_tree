@@ -1,4 +1,4 @@
-package com.timmy.javalib._3class;
+package com.timmy.ks_tree.hotfix;
 
 public interface IDo {
 

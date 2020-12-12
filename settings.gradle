@@ -1,3 +1,4 @@
+include ':testlib'
 include ':algorithm'
 include ':app', ':javalib'
 rootProject.name='ks_tree'

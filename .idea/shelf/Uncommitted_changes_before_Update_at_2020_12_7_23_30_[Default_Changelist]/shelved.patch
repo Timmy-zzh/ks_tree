@@ -1,0 +1,1161 @@
+Index: app/src/main/java/com/timmy/ks_tree/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.timmy.ks_tree;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.content.pm.PackageInfo;\r\nimport android.content.pm.PackageManager;\r\nimport android.os.Build;\r\nimport android.os.Bundle;\r\nimport android.os.Handler;\r\nimport android.os.Message;\r\nimport android.util.ArrayMap;\r\nimport android.util.SparseArray;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport com.bumptech.glide.Glide;\r\n\r\nimport java.io.IOException;\r\nimport java.util.HashMap;\r\nimport java.util.Hashtable;\r\nimport java.util.concurrent.ArrayBlockingQueue;\r\nimport java.util.concurrent.ConcurrentHashMap;\r\nimport java.util.concurrent.ThreadPoolExecutor;\r\nimport java.util.concurrent.TimeUnit;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.RequiresApi;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport okhttp3.Call;\r\nimport okhttp3.Callback;\r\nimport okhttp3.OkHttpClient;\r\nimport okhttp3.Request;\r\nimport okhttp3.Response;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n\r\n//        test1();\r\n//        testOkhttp();\r\n//        testGlide();\r\n//        getSync(\"\");\r\n//        getAsync(\"\");\r\n//        testLock();\r\n//        testThreadPool();\r\n\r\n        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {\r\n            testCollect();\r\n        }\r\n    }\r\n\r\n\r\n    @RequiresApi(api = Build.VERSION_CODES.KITKAT)\r\n    private void testCollect() {\r\n        SparseArray<String> sparseArray = new SparseArray<>();\r\n        sparseArray.put(3,\"333\");\r\n        sparseArray.put(1,\"111\");\r\n        sparseArray.put(2,\"222\");\r\n        sparseArray.put(2,\"213424\");\r\n        System.out.println(sparseArray.toString());\r\n        String s = sparseArray.get(1);\r\n        sparseArray.remove(1);\r\n\r\n        ArrayMap<String, String> arrayMap = new ArrayMap<>();\r\n        arrayMap.put(\"bbb\",\"222\");\r\n        arrayMap.put(\"aaa\",\"111\");\r\n        arrayMap.put(\"ccc\",\"3333\");\r\n        arrayMap.put(\"aaa\",\"45643\");\r\n        System.out.println(arrayMap.toString());\r\n    }\r\n\r\n    private void testGlide() {\r\n        Glide.with(this)\r\n                .load(\"\")\r\n                .into(new ImageView(this));\r\n    }\r\n\r\n    private void testOkhttp() {\r\n        OkHttpClient client = new OkHttpClient();\r\n\r\n        Request request = new Request.Builder()\r\n                .url(\"\")\r\n                .build();\r\n        try {\r\n            Response response = client.newCall(request).execute();\r\n            String String = response.body().string();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n    }\r\n\r\n    private void test1() {\r\n        startActivity(new Intent());\r\n\r\n        Handler handler = new Handler() {\r\n            @Override\r\n            public void handleMessage(@NonNull Message msg) {\r\n                super.handleMessage(msg);\r\n            }\r\n        };\r\n\r\n        Message message = new Message();\r\n        Message.obtain();\r\n        handler.obtainMessage();\r\n\r\n        handler.sendMessage(message);\r\n\r\n        TextView textView = new TextView(this);\r\n        textView.post(new Runnable() {\r\n            @Override\r\n            public void run() {\r\n\r\n            }\r\n        });\r\n\r\n        MainActivity.this.runOnUiThread(new Runnable() {\r\n            @Override\r\n            public void run() {\r\n\r\n            }\r\n        });\r\n\r\n        Context context = this;\r\n        try {\r\n            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(\"\", 0);\r\n\r\n\r\n        } catch (PackageManager.NameNotFoundException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        getSync(\"\");\r\n        getAsync(\"\");\r\n        testLock();\r\n        testThreadPool();\r\n    }\r\n\r\n    private void testThreadPool() {\r\n        ThreadPoolExecutor executor = new ThreadPoolExecutor(\r\n                4,\r\n                100,\r\n                60,\r\n                TimeUnit.SECONDS,\r\n                new ArrayBlockingQueue<Runnable>(10),\r\n                new ThreadPoolExecutor.AbortPolicy());\r\n        executor.execute(new Runnable() {\r\n            @Override\r\n            public void run() {\r\n\r\n            }\r\n        });\r\n    }\r\n\r\n    private void testLock() {\r\n        HashMap<Integer, String> hashMap = new HashMap<>();\r\n        hashMap.put(null, \"123\");\r\n\r\n        Hashtable<Integer, String> hashtable = new Hashtable<>();\r\n        hashMap.put(1, \"234\");\r\n\r\n        ConcurrentHashMap<Integer, String> concurrentHashMap = new ConcurrentHashMap<>();\r\n        concurrentHashMap.put(2, \"345\");\r\n    }\r\n\r\n    private void getSync(final String url) {\r\n        new Thread(new Runnable() {\r\n            @Override\r\n            public void run() {\r\n                try {\r\n                    //1.创建OkHttpClient对象\r\n                    OkHttpClient client = new OkHttpClient();\r\n\r\n                    //2.创建请求对象 Request\r\n                    Request request = new Request.Builder()\r\n                            .url(url)\r\n                            .get()\r\n                            .build();\r\n\r\n                    //3.根据request创建 Call对象\r\n                    Call call = client.newCall(request);\r\n\r\n                    //4.调用execute方法，同步方式请求响应Response\r\n                    Response response = call.execute();\r\n                    if (response.isSuccessful()) {\r\n//                        String string = response.body().string();\r\n                        //获取响应数据，切换到主线程进行界面更新\r\n                    }\r\n                } catch (IOException e) {\r\n                    e.printStackTrace();\r\n                }\r\n            }\r\n        }).start();\r\n    }\r\n\r\n    private void getAsync(String url) {\r\n        //1.创建OkHttpClient对象\r\n        OkHttpClient client = new OkHttpClient();\r\n\r\n        //2.创建请求对象 Request\r\n        Request request = new Request.Builder()\r\n                .url(url)\r\n                .get()\r\n                .build();\r\n\r\n        //3.根据request创建 Call对象\r\n        Call call = client.newCall(request);\r\n\r\n        //4.调用enqueue方法，异步请求网络，响应数据通过callback返回\r\n        call.enqueue(new Callback() {\r\n            @Override\r\n            public void onFailure(Call call, IOException e) {\r\n\r\n            }\r\n\r\n            @Override\r\n            public void onResponse(Call call, Response response) throws IOException {\r\n                //获取响应数据，当前在子线程，需要切换到主线程进行界面更新\r\n            }\r\n        });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/timmy/ks_tree/MainActivity.java	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ app/src/main/java/com/timmy/ks_tree/MainActivity.java	(date 1607352030335)
+@@ -1,36 +1,14 @@
+ package com.timmy.ks_tree;
+ 
+-import android.content.Context;
++
+ import android.content.Intent;
+-import android.content.pm.PackageInfo;
+-import android.content.pm.PackageManager;
+-import android.os.Build;
+ import android.os.Bundle;
+-import android.os.Handler;
+-import android.os.Message;
+-import android.util.ArrayMap;
+-import android.util.SparseArray;
+-import android.widget.ImageView;
+-import android.widget.TextView;
++import android.util.Log;
++import android.view.View;
+ 
+-import com.bumptech.glide.Glide;
++import com.timmy.ks_tree.hotfix.HotFixActivity;
+ 
+-import java.io.IOException;
+-import java.util.HashMap;
+-import java.util.Hashtable;
+-import java.util.concurrent.ArrayBlockingQueue;
+-import java.util.concurrent.ConcurrentHashMap;
+-import java.util.concurrent.ThreadPoolExecutor;
+-import java.util.concurrent.TimeUnit;
+-
+-import androidx.annotation.NonNull;
+-import androidx.annotation.RequiresApi;
+ import androidx.appcompat.app.AppCompatActivity;
+-import okhttp3.Call;
+-import okhttp3.Callback;
+-import okhttp3.OkHttpClient;
+-import okhttp3.Request;
+-import okhttp3.Response;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+@@ -39,187 +17,15 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
+ 
+-//        test1();
+-//        testOkhttp();
+-//        testGlide();
+-//        getSync("");
+-//        getAsync("");
+-//        testLock();
+-//        testThreadPool();
+-
+-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+-            testCollect();
+-        }
+-    }
+-
+-
+-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+-    private void testCollect() {
+-        SparseArray<String> sparseArray = new SparseArray<>();
+-        sparseArray.put(3,"333");
+-        sparseArray.put(1,"111");
+-        sparseArray.put(2,"222");
+-        sparseArray.put(2,"213424");
+-        System.out.println(sparseArray.toString());
+-        String s = sparseArray.get(1);
+-        sparseArray.remove(1);
+-
+-        ArrayMap<String, String> arrayMap = new ArrayMap<>();
+-        arrayMap.put("bbb","222");
+-        arrayMap.put("aaa","111");
+-        arrayMap.put("ccc","3333");
+-        arrayMap.put("aaa","45643");
+-        System.out.println(arrayMap.toString());
+-    }
+-
+-    private void testGlide() {
+-        Glide.with(this)
+-                .load("")
+-                .into(new ImageView(this));
+-    }
+-
+-    private void testOkhttp() {
+-        OkHttpClient client = new OkHttpClient();
+-
+-        Request request = new Request.Builder()
+-                .url("")
+-                .build();
+-        try {
+-            Response response = client.newCall(request).execute();
+-            String String = response.body().string();
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-        }
+-
++        testClassLoader();
+     }
+ 
+-    private void test1() {
+-        startActivity(new Intent());
+-
+-        Handler handler = new Handler() {
+-            @Override
+-            public void handleMessage(@NonNull Message msg) {
+-                super.handleMessage(msg);
+-            }
+-        };
+-
+-        Message message = new Message();
+-        Message.obtain();
+-        handler.obtainMessage();
+-
+-        handler.sendMessage(message);
++    private void testClassLoader() {
++        ClassLoader classLoader = MainActivity.this.getClassLoader();
++        Log.e("Tim", classLoader.toString());
++    }
+ 
+-        TextView textView = new TextView(this);
+-        textView.post(new Runnable() {
+-            @Override
+-            public void run() {
+-
+-            }
+-        });
+-
+-        MainActivity.this.runOnUiThread(new Runnable() {
+-            @Override
+-            public void run() {
+-
+-            }
+-        });
+-
+-        Context context = this;
+-        try {
+-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo("", 0);
+-
+-
+-        } catch (PackageManager.NameNotFoundException e) {
+-            e.printStackTrace();
+-        }
+-
+-        getSync("");
+-        getAsync("");
+-        testLock();
+-        testThreadPool();
+-    }
+-
+-    private void testThreadPool() {
+-        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+-                4,
+-                100,
+-                60,
+-                TimeUnit.SECONDS,
+-                new ArrayBlockingQueue<Runnable>(10),
+-                new ThreadPoolExecutor.AbortPolicy());
+-        executor.execute(new Runnable() {
+-            @Override
+-            public void run() {
+-
+-            }
+-        });
+-    }
+-
+-    private void testLock() {
+-        HashMap<Integer, String> hashMap = new HashMap<>();
+-        hashMap.put(null, "123");
+-
+-        Hashtable<Integer, String> hashtable = new Hashtable<>();
+-        hashMap.put(1, "234");
+-
+-        ConcurrentHashMap<Integer, String> concurrentHashMap = new ConcurrentHashMap<>();
+-        concurrentHashMap.put(2, "345");
+-    }
+-
+-    private void getSync(final String url) {
+-        new Thread(new Runnable() {
+-            @Override
+-            public void run() {
+-                try {
+-                    //1.创建OkHttpClient对象
+-                    OkHttpClient client = new OkHttpClient();
+-
+-                    //2.创建请求对象 Request
+-                    Request request = new Request.Builder()
+-                            .url(url)
+-                            .get()
+-                            .build();
+-
+-                    //3.根据request创建 Call对象
+-                    Call call = client.newCall(request);
+-
+-                    //4.调用execute方法，同步方式请求响应Response
+-                    Response response = call.execute();
+-                    if (response.isSuccessful()) {
+-//                        String string = response.body().string();
+-                        //获取响应数据，切换到主线程进行界面更新
+-                    }
+-                } catch (IOException e) {
+-                    e.printStackTrace();
+-                }
+-            }
+-        }).start();
+-    }
+-
+-    private void getAsync(String url) {
+-        //1.创建OkHttpClient对象
+-        OkHttpClient client = new OkHttpClient();
+-
+-        //2.创建请求对象 Request
+-        Request request = new Request.Builder()
+-                .url(url)
+-                .get()
+-                .build();
+-
+-        //3.根据request创建 Call对象
+-        Call call = client.newCall(request);
+-
+-        //4.调用enqueue方法，异步请求网络，响应数据通过callback返回
+-        call.enqueue(new Callback() {
+-            @Override
+-            public void onFailure(Call call, IOException e) {
+-
+-            }
+-
+-            @Override
+-            public void onResponse(Call call, Response response) throws IOException {
+-                //获取响应数据，当前在子线程，需要切换到主线程进行界面更新
+-            }
+-        });
++    public void hotfix(View view) {
++        startActivity(new Intent(this, HotFixActivity.class));
+     }
+ }
+Index: 01_java/02class/3.ClassLoader加载机制.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>##### 前言\r\n\r\n之前介绍了Java字节码文件(.class)的格式。\r\n\r\n- 一个完整的Java程序由多个.class文件组成，在程序运行过程中，需要将这些.class文件加载到JVM中才可以使用。\r\n- 而负责加载这些.class文件的就是类加载器-ClassLoader\r\n\r\n#### Java中的类何时被加载器加载\r\n\r\n- 在Java程序启动的时候，并不会一次性加载程序中所有的.class文件，而是在程序运行过程中，动态地加载相应的类到内存中（方法区）\r\n- 通常情况下Java程序中的.class文件会在以下2种情况被ClassLoader主动加载到内存中\r\n  - 调用类构造器\r\n  - 调用类中的静态（static）变量或者静态方法\r\n\r\n#### Java中的ClassLoader\r\n\r\n- JVM中自带3个类加载器\r\n  - 启动类加载器 BootstrapClassLoader\r\n  - 扩展类加载器 ExtClassLoader\r\n  - 系统加载器 APPClassLoader\r\n\r\n##### 系统加载器 APPClassLoader\r\n\r\n~~~java\r\n    static class AppClassLoader extends URLClassLoader {\r\n        final URLClassPath ucp = SharedSecrets.getJavaNetAccess().getURLClassPath(this);\r\n\r\n        public static ClassLoader getAppClassLoader(final ClassLoader var0) throws IOException {\r\n            final String var1 = System.getProperty(\"java.class.path\");\r\n            final File[] var2 = var1 == null ? new File[0] : Launcher.getClassPath(var1);\r\n            return (ClassLoader)AccessController.doPrivileged(new PrivilegedAction<Launcher.AppClassLoader>() {\r\n                public Launcher.AppClassLoader run() {\r\n                    URL[] var1x = var1 == null ? new URL[0] : Launcher.pathToURLs(var2);\r\n                    return new Launcher.AppClassLoader(var1x, var0);\r\n                }\r\n            });\r\n        }\r\n~~~\r\n\r\n- AppClassLoader主要加载系统属性“java.class.path”配置下类文件，也就是环境变量CLASS_PATH配置的路径\r\n- 因此AppClassLoader是面向用户的类加载器，我们编写的代码以及使用的第三方jar包通常都是由他来加载的\r\n\r\n##### 扩展类加载器 ExtClassLoader\r\n\r\n~~~java\r\n        private static Launcher.ExtClassLoader createExtClassLoader() throws IOException {\r\n            try {\r\n                return (Launcher.ExtClassLoader)AccessController.doPrivileged(new PrivilegedExceptionAction<Launcher.ExtClassLoader>() {\r\n                    public Launcher.ExtClassLoader run() throws IOException {\r\n                        File[] var1 = Launcher.ExtClassLoader.getExtDirs();\r\n                        int var2 = var1.length;\r\n\r\n                        for(int var3 = 0; var3 < var2; ++var3) {\r\n                            MetaIndex.registerDirectory(var1[var3]);\r\n                        }\r\n\r\n                        return new Launcher.ExtClassLoader(var1);\r\n                    }\r\n                });\r\n            } catch (PrivilegedActionException var1) {\r\n                throw (IOException)var1.getException();\r\n            }\r\n        }\r\n        \r\n        private static File[] getExtDirs() {\r\n            String var0 = System.getProperty(\"java.ext.dirs\");\r\n            File[] var1;\r\n            ...\r\n            return var1;\r\n        }\r\n~~~\r\n\r\n- ExtClassLoader主要加载系统属性\"java.ext.dirs\"配置下类文件。\r\n\r\n##### 启动类加载器 BootstrapClassLoader\r\n\r\n- BootstrapClassLoader不是用Java代码实现的，而是由C/C++语言编写的，本身属于虚拟机的一部分。\r\n- 其加载系统属性 “sun.boot.class.path”配置下类文件。\r\n\r\n代码实现：\r\n\r\n~~~java\r\n    public static void main(String[] args) {\r\n        System.out.println(System.getProperty(\"java.class.path\"));\r\n        System.out.println(\"------------------------\");\r\n        System.out.println(System.getProperty(\"java.ext.dirs\"));\r\n        System.out.println(\"------------------------\");\r\n        System.out.println(System.getProperty(\"sun.boot.class.path\"));\r\n    }\r\n~~~\r\n\r\n打印效果：\r\n\r\n<img src=\".\\res3\\1.JVM中三个类加载器.png\" alt=\"1.JVM中三个类加载器\" style=\"zoom:90%;\" />\r\n\r\n#### 双亲委派模式\r\n\r\n##### 问题：既然JVM中已经有了3中ClassLoader，那么我们编写的.class文件到底该使用哪一个类加载器去加载呢？  \r\n\r\n答案是：双亲委派模式\r\n\r\n- 双亲委派模式就是，当类加载器收到加载类或资源的请求时，通常都是先委托给父类加载器加载。\r\n  - 也就是说，只有当父类加载器找不到指定类或资源时，自身才会执行实际的类加载过程\r\n\r\n- class类的加载方法在ClassLoader的loadClass方法中实现\r\n\r\n~~~java\r\npublic abstract class ClassLoader {\r\n    \r\n    protected ClassLoader(ClassLoader parent) {\r\n        this(checkCreateClassLoader(), parent);\r\n    }\r\n    \r\n    private ClassLoader(Void var1, ClassLoader parent) {\r\n        this.classes = new Vector();\r\n        this.defaultDomain = new ProtectionDomain(new CodeSource((URL)null, (Certificate[])null), (PermissionCollection)null, this, (Principal[])null);\r\n        this.packages = new HashMap();\r\n        this.nativeLibraries = new Vector();\r\n        this.defaultAssertionStatus = false;\r\n        this.packageAssertionStatus = null;\r\n        this.classAssertionStatus = null;\r\n        this.parent = parent;\r\n        if (ClassLoader.ParallelLoaders.isRegistered(this.getClass())) {\r\n            this.parallelLockMap = new ConcurrentHashMap();\r\n            this.package2certs = new ConcurrentHashMap();\r\n            this.domains = Collections.synchronizedSet(new HashSet());\r\n            this.assertionLock = new Object();\r\n        } else {\r\n            this.parallelLockMap = null;\r\n            this.package2certs = new Hashtable();\r\n            this.domains = new HashSet();\r\n            this.assertionLock = this;\r\n        }\r\n    }\r\n    \r\n\tpublic Class<?> loadClass(String name) throws ClassNotFoundException {\r\n        return loadClass(name, false);\r\n    }\r\n\r\n    protected Class<?> loadClass(String name, boolean resolve) {\r\n        \r\n        synchronized(getClassLoadingLock(name)) {\r\n            Class c = findLoadedClass(name);\r\n            if (c == null) {\r\n                long var5 = System.nanoTime();\r\n                try {\r\n                    if (parent != null) {\r\n                        c = parent.loadClass(name, false);\r\n                    } else {\r\n                        c = findBootstrapClassOrNull(name);\r\n                    }\r\n                } catch (ClassNotFoundException e) {\r\n                }\r\n                if (c == null) {\r\n                    long var7 = System.nanoTime();\r\n                    c = findClass(name);\r\n                }\r\n            }\r\n            if (resolve) {\r\n                resolveClass(c);\r\n            }\r\n            return c;\r\n        }\r\n    }\r\n}\r\n~~~\r\n\r\n- 代码解析\r\n  - findLoadedClass()方法判断该Class是否已加载，如果已加载，则直接将该Class返回\r\n  - 如果该Class没有被加载过，则判断parent是否为空，如果不为空则将类加载的任务委托给parent，调用parent的loadClass()方法\r\n    - parent也是ClassLoader类型，作为构造函数入参传入\r\n  - 如果parent == null，则直接调用BootstrapClassLoader加载该类\r\n  - 如果parent或者BootstrapClassLoader都没有加载成功，则调用当前ClassLoader的findClass方法继续尝试加载\r\n\r\n- parent属性\r\n  - 可以看出，在每一个ClassLoader中都有一个ClassLoader类型的parent引用，并且在构造器中传入值。\r\n  - 从源码中可知，AppClassLoader传入的parent是ExtClassLoader，而ExtClassLoader并没有传入任何parent，也就是null\r\n\r\n##### 举例\r\n\r\n执行下面的代码，_2ClassLoader类是如何加载的呢？\r\n\r\n~~~java\r\n\t_2ClassLoader demo = new _2ClassLoader();\r\n~~~\r\n\r\n- 默认情况下，JVM首先使用AppClassLoader去加载_2ClassLoader类\r\n  1. AppClassLoader将加载任务委派给它的父类加载器ExtClassLoader\r\n  2. ExtClassLoader的parent为null，所以直接将加载任务委派给BootstrapClassLoader\r\n  3. BootstrapClassLoader在jdk/lib目录下无法找到Test类，因此返回的Class为null\r\n  4. 因为parent和BootstrapClassLoader都没有成功加载_2ClassLoader类，所有AppClassLoader会调用自身的findClass()方法来加载 _2ClassLoader类\r\n\r\n- 最终_2ClassLoader类是被AppClassLoader加载到内存中的，可通过如下代码验证：\r\n\r\n~~~java\r\n    private static void test3() {\r\n        ClassLoader classLoader = _2ClassLoader.class.getClassLoader();\r\n        System.out.println(\"classLoader is \"+classLoader);\r\n\r\n        ClassLoader parent = classLoader.getParent();\r\n        System.out.println(\"parent is \"+parent);\r\n\r\n        ClassLoader bootstrp = parent.getParent();\r\n        System.out.println(\"bootstrp is \"+bootstrp);\r\n    }\r\n\r\n打印结果：\r\nclassLoader is sun.misc.Launcher$AppClassLoader@18b4aac2\r\nparent is sun.misc.Launcher$ExtClassLoader@42a57993\r\nbootstrp is null\r\n~~~\r\n\r\n**注意**：双亲委派 机制只是java推荐的机制，并不是强制的机制。我们可以继承java.lang.ClassLoader类，实现自己的类加载器。\r\n\r\n- 如果想保持双亲委派模式，就应该重写findClass(name)方法\r\n- 如果想破坏双亲委派模型，可以重写loadClass(name)方法\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+===================================================================
+--- 01_java/02class/3.ClassLoader加载机制.md	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ 01_java/02class/3.0.ClassLoader加载机制.md	(date 1607179129131)
+@@ -1,3 +1,10 @@
++1. 字节码文件是如何被加载的？以及加载时机
++2. java中的已有的类加载器
++3. 双亲委派机制
++4. 通过自定义类加载器加载磁盘的字节码文件实现热修复功能
++
++
++
+ ##### 前言
+ 
+ 之前介绍了Java字节码文件(.class)的格式。
+@@ -215,33 +222,70 @@
+ - 如果想保持双亲委派模式，就应该重写findClass(name)方法
+ - 如果想破坏双亲委派模型，可以重写loadClass(name)方法
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
++#### 自定义ClassLoader
+ 
++- 加入我们要加载在磁盘上的一个.class文件（该文件可以是网络下载下来的）
+ 
++~~~java
++public class ClassTest {
++    public void printTest(){
++        System.out.println("ClassTest -- print 111");
++    }
++}
++~~~
+ 
++- 自定义ClassLoader从磁盘加载class文件，获取文件字节流，并加获取Class对象
+ 
++~~~java
++public class DiskClassLoader extends ClassLoader {
+ 
++    private String filePath;
+ 
++    public DiskClassLoader(String path) {
++        this.filePath = path;
++    }
+ 
++    @Override
++    protected Class<?> findClass(String className) throws ClassNotFoundException {
++        String classPath = filePath + className + ".class";
++        byte[] classBytes = null;
++        try {
++            Path path = Paths.get(new URI(classPath));
++            classBytes = Files.readAllBytes(path);
++        } catch (URISyntaxException | IOException e) {
++            e.printStackTrace();
++        }
++        return defineClass(className, classBytes, 0, classBytes.length);
++    }
++}
++~~~
+ 
++- 使用自定义的ClassLoader加载字节码文件，并反射生成类对象
+ 
++~~~java
++public class ClassLoaderUse {
+ 
++    public static void main(String[] args) {
++        System.out.println("111");
++        String filePath = "E:/Study/";
++        DiskClassLoader diskClassLoader = new DiskClassLoader(filePath);
++        try {
++            Class<?> aClass = diskClassLoader.loadClass("ClassTest");
++            if (aClass != null) {
++                Object obj = aClass.newInstance();
++                Method method = aClass.getMethod("printTest", null);
++                method.invoke(obj, null);
++            }
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++    }
++}
++~~~
+ 
+-
++- 动态加载.class文件的思路，经常被用作热修复和插件化开发的框架中，流程如下：
++  - 客户端从服务端下载一个加密的.class文件，然后再本地通过事先定义好的加密方式进行解密
++  - 再使用自定义ClassLoader动态加载解密后的.class文件，并动态调用相应的方法
+ 
+ 
+ 
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.timmy.ks_tree\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/AppTheme\">\r\n        <activity android:name=\".MainActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ app/src/main/AndroidManifest.xml	(date 1607352730258)
+@@ -2,6 +2,9 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.timmy.ks_tree">
+ 
++    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
++    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
++
+     <application
+         android:allowBackup="true"
+         android:icon="@mipmap/ic_launcher"
+@@ -9,6 +12,7 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/AppTheme">
++        <activity android:name=".hotfix.HotFixActivity"/>
+         <activity android:name=".MainActivity">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+Index: .idea/encodings.xml
+===================================================================
+--- .idea/encodings.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ .idea/encodings.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+-    <file url="PROJECT" charset="UTF-8" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/runConfigurations.xml
+===================================================================
+--- .idea/runConfigurations.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ .idea/runConfigurations.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
+@@ -1,12 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/codeStyles/Project.xml
+===================================================================
+--- .idea/codeStyles/Project.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ .idea/codeStyles/Project.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
+@@ -1,116 +0,0 @@
+-<component name="ProjectCodeStyleConfiguration">
+-  <code_scheme name="Project" version="173">
+-    <codeStyleSettings language="XML">
+-      <indentOptions>
+-        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+-      </indentOptions>
+-      <arrangement>
+-        <rules>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>xmlns:android</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>xmlns:.*</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-              <order>BY_NAME</order>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*:id</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*:name</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>name</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>style</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-              <order>BY_NAME</order>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-              <order>ANDROID_ATTRIBUTE_ORDER</order>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>.*</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-              <order>BY_NAME</order>
+-            </rule>
+-          </section>
+-        </rules>
+-      </arrangement>
+-    </codeStyleSettings>
+-  </code_scheme>
+-</component>
+\ No newline at end of file
+Index: app/src/main/java/com/timmy/ks_tree/hotfix/DoHotfix.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/timmy/ks_tree/hotfix/DoHotfix.java	(date 1607354936933)
++++ app/src/main/java/com/timmy/ks_tree/hotfix/DoHotfix.java	(date 1607354936933)
+@@ -0,0 +1,8 @@
++package com.timmy.ks_tree.hotfix;
++
++public class DoHotfix implements IDo{
++    @Override
++    public String doSomething() {
++        return "something hotfix right";
++    }
++}
+Index: app/src/main/java/com/timmy/ks_tree/hotfix/HotFixActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/timmy/ks_tree/hotfix/HotFixActivity.java	(date 1607354118677)
++++ app/src/main/java/com/timmy/ks_tree/hotfix/HotFixActivity.java	(date 1607354118677)
+@@ -0,0 +1,49 @@
++package com.timmy.ks_tree.hotfix;
++
++import androidx.appcompat.app.AppCompatActivity;
++import dalvik.system.DexClassLoader;
++
++import android.os.Bundle;
++import android.os.Environment;
++import android.view.View;
++import android.widget.Toast;
++
++import com.timmy.ks_tree.R;
++
++import java.io.File;
++
++public class HotFixActivity extends AppCompatActivity {
++
++    private IDo iDo;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_hot_fix);
++    }
++
++    public void testHotFix(View view) {
++
++        //hotfit jar包路径
++        File jarFile = new File(Environment.getExternalStorageDirectory().getPath()
++                + File.separator + "tim" + File.separator + "do_hotfix.jar");
++
++        if (!jarFile.exists()) {
++            iDo = new DoException();
++            Toast.makeText(HotFixActivity.this, iDo.doSomething(), Toast.LENGTH_SHORT).show();
++        } else {
++            DexClassLoader dexClassLoader = new DexClassLoader(jarFile.getAbsolutePath(),
++                    getExternalCacheDir().getAbsolutePath(),
++                    null, getClassLoader());
++
++            try {
++                Class<?> aClass = dexClassLoader.loadClass("com.timmy.ks_tree.hotfix.DoHotfix");
++                iDo = (IDo) aClass.newInstance();
++                Toast.makeText(HotFixActivity.this, iDo.doSomething(), Toast.LENGTH_SHORT).show();
++            } catch (Exception e) {
++                e.printStackTrace();
++            }
++        }
++
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".MainActivity\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Hello World!\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintLeft_toLeftOf=\"parent\"\r\n        app:layout_constraintRight_toRightOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ app/src/main/res/layout/activity_main.xml	(date 1607352598238)
+@@ -9,10 +9,20 @@
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="Hello World!"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
++    <Button
++        android:id="@+id/button"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="24dp"
++        android:onClick="hotfix"
++        android:text="HotFix"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ .idea/vcs.xml	(date 1607350186471)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++    <mapping directory="" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_hot_fix.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_hot_fix.xml	(date 1607352143693)
++++ app/src/main/res/layout/activity_hot_fix.xml	(date 1607352143693)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".hotfix.HotFixActivity">
++
++    <Button
++        android:id="@+id/button2"
++        android:layout_width="86dp"
++        android:layout_height="40dp"
++        android:text="click"
++        android:onClick="testHotFix"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: algorithm/src/main/java/com/timmy/common/ListNode.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.timmy.common;\r\n\r\npublic class ListNode {\r\n    public int value;\r\n    public ListNode next;\r\n\r\n    ListNode() {\r\n    }\r\n\r\n    public ListNode(int value) {\r\n        this.value = value;\r\n    }\r\n\r\n    ListNode(int value, ListNode next) {\r\n        this.value = value;\r\n        this.next = next;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- algorithm/src/main/java/com/timmy/common/ListNode.java	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ algorithm/src/main/java/com/timmy/common/ListNode.java	(date 1607128648161)
+@@ -4,7 +4,7 @@
+     public int value;
+     public ListNode next;
+ 
+-    ListNode() {
++    public ListNode() {
+     }
+ 
+     public ListNode(int value) {
+Index: javalib/src/main/java/com/timmy/javalib/_3class/IDo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- javalib/src/main/java/com/timmy/javalib/_3class/IDo.java	(date 1607353926334)
++++ javalib/src/main/java/com/timmy/javalib/_3class/IDo.java	(date 1607353926334)
+@@ -0,0 +1,6 @@
++package com.timmy.javalib._3class;
++
++public interface IDo {
++
++    String doSomething();
++}
+Index: 01_java/02class/3.1.Android中的ClassLoader.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- 01_java/02class/3.1.Android中的ClassLoader.md	(date 1607353472274)
++++ 01_java/02class/3.1.Android中的ClassLoader.md	(date 1607353472274)
+@@ -0,0 +1,98 @@
++#### Android中的ClassLoader
++
++- Android是使用java语言开发，和传统JVM一样，也需要通过ClassLoader将目标类加载到内存，类加载器之间也符号双亲委派模型，但是ClassLoader的加载细节会略有不同。
++  - 在Android虚拟机里是无法直接运行.class文件的，从APK打包流程可知，Android会将所有.class文件转换成一个.dex文件
++  - 并且加载.dex文件的实现封装在BaseDexClassLoader中，我们一般使用它的两个子类：PathClassLoader 和 DexClassLoader.
++
++##### PathClassLoader
++
++~~~java
++public class PathClassLoader extends BaseDexClassLoader {
++    
++    public PathClassLoader(String dexPath, ClassLoader parent) {
++        super((String)null, (File)null, (String)null, (ClassLoader)null);
++        throw new RuntimeException("Stub!");
++    }
++
++    public PathClassLoader(String dexPath, String librarySearchPath, ClassLoader parent) {
++        super((String)null, (File)null, (String)null, (ClassLoader)null);
++        throw new RuntimeException("Stub!");
++    }
++}
++~~~
++
++- PathClassLoader继承自BaseDexClassLoader，该类用来加载系统apk和被安装到手机中的apk内dex文件。
++- 有两个构造函数，参数如下：
++  - dexPath：dex文件路径，或者包含dex文件的jar包路径
++  - librarySearchPath：C/C++ native库的路径
++- PathClassLoader中除了2个构造函数以外，没有其他方法了，具体的实现都是在BaseDexClassLoader中，参数dexPath比较受限制，一般是已经安装应用的apk文件路径
++
++##### 当一个App被安装到手机后，apk里面的class.dex中的class均是通过PathClassLoader来加载的
++
++~~~java
++public class MainActivity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_main);
++
++        ClassLoader classLoader = MainActivity.this.getClassLoader();
++        Log.e("Tim", classLoader.toString());
++    }
++}
++
++打印结果：
++Tim: dalvik.system.PathClassLoader[DexPathList[[zip file "/data/app/com.timmy.ks_tree-XOfzVGpC4mc-XEMEGlxDsA==/base.apk"],nativeLibraryDirectories=[/data/app/com.timmy.ks_tree-XOfzVGpC4mc-XEMEGlxDsA==/lib/arm64, /system/lib64, /system/product/lib64]]]
++~~~
++
++##### DexClassLoader
++
++~~~java
++public class DexClassLoader extends BaseDexClassLoader {
++    
++    public DexClassLoader(String dexPath, String optimizedDirectory, String librarySearchPath, ClassLoader parent) {
++        super((String)null, (File)null, (String)null, (ClassLoader)null);
++        throw new RuntimeException("Stub!");
++    }
++}
++~~~
++
++- PathClassLoader只能加载已经安装应用的dex或apk文件，DexClassLoader则没有此限制，可以从sd卡上加载包含class.dex的.jar和.apk文件
++  - 这也是插件化和热修复的基础，在不需要安装应用的情况下，完成dex文件的加载
++- DexClassLoader源码中只有一个构造方法
++  - dexPath：包含class.dex的apk，jar文件路径，多个路径用文件分隔符（：）分割
++  - optimizedDirectory：用来缓存优化的dex文件路径，即从apk或jar文件中提取出来的dex文件。该路径不可以为空，且应该是应用私有，有读写权限的路径
++
++#### 使用DexClassLoader实现热修复
++
++
++
++
++
++
++
++##### 将.java文件打成jar包
++
++~~~
++jar cvf hotfix_do.jar IDo.java DoHotfix.java
++~~~
++
++
++
++##### 将jar包转成dex文件
++
++~~~java
++dx --dex --output=do_hotfix.jar hotfix_do.jar
++~~~
++
++
++
++
++
++
++
++
++
++
++
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ASMIdeaPluginConfiguration\">\r\n    <asm skipDebug=\"false\" skipFrames=\"false\" skipCode=\"false\" expandFrames=\"false\" />\r\n    <groovy codeStyle=\"LEGACY\" />\r\n  </component>\r\n  <component name=\"ASMPluginConfiguration\">\r\n    <asm skipDebug=\"false\" skipFrames=\"false\" skipCode=\"false\" expandFrames=\"false\" />\r\n    <groovy codeStyle=\"LEGACY\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_7\" default=\"false\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ .idea/misc.xml	(date 1607350186455)
+@@ -4,14 +4,5 @@
+     <asm skipDebug="false" skipFrames="false" skipCode="false" expandFrames="false" />
+     <groovy codeStyle="LEGACY" />
+   </component>
+-  <component name="ASMPluginConfiguration">
+-    <asm skipDebug="false" skipFrames="false" skipCode="false" expandFrames="false" />
+-    <groovy codeStyle="LEGACY" />
+-  </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/build/classes" />
+-  </component>
+-  <component name="ProjectType">
+-    <option name="id" value="Android" />
+-  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/com/timmy/ks_tree/Test.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/timmy/ks_tree/Test.java	(date 1607351131146)
++++ app/src/main/java/com/timmy/ks_tree/Test.java	(date 1607351131146)
+@@ -0,0 +1,219 @@
++package com.timmy.ks_tree;
++
++import android.app.Activity;
++import android.content.Context;
++import android.content.Intent;
++import android.content.pm.PackageInfo;
++import android.content.pm.PackageManager;
++import android.os.Build;
++import android.os.Handler;
++import android.os.Message;
++import android.util.ArrayMap;
++import android.util.SparseArray;
++import android.widget.ImageView;
++import android.widget.TextView;
++
++import com.bumptech.glide.Glide;
++
++import java.io.IOException;
++import java.util.HashMap;
++import java.util.Hashtable;
++import java.util.concurrent.ArrayBlockingQueue;
++import java.util.concurrent.ConcurrentHashMap;
++import java.util.concurrent.ThreadPoolExecutor;
++import java.util.concurrent.TimeUnit;
++
++import androidx.annotation.NonNull;
++import androidx.annotation.RequiresApi;
++import okhttp3.Call;
++import okhttp3.Callback;
++import okhttp3.OkHttpClient;
++import okhttp3.Request;
++import okhttp3.Response;
++
++public class Test {
++
++    public static void main(String[] args) {
++//        test1();
++//        testOkhttp();
++//        testGlide();
++//        getSync("");
++//        getAsync("");
++//        testLock();
++//        testThreadPool();
++//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
++//            testCollect();
++//        }
++    }
++
++
++    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
++    private void testCollect() {
++        SparseArray<String> sparseArray = new SparseArray<>();
++        sparseArray.put(3,"333");
++        sparseArray.put(1,"111");
++        sparseArray.put(2,"222");
++        sparseArray.put(2,"213424");
++        System.out.println(sparseArray.toString());
++        String s = sparseArray.get(1);
++        sparseArray.remove(1);
++
++        ArrayMap<String, String> arrayMap = new ArrayMap<>();
++        arrayMap.put("bbb","222");
++        arrayMap.put("aaa","111");
++        arrayMap.put("ccc","3333");
++        arrayMap.put("aaa","45643");
++        System.out.println(arrayMap.toString());
++    }
++
++    private void testGlide(Activity activity) {
++        Glide.with(activity)
++                .load("")
++                .into(new ImageView(activity));
++    }
++
++    private void testOkhttp() {
++        OkHttpClient client = new OkHttpClient();
++
++        Request request = new Request.Builder()
++                .url("")
++                .build();
++        try {
++            Response response = client.newCall(request).execute();
++            String String = response.body().string();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++
++    }
++
++    private void test1(Activity activity) {
++        activity.startActivity(new Intent());
++
++        Handler handler = new Handler() {
++            @Override
++            public void handleMessage(@NonNull Message msg) {
++                super.handleMessage(msg);
++            }
++        };
++
++        Message message = new Message();
++        Message.obtain();
++        handler.obtainMessage();
++
++        handler.sendMessage(message);
++
++        TextView textView = new TextView(activity);
++        textView.post(new Runnable() {
++            @Override
++            public void run() {
++
++            }
++        });
++
++        activity.runOnUiThread(new Runnable() {
++            @Override
++            public void run() {
++
++            }
++        });
++
++        Context context = activity;
++        try {
++            PackageInfo packageInfo = context.getPackageManager().getPackageInfo("", 0);
++
++
++        } catch (PackageManager.NameNotFoundException e) {
++            e.printStackTrace();
++        }
++
++        getSync("");
++        getAsync("");
++        testLock();
++        testThreadPool();
++    }
++
++    private void testThreadPool() {
++        ThreadPoolExecutor executor = new ThreadPoolExecutor(
++                4,
++                100,
++                60,
++                TimeUnit.SECONDS,
++                new ArrayBlockingQueue<Runnable>(10),
++                new ThreadPoolExecutor.AbortPolicy());
++        executor.execute(new Runnable() {
++            @Override
++            public void run() {
++
++            }
++        });
++    }
++
++    private void testLock() {
++        HashMap<Integer, String> hashMap = new HashMap<>();
++        hashMap.put(null, "123");
++
++        Hashtable<Integer, String> hashtable = new Hashtable<>();
++        hashMap.put(1, "234");
++
++        ConcurrentHashMap<Integer, String> concurrentHashMap = new ConcurrentHashMap<>();
++        concurrentHashMap.put(2, "345");
++    }
++
++    private void getSync(final String url) {
++        new Thread(new Runnable() {
++            @Override
++            public void run() {
++                try {
++                    //1.创建OkHttpClient对象
++                    OkHttpClient client = new OkHttpClient();
++
++                    //2.创建请求对象 Request
++                    Request request = new Request.Builder()
++                            .url(url)
++                            .get()
++                            .build();
++
++                    //3.根据request创建 Call对象
++                    Call call = client.newCall(request);
++
++                    //4.调用execute方法，同步方式请求响应Response
++                    Response response = call.execute();
++                    if (response.isSuccessful()) {
++//                        String string = response.body().string();
++                        //获取响应数据，切换到主线程进行界面更新
++                    }
++                } catch (IOException e) {
++                    e.printStackTrace();
++                }
++            }
++        }).start();
++    }
++
++    private void getAsync(String url) {
++        //1.创建OkHttpClient对象
++        OkHttpClient client = new OkHttpClient();
++
++        //2.创建请求对象 Request
++        Request request = new Request.Builder()
++                .url(url)
++                .get()
++                .build();
++
++        //3.根据request创建 Call对象
++        Call call = client.newCall(request);
++
++        //4.调用enqueue方法，异步请求网络，响应数据通过callback返回
++        call.enqueue(new Callback() {
++            @Override
++            public void onFailure(Call call, IOException e) {
++
++            }
++
++            @Override
++            public void onResponse(Call call, Response response) throws IOException {
++                //获取响应数据，当前在子线程，需要切换到主线程进行界面更新
++            }
++        });
++    }
++}
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"PLATFORM\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/algorithm\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n            <option value=\"$PROJECT_DIR$/javalib\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n        <option name=\"useQualifiedModuleNames\" value=\"true\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ .idea/gradle.xml	(date 1607350186512)
+@@ -1,12 +1,12 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <option name="testRunner" value="PLATFORM" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleJvm" value="1.8 (2)" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+Index: app/src/main/java/com/timmy/ks_tree/hotfix/DoException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/timmy/ks_tree/hotfix/DoException.java	(date 1607352462339)
++++ app/src/main/java/com/timmy/ks_tree/hotfix/DoException.java	(date 1607352462339)
+@@ -0,0 +1,8 @@
++package com.timmy.ks_tree.hotfix;
++
++public class DoException implements IDo {
++    @Override
++    public String doSomething() {
++        return "something error";
++    }
++}
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <bytecodeTargetLevel target=\"1.7\">\r\n      <module name=\"javalib\" target=\"1.7\" />\r\n      <module name=\"ks_tree.app\" target=\"1.8\" />\r\n      <module name=\"leetcode\" target=\"1.7\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision 2cede9eab5006729ea4aa7810ff0a2443ad2cdbf)
++++ .idea/compiler.xml	(date 1607350186482)
+@@ -2,9 +2,7 @@
+ <project version="4">
+   <component name="CompilerConfiguration">
+     <bytecodeTargetLevel target="1.7">
+-      <module name="javalib" target="1.7" />
+       <module name="ks_tree.app" target="1.8" />
+-      <module name="leetcode" target="1.7" />
+     </bytecodeTargetLevel>
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/com/timmy/ks_tree/hotfix/IDo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/timmy/ks_tree/hotfix/IDo.java	(date 1607352462345)
++++ app/src/main/java/com/timmy/ks_tree/hotfix/IDo.java	(date 1607352462345)
+@@ -0,0 +1,6 @@
++package com.timmy.ks_tree.hotfix;
++
++public interface IDo {
++
++    String doSomething();
++}
+Index: javalib/src/main/java/com/timmy/javalib/_3class/DoHotfix.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- javalib/src/main/java/com/timmy/javalib/_3class/DoHotfix.java	(date 1607353926327)
++++ javalib/src/main/java/com/timmy/javalib/_3class/DoHotfix.java	(date 1607353926327)
+@@ -0,0 +1,8 @@
++package com.timmy.javalib._3class;
++
++public class DoHotfix implements IDo{
++    @Override
++    public String doSomething() {
++        return "something hotfix right";
++    }
++}

@@ -1,4 +1,4 @@
-package com.timmy.testlib;
+package com.timmy.javalib._3class;
 
 public class Demo {
 

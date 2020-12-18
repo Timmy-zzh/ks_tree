@@ -1,4 +1,4 @@
-package com.timmy.testlib;
+package com.timmy.javalib._4concurrent;
 
 public class _01TwoThread {
 

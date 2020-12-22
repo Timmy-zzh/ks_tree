@@ -6,8 +6,7 @@ public class Test implements Serializable, Cloneable {
 
     private int num = 1;
 
-    public int add(int i) {
-        int j = 10;
+    public synchronized int add(int i) {
         num = num + i;
         return num;
     }

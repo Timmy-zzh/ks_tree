@@ -1,13 +1,13 @@
-package com.timmy.testlib;
+package com.timmy.javalib._4concurrent;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class _03ReentrantLockDemo {
+public class _03_1ReentrantLockDemo {
 
     ReentrantLock reentrantLock = new ReentrantLock();
 
     public static void main(String[] args) {
-        _03ReentrantLockDemo demo1 = new _03ReentrantLockDemo();
+        _03_1ReentrantLockDemo demo1 = new _03_1ReentrantLockDemo();
 
         Thread thread1 = new Thread(new Runnable() {
             @Override

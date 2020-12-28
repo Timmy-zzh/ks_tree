@@ -1,4 +1,4 @@
-package com.timmy.dmsxl._05stack;
+package com.timmy.algorithm._03queue;
 
 import java.util.ArrayDeque;
 
@@ -33,5 +33,12 @@ public class MonoQueue {
 
     public int fornt() {
         return queue.peekFirst();
+    }
+
+    @Override
+    public String toString() {
+        return "MonoQueue{" +
+                "queue=" + queue +
+                '}';
     }
 }

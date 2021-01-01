@@ -23,6 +23,9 @@ public class _02Practice {
         int top = minStack.top();
         System.out.println("top:"+top);
         System.out.println("min:"+minStack.getMin());
+        
+        int a = 10;
+        String v = String.valueOf(a);
 
     }
 

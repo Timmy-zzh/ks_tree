@@ -1,4 +1,4 @@
-package com.timmy.lgsf._5skiplist;
+package com.timmy.lgsf._6skiplist;
 
 import java.util.Random;
 

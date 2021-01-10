@@ -12,8 +12,8 @@ public class _05ThreadPool {
     public static void main(String[] args) {
 //        singleThreadPool();
 //        cacheThreadPool();
-//        newFixedThreadPool();
-        newScheduledThreadPool();
+        newFixedThreadPool();
+//        newScheduledThreadPool();
     }
 
     private static void newScheduledThreadPool() {
@@ -25,7 +25,7 @@ public class _05ThreadPool {
                 System.out.println("Thread:" + Thread.currentThread().getName() +
                         " ,timer:" + now.toString());
             }
-        },500,500, TimeUnit.MILLISECONDS);
+        }, 500, 500, TimeUnit.MILLISECONDS);
 
         try {
             Thread.sleep(5000);
@@ -52,6 +52,14 @@ public class _05ThreadPool {
                 }
             });
         }
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Thread:" + Thread.currentThread().getName() +
+                        " ,running task:");
+            }
+        });
     }
 
     private static void cacheThreadPool() {

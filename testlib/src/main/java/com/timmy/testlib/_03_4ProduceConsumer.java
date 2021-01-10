@@ -1,16 +1,10 @@
-#### 1.生产者消费者模式
-
-- 在实际开发中会存在这样的场景：某个模块负责生产数据，而这些数据由另一个模块负责消费
-  - 负责生产数据的模块就是生产者，而负责处理这些数据的就是消费者。
-
-##### 1.1.实现方式一：synchronized + wait + notifyAll
-
-~~~java
 package com.timmy.testlib;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class _03_4ProduceConsumer {
 
@@ -88,37 +82,18 @@ public class _03_4ProduceConsumer {
 
             produce.start();
             consume.start();
+
+            BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(4);
+            try {
+                queue.put(30);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                queue.take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
-~~~
-
-方式二：ReentrantLock + Condition
-
-方式三：阻塞队列BlockingQueue
-
-#### 2.死锁
-
-##### 2.1.死锁产生的原因
-
-- 默认锁申请操作都是阻塞的
-- 线程在没有释放锁的情况下，又去申请获得锁，这个是产生死锁的最根本原因
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -49,14 +49,21 @@ public class PrintUtils {
         System.out.println();
     }
 
+    public static void printStr(List<String> list) {
+        for (String integer : list) {
+            System.out.print(integer + ", ");
+        }
+        System.out.println();
+    }
+
     /**
      * 前序遍历
      */
     public static void print(TreeNode root) {
-        if (root==null){
+        if (root == null) {
             return;
         }
-        System.out.print(root.val+" ");
+        System.out.print(root.val + " ");
         print(root.left);
         print(root.right);
     }

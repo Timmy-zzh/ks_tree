@@ -1,7 +1,5 @@
 package com.timmy.common;
 
-import com.timmy.dmsxl._06tree.TreeNode;
-
 import java.util.List;
 
 public class PrintUtils {
@@ -59,13 +57,33 @@ public class PrintUtils {
     /**
      * 前序遍历
      */
-    public static void print(TreeNode root) {
+    public static void printPre(TreeNode root) {
         if (root == null) {
             return;
         }
-        System.out.print(root.val + " ");
-        print(root.left);
-        print(root.right);
+        System.out.print(root.val + ",");
+        printPre(root.left);
+        printPre(root.right);
+    }
+
+    //中序便利
+    public static void printMid(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        printMid(root.left);
+        System.out.print(root.val + ",");
+        printMid(root.right);
+    }
+
+    //后序遍历
+    public static void printNex(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        printNex(root.left);
+        printNex(root.right);
+        System.out.print(root.val + ",");
     }
 
     public static void print(String[] arr) {

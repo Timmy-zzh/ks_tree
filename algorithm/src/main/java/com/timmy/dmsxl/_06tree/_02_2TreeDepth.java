@@ -1,5 +1,7 @@
 package com.timmy.dmsxl._06tree;
 
+import com.timmy.common.TreeNode;
+
 import java.util.ArrayDeque;
 
 public class _02_2TreeDepth {

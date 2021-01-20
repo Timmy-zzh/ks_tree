@@ -1,4 +1,4 @@
-package com.timmy.dmsxl._06tree;
+package com.timmy.common;
 
 public class TreeNode {
     public int val;

@@ -1,10 +1,8 @@
 package com.timmy.lgsf._16binary_tree;
 
 import com.timmy.common.PrintUtils;
-import com.timmy.dmsxl._06tree.TreeNode;
+import com.timmy.common.TreeNode;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -17,7 +15,7 @@ public class _03二叉树的右视图_199 {
         TreeNode node2 = new TreeNode(2, null, new TreeNode(5));
         TreeNode node3 = new TreeNode(3, null, new TreeNode(4));
         TreeNode root = new TreeNode(1, node2, node3);
-        PrintUtils.print(root);
+        PrintUtils.printPre(root);
         List<Integer> list = demo.rightSideView(root);
         System.out.println("------");
         PrintUtils.print(list);

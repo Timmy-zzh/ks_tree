@@ -1,6 +1,6 @@
 package com.timmy.lgsf._16binary_tree;
 
-import com.timmy.dmsxl._06tree.TreeNode;
+import com.timmy.common.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;

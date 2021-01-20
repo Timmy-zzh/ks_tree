@@ -1,6 +1,7 @@
 package com.timmy.dmsxl._06tree;
 
 import com.timmy.common.PrintUtils;
+import com.timmy.common.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -47,10 +48,10 @@ public class _01_2TreeLevelIter {
         node7.left = node6;
         node7.right = node9;
 
-        PrintUtils.print(root);
+        PrintUtils.printPre(root);
         demo.invertTree(root);
         System.out.println("invertTree");
-        PrintUtils.print(root);
+        PrintUtils.printPre(root);
     }
 
     /**

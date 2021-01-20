@@ -1,10 +1,7 @@
 package com.timmy.lgsf._16binary_tree;
 
 import com.timmy.common.PrintUtils;
-import com.timmy.dmsxl._06tree.TreeNode;
-
-import java.util.LinkedList;
-import java.util.Queue;
+import com.timmy.common.TreeNode;
 
 public class _02二叉树的镜像_Offer27 {
 
@@ -14,10 +11,10 @@ public class _02二叉树的镜像_Offer27 {
         TreeNode node2 = new TreeNode(2,new TreeNode(1),new TreeNode(3));
         TreeNode node7 = new TreeNode(7,new TreeNode(6),new TreeNode(9));
         TreeNode root = new TreeNode(4,node2,node7);
-        PrintUtils.print(root);
+        PrintUtils.printPre(root);
         TreeNode node = demo.mirrorTree(root);
         System.out.println("------");
-        PrintUtils.print(node);
+        PrintUtils.printPre(node);
     }
 
     /**

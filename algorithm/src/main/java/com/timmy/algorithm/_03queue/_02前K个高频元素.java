@@ -39,7 +39,6 @@ public class _02前K个高频元素 {
             }
         }
 
-        //小顶堆
         PriorityQueue<Map.Entry<Integer, Integer>> priorityQueue = new PriorityQueue<>(k, new Comparator<Map.Entry<Integer, Integer>>() {
             @Override
             public int compare(Map.Entry<Integer, Integer> t1, Map.Entry<Integer, Integer> t2) {

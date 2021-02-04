@@ -3,11 +3,54 @@ package com.timmy.lgsf._04graph._23graph;
 public class _03岛屿数量_200 {
 
     public static void main(String[] args) {
-
+        _03岛屿数量_200 demo = new _03岛屿数量_200();
+//        char[][] grid = {
+//                {'1', '1', '1', '1', '0'},
+//                {'1', '1', '0', '1', '0'},
+//                {'1', '1', '0', '0', '0'},
+//                {'0', '0', '0', '0', '0'}};
+        char[][] grid = {
+                {'1', '1', '0', '0', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '1', '0', '0'},
+                {'0', '0', '0', '1', '1'}};
+        int result = demo.numIslands(grid);
+        System.out.println("result:" + result);
     }
 
+    //广度优先遍历，查找所有字符等于'1'的元素
     private int numIslands(char[][] grid) {
-        return 0;
+        int res = 0;
+        int row = grid.length;
+        if (row == 0) {
+            return 0;
+        }
+        int col = grid[0].length;
+        boolean[][] visited = new boolean[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (!visited[i][j]) {
+                    res += bfs(grid, visited, i, j);
+                }
+            }
+        }
+        return res;
+    }
+
+    private int bfs(char[][] grid, boolean[][] visited, int x, int y) {
+        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length) {
+            return 0;
+        }
+        if (grid[x][y] == '0' || visited[x][y]) {
+            visited[x][y] = true;
+            return 0;
+        }
+        visited[x][y] = true;
+        bfs(grid, visited, x, y + 1);
+        bfs(grid, visited, x, y - 1);
+        bfs(grid, visited, x - 1, y);
+        bfs(grid, visited, x + 1, y);
+        return 1;
     }
 
 
@@ -17,7 +60,6 @@ public class _03岛屿数量_200 {
      * 此外，你可以假设该网格的四条边均被水包围。
      *
      * 示例 1：
-     *
      * 输入：grid = [
      *   ["1","1","1","1","0"],
      *   ["1","1","0","1","0"],
@@ -25,8 +67,8 @@ public class _03岛屿数量_200 {
      *   ["0","0","0","0","0"]
      * ]
      * 输出：1
-     * 示例 2：
      *
+     * 示例 2：
      * 输入：grid = [
      *   ["1","1","0","0","0"],
      *   ["1","1","0","0","0"],
@@ -35,8 +77,6 @@ public class _03岛屿数量_200 {
      * ]
      * 输出：3
      *
-     * 来源：力扣（LeetCode）
      * 链接：https://leetcode-cn.com/problems/number-of-islands
-     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 }

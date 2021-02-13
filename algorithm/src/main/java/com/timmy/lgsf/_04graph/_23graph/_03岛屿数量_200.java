@@ -47,8 +47,8 @@ public class _03岛屿数量_200 {
         }
         visited[x][y] = true;
         bfs(grid, visited, x, y + 1);
-        bfs(grid, visited, x, y - 1);
-        bfs(grid, visited, x - 1, y);
+//        bfs(grid, visited, x, y - 1);
+//        bfs(grid, visited, x - 1, y);
         bfs(grid, visited, x + 1, y);
         return 1;
     }

@@ -1,5 +1,8 @@
 package com.timmy.lgsf._04graph._23graph;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class _03岛屿数量_200 {
 
     public static void main(String[] args) {
@@ -18,8 +21,89 @@ public class _03岛屿数量_200 {
         System.out.println("result:" + result);
     }
 
-    //广度优先遍历，查找所有字符等于'1'的元素
+    /**
+     * 深度优先遍历
+     *
+     * @param grid
+     * @return
+     */
     private int numIslands(char[][] grid) {
+        int islandNums = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') {
+                    dfs(grid, i, j);
+                    islandNums++;
+                }
+            }
+        }
+        return islandNums;
+    }
+
+    private void dfs(char[][] grid, int i, int j) {
+        grid[i][j] = '0';
+        for (int[] dir : dirs) {
+            int newX = dir[0] + i;
+            int newY = dir[1] + j;
+            if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length
+                    && grid[newX][newY] == '1') {
+                grid[newX][newY] = '0';
+                dfs(grid, newX, newY);
+            }
+        }
+    }
+
+    /**
+     * 1。
+     * 2。解题思路
+     * 广度优先：
+     * -遍历二维矩阵，找到陆地元素，然后将该陆地元素位置入队列，
+     * --再将该陆地位置的四周陆地位置入队列，直到该区域所有的陆地都遍历完了，则当前陆地区域加1
+     * 3。边界与细节问题
+     * -遍历找到第一块陆地元素位置
+     * -找到了陆地位置入队列，继续找四周陆地，也入队列,出队列后，该陆地位置需要反转为水，则可以避免二次检索
+     * -查找四周陆地，使用二维数组，
+     * -队列每搜索完一块区域，则表示查找了一块陆地区域
+     *
+     * @param grid
+     * @return
+     */
+    int[][] dirs = {
+            {1, 0},
+            {-1, 0},
+            {0, 1},
+            {0, -1},
+    };
+
+    private int numIslands_v2(char[][] grid) {
+        Queue<int[]> queue = new LinkedList<>();
+        int islandNums = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') {
+                    grid[i][j] = '0';
+                    queue.offer(new int[]{i, j});
+                    while (!queue.isEmpty()) {
+                        int[] ints = queue.poll();
+                        for (int[] dir : dirs) {
+                            int newX = dir[0] + ints[0];
+                            int newY = dir[1] + ints[1];
+                            if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length
+                                    && grid[newX][newY] == '1') {
+                                grid[newX][newY] = '0';
+                                queue.add(new int[]{newX, newY});
+                            }
+                        }
+                    }
+                    islandNums++;
+                }
+            }
+        }
+        return islandNums;
+    }
+
+    //广度优先遍历，查找所有字符等于'1'的元素
+    private int numIslands_v1(char[][] grid) {
         int res = 0;
         int row = grid.length;
         if (row == 0) {
@@ -30,14 +114,14 @@ public class _03岛屿数量_200 {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (!visited[i][j]) {
-                    res += bfs(grid, visited, i, j);
+                    res += bfs_v1(grid, visited, i, j);
                 }
             }
         }
         return res;
     }
 
-    private int bfs(char[][] grid, boolean[][] visited, int x, int y) {
+    private int bfs_v1(char[][] grid, boolean[][] visited, int x, int y) {
         if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length) {
             return 0;
         }
@@ -46,10 +130,10 @@ public class _03岛屿数量_200 {
             return 0;
         }
         visited[x][y] = true;
-        bfs(grid, visited, x, y + 1);
+        bfs_v1(grid, visited, x, y + 1);
 //        bfs(grid, visited, x, y - 1);
 //        bfs(grid, visited, x - 1, y);
-        bfs(grid, visited, x + 1, y);
+        bfs_v1(grid, visited, x + 1, y);
         return 1;
     }
 

@@ -50,34 +50,39 @@ public class Test {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void testCollect() {
         SparseArray<String> sparseArray = new SparseArray<>();
-        sparseArray.put(3,"333");
-        sparseArray.put(1,"111");
-        sparseArray.put(2,"222");
-        sparseArray.put(2,"213424");
+        sparseArray.put(3, "333");
+        sparseArray.put(1, "111");
+        sparseArray.put(2, "222");
+        sparseArray.put(2, "213424");
         System.out.println(sparseArray.toString());
         String s = sparseArray.get(1);
         sparseArray.remove(1);
 
         ArrayMap<String, String> arrayMap = new ArrayMap<>();
-        arrayMap.put("bbb","222");
-        arrayMap.put("aaa","111");
-        arrayMap.put("ccc","3333");
-        arrayMap.put("aaa","45643");
+        arrayMap.put("bbb", "222");
+        arrayMap.put("aaa", "111");
+        arrayMap.put("ccc", "3333");
+        arrayMap.put("aaa", "45643");
         System.out.println(arrayMap.toString());
     }
 
-    private void testGlide(Activity activity) {
+    public void testGlide(Activity activity) {
         Glide.with(activity)
                 .load("")
                 .into(new ImageView(activity));
     }
 
-    private void testOkhttp() {
-        OkHttpClient client = new OkHttpClient();
+    public void testOkhttp() {
+//        OkHttpClient client = new OkHttpClient();
+
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient client = builder.build();
 
         Request request = new Request.Builder()
                 .url("")
                 .build();
+
+        //1.同步请求
         try {
             Response response = client.newCall(request).execute();
             String String = response.body().string();
@@ -85,9 +90,22 @@ public class Test {
             e.printStackTrace();
         }
 
+        //2.异步请求
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+            }
+        });
+
     }
 
-    private void test1(Activity activity) {
+    public void test1(Activity activity) {
         activity.startActivity(new Intent());
 
         Handler handler = new Handler() {

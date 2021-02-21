@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testClassLoader();
+//        testClassLoader();
+        Test test = new Test();
+        test.testOkhttp();
     }
 
     private void testClassLoader() {

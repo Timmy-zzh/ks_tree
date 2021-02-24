@@ -1,4 +1,4 @@
-package com.timmy.lgsf._03tree._19dictionary_tree;
+package com.timmy.common;
 
 /**
  * 字典树节点结构定义

@@ -1,5 +1,7 @@
 package com.timmy.lgsf._03tree._19dictionary_tree;
 
+import com.timmy.common.TrieNode;
+
 public class _02实现Trie前缀树_208 {
 
     public static void main(String[] args) {

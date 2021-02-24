@@ -1,6 +1,8 @@
 package com.timmy.lgsf._03tree._19dictionary_tree;
 
 
+import com.timmy.common.TrieNode;
+
 /**
  * 字典树封城
  * -实现构造，遍历，搜索

@@ -1,11 +1,6 @@
-package com.timmy.lgsf._05backtrack_dp._30backtrack;
+package com.timmy.lgsf._05backtrack_dp._30backtrack_trie;
 
 import com.timmy.common.TrieNode;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class _01添加与搜索单词_数据结构设计_211_v2 {
 

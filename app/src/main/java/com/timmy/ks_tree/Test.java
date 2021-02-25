@@ -25,15 +25,22 @@ import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import retrofit2.Retrofit;
+import retrofit2.http.GET;
 
 public class Test {
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+//        Test test = new Test();
+//        test.testRetrofit();
+
 //        test1();
 //        testOkhttp();
 //        testGlide();
@@ -44,7 +51,7 @@ public class Test {
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //            testCollect();
 //        }
-    }
+//    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -234,4 +241,5 @@ public class Test {
             }
         });
     }
+
 }

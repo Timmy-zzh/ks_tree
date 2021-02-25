@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.timmy.ks_tree.hotfix.HotFixActivity;
+import com.timmy.ks_tree.retrofit.RetrofitStu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        testClassLoader();
-        Test test = new Test();
-        test.testOkhttp();
+//        Test test = new Test();
+//        test.testOkhttp();
+        new RetrofitStu().testRetrofit();
     }
 
     private void testClassLoader() {

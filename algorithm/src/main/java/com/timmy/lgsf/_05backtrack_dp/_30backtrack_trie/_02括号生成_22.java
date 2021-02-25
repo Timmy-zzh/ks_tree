@@ -1,4 +1,4 @@
-package com.timmy.lgsf._05backtrack_dp._30backtrack;
+package com.timmy.lgsf._05backtrack_dp._30backtrack_trie;
 
 import com.timmy.common.PrintUtils;
 

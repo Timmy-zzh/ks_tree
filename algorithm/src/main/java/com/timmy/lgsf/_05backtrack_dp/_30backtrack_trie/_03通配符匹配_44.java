@@ -1,4 +1,4 @@
-package com.timmy.lgsf._05backtrack_dp._30backtrack;
+package com.timmy.lgsf._05backtrack_dp._30backtrack_trie;
 
 public class _03通配符匹配_44 {
 

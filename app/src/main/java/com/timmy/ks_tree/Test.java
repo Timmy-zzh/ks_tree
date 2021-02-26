@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.ArrayMap;
+import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -80,36 +81,37 @@ public class Test {
     }
 
     public void testOkhttp() {
+        //1。创建OkHttpClient 对象，开发中使用单例
 //        OkHttpClient client = new OkHttpClient();
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         OkHttpClient client = builder.build();
 
+        //2。创建一个请求，每个请求是一个对象
         Request request = new Request.Builder()
-                .url("")
+                .url("https://www.wanandroid.com/banner/json")
                 .build();
 
-        //1.同步请求
-        try {
-            Response response = client.newCall(request).execute();
-            String String = response.body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //3.1.同步请求
+//        try {
+//            Response response = client.newCall(request).execute();
+//            String String = response.body().string();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        //2.异步请求
+        //3.2.异步请求
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                Log.e("Tim", "onFailure:" + e.toString());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                Log.e("Tim", response.body().string());
             }
         });
-
     }
 
     public void test1(Activity activity) {

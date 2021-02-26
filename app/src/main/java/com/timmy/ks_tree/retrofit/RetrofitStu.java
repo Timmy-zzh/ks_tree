@@ -17,6 +17,7 @@ public class RetrofitStu {
         System.out.println("-----------");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.wanandroid.com/")
+//                .addCallAdapterFactory()
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiServer apiServer = retrofit.create(ApiServer.class);

@@ -17,11 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        testClassLoader();
-//        Test test = new Test();
-//        test.testOkhttp();
-        new RetrofitStu().testRetrofit();
     }
 
     private void testClassLoader() {
@@ -31,5 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void hotfix(View view) {
         startActivity(new Intent(this, HotFixActivity.class));
+    }
+
+    public void test(View view) {
+//        testClassLoader();
+        Test test = new Test();
+        test.testOkhttp();
+//        new RetrofitStu().testRetrofit();
     }
 }

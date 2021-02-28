@@ -31,6 +31,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
@@ -90,6 +91,7 @@ public class Test {
         //2。创建一个请求，每个请求是一个对象
         Request request = new Request.Builder()
                 .url("https://www.wanandroid.com/banner/json")
+                .get()
                 .build();
 
         //3.1.同步请求

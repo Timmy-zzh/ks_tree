@@ -42,4 +42,8 @@ public class MainActivity extends AppCompatActivity {
     public void testBitmap(View view) {
         startActivity(new Intent(this, BitmapActivity.class));
     }
+
+    public void bigBitmap(View view) {
+        startActivity(new Intent(this, BigBitmapActivity.class));
+    }
 }

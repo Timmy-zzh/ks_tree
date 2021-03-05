@@ -18,4 +18,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="图片切换展示"
+        android:onClick="switchBitmap"/>
+
+    <ImageView
+        android:id="@+id/iv_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp" />
+
 </LinearLayout>

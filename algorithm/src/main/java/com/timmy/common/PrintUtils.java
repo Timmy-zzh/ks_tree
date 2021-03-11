@@ -29,6 +29,17 @@ public class PrintUtils {
         System.out.println();
     }
 
+
+    public static void print(boolean[][] dp) {
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j < dp[i].length; j++) {
+                System.out.print(dp[i][j] + ", ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
     public static void print(ListNode listNode) {
         while (listNode != null) {
             System.out.print(listNode.value + ", ");
@@ -54,9 +65,8 @@ public class PrintUtils {
         System.out.println();
     }
 
-
-    public static void printStr(List<String> list) {
-        for (String integer : list) {
+    public static void printStr(List<String> lists) {
+        for (String integer : lists) {
             System.out.print(integer + ", ");
         }
         System.out.println();

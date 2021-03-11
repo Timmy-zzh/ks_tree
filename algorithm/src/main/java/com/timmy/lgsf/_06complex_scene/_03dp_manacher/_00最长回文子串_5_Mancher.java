@@ -1,11 +1,14 @@
 package com.timmy.lgsf._06complex_scene._03dp_manacher;
 
+import com.timmy.common.PrintUtils;
+
+
 public class _00最长回文子串_5_Mancher {
 
     public static void main(String[] args) {
         _00最长回文子串_5_Mancher demo = new _00最长回文子串_5_Mancher();
-//        String res = demo.longestPalindrome_best("babad");
-        String res = demo.longestPalindrome_best("abaaba");
+        String res = demo.longestPalindrome("babad");
+//        String res = demo.longestPalindrome("abaaba");
         System.out.println("res:" + res);
     }
 
@@ -44,9 +47,52 @@ public class _00最长回文子串_5_Mancher {
      * @return
      */
     public String longestPalindrome(String s) {
+        System.out.println(s);
         int startIndex = 0, maxLen = 1;
         char[] chars = s.toCharArray();
-        int N = chars.length;
+        //1.插入新字符，组成新的字符数组
+        char[] newChars = preProcess(chars);
+        int n = newChars.length;
+
+        //状态转移方程：result数组元素值表示下标位置i的回文半径
+        int[] result = new int[n];
+        /**
+         * Mancher算法的核心：遍历新的字符数组，计算每个字符回文串的最大半径，并保存在数组result中
+         * 以下标i为中心，进行中心位置扩展判断，求以i为中心的回文串最大半径
+         * 为了不用每次都进行中心位置扩展，通过result数组的值进行备忘录计算
+         * --通过center，和right的值控制
+         */
+        result[0] = 0;
+        int center = 0;
+        int right = 0;
+        for (int i = 1; i < n - 1; i++) {
+            //下标i的镜像位置
+            int i_mirror = 2 * center - i;
+            if (i < right) {
+                result[i] = Math.min(right - i, result[i_mirror]);
+            } else {
+                result[i] = 0;
+            }
+            //以i为中心进行扩展
+            while (newChars[i - 1 - result[i]] == newChars[i + 1 + result[i]]) { //首位字符相等，半径增加
+                result[i]++;
+            }
+            //更新center，和right的值
+            if (i + result[i] > right) {
+                center = i;
+                right = i + result[i];
+            }
+        }
+        PrintUtils.print(result);
+        //求回文串最长长度和起始位置
+        int centerIndex = 0;
+        for (int i = 0; i < result.length; i++) {
+            if (result[i] > maxLen) {
+                maxLen = result[i];
+                centerIndex = i;
+            }
+        }
+        startIndex = (centerIndex - maxLen) / 2;
         return s.substring(startIndex, startIndex + maxLen);
     }
 

@@ -46,4 +46,8 @@ public class MainActivity extends AppCompatActivity {
     public void bigBitmap(View view) {
         startActivity(new Intent(this, BigBitmapActivity.class));
     }
+
+    public void glide(View view) {
+        startActivity(new Intent(this, GlideActivity.class));
+    }
 }

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.BigBitmapActivity"></activity>
+        <activity android:name=".ui.GlideActivity"></activity>
+        <activity android:name=".ui.BigBitmapActivity" />
         <activity android:name=".ui.BitmapActivity" />
         <activity android:name=".hotfix.HotFixActivity" />
         <activity android:name=".ui.MainActivity">

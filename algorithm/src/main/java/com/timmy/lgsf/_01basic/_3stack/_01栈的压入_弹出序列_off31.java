@@ -2,10 +2,10 @@ package com.timmy.lgsf._01basic._3stack;
 
 import java.util.Stack;
 
-public class _02Practice {
+public class _01栈的压入_弹出序列_off31 {
 
     public static void main(String[] args) {
-        _02Practice demo = new _02Practice();
+        _01栈的压入_弹出序列_off31 demo = new _01栈的压入_弹出序列_off31();
 //        int[] pushed = {1, 2, 3, 4, 5};
 ////        int[] popped = {4, 5, 3, 2, 1};
 //        int[] popped = {4, 3, 5, 1, 2};

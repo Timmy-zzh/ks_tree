@@ -11,9 +11,7 @@ public class _02字母异位词分组_49 {
     public static void main(String[] args) {
         _02字母异位词分组_49 demo = new _02字母异位词分组_49();
         String[] strings = new String[]{"eat", "tea", "tan", "ate", "nat", "bat"};
-
         demo.groupAnagrams(Arrays.asList(strings));
-
     }
 
     /**

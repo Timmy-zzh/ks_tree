@@ -4,11 +4,10 @@ package com.timmy.lgsf._01basic._6skiplist;
 import com.timmy.common.ListNode;
 import com.timmy.common.PrintUtils;
 
-public class Test {
+public class _01删除排序链表中的重复元素II_82 {
 
     public static void main(String[] args) {
-
-        Test demo = new Test();
+        _01删除排序链表中的重复元素II_82 demo = new _01删除排序链表中的重复元素II_82();
         // 1->2->3->3->4->4->5
         ListNode l1 = new ListNode(1);
         ListNode l2 = new ListNode(2);

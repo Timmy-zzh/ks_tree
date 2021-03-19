@@ -1,9 +1,9 @@
 package com.timmy.lgsf._01basic._1array;
 
-public class _02整形字符串转换整数 {
+public class _01整形字符串转换整数 {
 
     public static void main(String[] args) {
-        _02整形字符串转换整数 demo = new _02整形字符串转换整数();
+        _01整形字符串转换整数 demo = new _01整形字符串转换整数();
 //        int atoi = demo.myAtoi("3456");
         int result = demo.hammingWeight(-9);
         System.out.println("result:" + result);

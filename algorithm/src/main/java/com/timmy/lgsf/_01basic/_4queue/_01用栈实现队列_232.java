@@ -2,7 +2,7 @@ package com.timmy.lgsf._01basic._4queue;
 
 import java.util.Stack;
 
-public class _02用栈实现队列_232 {
+public class _01用栈实现队列_232 {
 
     public static void main(String[] args) {
         MyQueue myQueue = new MyQueue();

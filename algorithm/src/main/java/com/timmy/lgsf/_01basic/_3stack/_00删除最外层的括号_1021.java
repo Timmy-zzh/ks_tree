@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class _01删除最外层的括号_1021 {
+public class _00删除最外层的括号_1021 {
 
     public static void main(String[] args) {
-        _01删除最外层的括号_1021 demo = new _01删除最外层的括号_1021();
+        _00删除最外层的括号_1021 demo = new _00删除最外层的括号_1021();
 //        String result = demo.removeOuterParentheses("(()())(())");
         String result = demo.removeOuterParentheses("(()())(())(()(()))");
         System.out.println("result:" + result);

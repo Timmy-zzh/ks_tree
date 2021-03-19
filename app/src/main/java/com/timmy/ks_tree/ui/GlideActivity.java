@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.Target;
 import com.timmy.ks_tree.R;
 
 public class GlideActivity extends AppCompatActivity {
@@ -23,7 +27,9 @@ public class GlideActivity extends AppCompatActivity {
     }
 
     public void loadBitmap(View view) {
-        Glide.with(this).load(url).into(imageView);
+        RequestManager requestManager = Glide.with(this);
+        DrawableTypeRequest<String> typeRequest = requestManager.load(url);
+        Target<GlideDrawable> target = typeRequest.into(imageView);
 
 //        Glide.with(this)
 //                .load(url)

@@ -2,7 +2,7 @@ package com.timmy.lgsf._01basic._4queue;
 
 import java.util.LinkedList;
 
-public class _03用队列实现栈_225 {
+public class _02用队列实现栈_225 {
 
     public static void main(String[] args) {
 

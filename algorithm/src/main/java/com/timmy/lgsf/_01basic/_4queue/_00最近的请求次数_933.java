@@ -1,6 +1,6 @@
 package com.timmy.lgsf._01basic._4queue;
 
-public class _01最近的请求次数_933 {
+public class _00最近的请求次数_933 {
 
     public static void main(String[] args) {
 

@@ -1,9 +1,9 @@
 package com.timmy.lgsf._01basic._1array;
 
-public class _01整数反转 {
+public class _00整数反转_7 {
 
     public static void main(String[] args) {
-        _01整数反转 demo = new _01整数反转();
+        _00整数反转_7 demo = new _00整数反转_7();
         int[] arr = new int[]{123, -345, Integer.MIN_VALUE, Integer.MAX_VALUE};
         for (int i = 0; i < arr.length; i++) {
             int reverser = demo.reverser(arr[i]);

@@ -58,57 +58,57 @@ public class RecentCounter {
      * 求取end  与 start的差值就是所求个数
      * 注意end值边界问题
      */
-//    private int[] times = new int[3002];
-//    private int start = 0;
-//    private int end = 0;
-//    public int ping_v2(int t) {
-//        //处理越界问题
-//        if (end == times.length - 1) {
-//            end = 0;
-//        }
-//        times[end++] = t;
-//
-//        //确定start，start的值为 t-3000 的范围值索引位置
-//        while (times[start] < t - 3000) {
-//            //防止越界
-//            if (start == times.length - 1) {
-//                start = 0;
-//            } else {
-//                start++;
-//            }
-//        }
-//        int count = end - start;
-//        if (start > end) {
-//            count = times.length - (start - end);
-//        }
-//        System.out.println("count:" + count);
-//        return count;
-//    }
+    private int[] times = new int[3002];
+    private int start = 0;
+    private int end = 0;
+    public int ping_v2(int t) {
+        //处理越界问题
+        if (end == times.length - 1) {
+            end = 0;
+        }
+        times[end++] = t;
+
+        //确定start，start的值为 t-3000 的范围值索引位置
+        while (times[start] < t - 3000) {
+            //防止越界
+            if (start == times.length - 1) {
+                start = 0;
+            } else {
+                start++;
+            }
+        }
+        int count = end - start;
+        if (start > end) {
+            count = times.length - (start - end);
+        }
+        System.out.println("count:" + count);
+        return count;
+    }
 
     /**
      * 解题思路：
      * 因为题目最多调用10000次ping方法，所以定义一个数组，容量为10000，用于保存每次请求的时间
      * 每次调用会传入请求时间的值，求当前值 到 t-3000 值范围的个数
      */
-//    private int[] times = new int[10000];
-//    public int ping_v1(int t) {
-//        int count = 0;
-//        int end = 0;
-//        //对数组元素赋值，保存每次请求的时间,并保存当前值的下标索引
-//        for (int i = 0; i < times.length; i++) {
-//            if (times[i] == 0) {
-//                times[i] = t;
-//                end = i;
-//                break;
-//            }
-//        }
-//
-//        //求数组中 t-3000 到 t 值范围的个数
-//        while (end >= 0 && times[end] >= (t - 3000)) {
-//            count++;
-//            end--;
-//        }
-//        System.out.println("count:" + count);
-//        return count;
-//    }
+    private int[] times2 = new int[10000];
+    public int ping_v1(int t) {
+        int count = 0;
+        int end = 0;
+        //对数组元素赋值，保存每次请求的时间,并保存当前值的下标索引
+        for (int i = 0; i < times2.length; i++) {
+            if (times2[i] == 0) {
+                times2[i] = t;
+                end = i;
+                break;
+            }
+        }
+
+        //求数组中 t-3000 到 t 值范围的个数
+        while (end >= 0 && times2[end] >= (t - 3000)) {
+            count++;
+            end--;
+        }
+        System.out.println("count:" + count);
+        return count;
+    }
 }

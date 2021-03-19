@@ -1,10 +1,13 @@
 package com.timmy.lgsf._01basic._9deque;
 
+/**
+ * TODO ?????
+ */
 public class _03字符串的排列_567 {
     public static void main(String[] args) {
         _03字符串的排列_567 demo = new _03字符串的排列_567();
-//        boolean result = demo.checkInclusion("ab", "eidbaooo");
-        boolean result = demo.checkInclusion("ab", "eidboaoo");
+        boolean result = demo.checkInclusion("ab", "eidbaooo");
+//        boolean result = demo.checkInclusion("ab", "eidboaoo");
         System.out.println("result:" + result);
     }
 

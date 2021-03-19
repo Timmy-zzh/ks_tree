@@ -3,7 +3,7 @@ package com.timmy.lgsf._01basic._2linked;
 import com.timmy.common.ListNode;
 import com.timmy.common.PrintUtils;
 
-public class _01两数相加 {
+public class _00两数相加_2 {
 
     public static void main(String[] args) {
         ListNode l1_2 = new ListNode(2);
@@ -18,7 +18,7 @@ public class _01两数相加 {
         l2_5.next = l2_6;
         l2_6.next = l2_4;
 
-        _01两数相加 demo = new _01两数相加();
+        _00两数相加_2 demo = new _00两数相加_2();
         ListNode listNode = demo.addTwoNumbers(l1_2, l2_5);
         PrintUtils.print(listNode);
     }

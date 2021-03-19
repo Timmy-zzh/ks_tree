@@ -6,87 +6,17 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
-public class _01翻转字符串里的单词_151 {
+public class _00翻转字符串里的单词_151 {
 
     public static void main(String[] args) {
-        _01翻转字符串里的单词_151 demo = new _01翻转字符串里的单词_151();
+        _00翻转字符串里的单词_151 demo = new _00翻转字符串里的单词_151();
 //        String result = demo.reverseWords("the sky is blue");
 //        String result = demo.reverseWords("  hello world!  ");
 //        String result = demo.reverseWords("a good   example");
-//        String result = demo.reverseWords("  Bob    Loves  Alice   ");
-        String result = demo.reverseWords_x("Let's take LeetCode contest");
+        String result = demo.reverseWords("  Bob    Loves  Alice   ");
         System.out.println("result:" + result);
     }
-
-    /**
-     * 反转字符串中的单词 III
-     * 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
-     * 示例：
-     * <p>
-     * 输入："Let's take LeetCode contest"
-     * 输出："s'teL ekat edoCteeL tsetnoc"
-     * <p>
-     * 提示：
-     * 在字符串中，每个单词由单个空格分隔，并且字符串中不会有任何额外的空格。
-     * //使用栈数据结构存储，+ 遍历
-     */
-    public String reverseWords_x(String s) {
-        //在此处写入代码
-        char[] chars = s.toCharArray();
-        Stack<Character> stack = new Stack<>();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < chars.length; i++) {
-            char ch = chars[i];
-            if (ch == ' ') {
-                //出栈
-                while (!stack.empty()) {
-                    sb.append(stack.pop());
-                }
-                sb.append(ch);
-            } else {
-                stack.push(ch);
-            }
-        }
-        while (!stack.empty()) {
-            sb.append(stack.pop());
-        }
-        return sb.toString();
-    }
-
-    /**
-     * 给定一个字符串，逐个翻转字符串中的每个单词。
-     * <p>
-     * 说明：
-     * 无空格字符构成一个 单词 。
-     * 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
-     * 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
-     *  
-     * 示例 1：
-     * 输入："the sky is blue"
-     * 输出："blue is sky the"
-     * <p>
-     * 示例 2：
-     * 输入："  hello world!  "
-     * 输出："world! hello"
-     * 解释：输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
-     * <p>
-     * 示例 3：
-     * 输入："a good   example"
-     * 输出："example good a"
-     * 解释：如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
-     * <p>
-     * 示例 4：
-     * 输入：s = "  Bob    Loves  Alice   "
-     * 输出："Alice Loves Bob"
-     * <p>
-     * 示例 5：
-     * 输入：s = "Alice does not even like bob"
-     * 输出："bob like even not does Alice"
-     * <p>
-     * 链接：https://leetcode-cn.com/problems/reverse-words-in-a-string
-     */
 
     /**
      * 解题思路：使用双端队列保存数据
@@ -152,4 +82,37 @@ public class _01翻转字符串里的单词_151 {
         }
         return String.join(" ", list);
     }
+
+    /**
+     * 给定一个字符串，逐个翻转字符串中的每个单词。
+     * <p>
+     * 说明：
+     * 无空格字符构成一个 单词 。
+     * 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
+     * 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+     *  
+     * 示例 1：
+     * 输入："the sky is blue"
+     * 输出："blue is sky the"
+     * <p>
+     * 示例 2：
+     * 输入："  hello world!  "
+     * 输出："world! hello"
+     * 解释：输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
+     * <p>
+     * 示例 3：
+     * 输入："a good   example"
+     * 输出："example good a"
+     * 解释：如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+     * <p>
+     * 示例 4：
+     * 输入：s = "  Bob    Loves  Alice   "
+     * 输出："Alice Loves Bob"
+     * <p>
+     * 示例 5：
+     * 输入：s = "Alice does not even like bob"
+     * 输出："bob like even not does Alice"
+     * <p>
+     * 链接：https://leetcode-cn.com/problems/reverse-words-in-a-string
+     */
 }

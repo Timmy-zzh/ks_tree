@@ -2,7 +2,7 @@ package com.timmy.lgsf._01basic._6skiplist;
 
 import java.util.Random;
 
-public class _01跳表设计_1206 {
+public class _00跳表设计_1206 {
 
     public static void main(String[] args) {
         Skiplist skiplist = new Skiplist();

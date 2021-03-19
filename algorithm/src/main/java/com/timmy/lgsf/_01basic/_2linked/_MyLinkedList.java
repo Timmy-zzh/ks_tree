@@ -1,4 +1,4 @@
-package com.timmy.algorithm._01linked;
+package com.timmy.lgsf._01basic._2linked;
 
 import com.timmy.common.ListNode;
 

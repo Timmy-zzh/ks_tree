@@ -1,8 +1,8 @@
-package com.timmy.algorithm._01linked;
+package com.timmy.lgsf._01basic._2linked;
 
 import com.timmy.common.ListNode;
 
-public class _03链表_环 {
+public class _07链表_环 {
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(3);
         ListNode listNode2 = new ListNode(2);

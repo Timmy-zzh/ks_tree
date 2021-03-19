@@ -1,9 +1,9 @@
-package com.timmy.algorithm._01linked;
+package com.timmy.lgsf._01basic._2linked;
 
 import com.timmy.common.ListNode;
 import com.timmy.common.PrintUtils;
 
-public class _02找链表中间元素 {
+public class _06找链表中间元素 {
 
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
@@ -26,19 +26,6 @@ public class _02找链表中间元素 {
      * 解题思路：快慢指针
      */
     private static ListNode findMidNode(ListNode header) {
-//        if (node == null) {
-//            return null;
-//        }
-//        if (node.next == null) {
-//            return node;
-//        }
-//        ListNode fast = node.next.next, slow = node.next;
-//        if (fast.next != null && fast.next.next != null) {
-//            fast = fast.next.next;
-//            slow = slow.next;
-//        }
-//        return slow;
-
         ListNode fast = header;
         ListNode slow = header;
         while (fast != null && fast.next != null) {

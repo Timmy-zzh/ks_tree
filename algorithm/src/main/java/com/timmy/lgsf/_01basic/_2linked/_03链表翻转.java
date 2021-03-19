@@ -1,9 +1,9 @@
-package com.timmy.algorithm._01linked;
+package com.timmy.lgsf._01basic._2linked;
 
 import com.timmy.common.ListNode;
 import com.timmy.common.PrintUtils;
 
-public class _01链表翻转 {
+public class _03链表翻转 {
 
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);

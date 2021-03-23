@@ -31,7 +31,7 @@ public class _08链表删除 {
 
         _08链表删除 prac = new _08链表删除();
 //        ListNode result = prac.removeEle(head, 1);
-        ListNode result = prac.removeEle2(head, 1);
+        ListNode result = prac.removeEle(head, 1);
         System.out.println("reslult:" + result.value);
 
         tempNode = result;
@@ -43,6 +43,25 @@ public class _08链表删除 {
     }
 
     /**
+     * 设置一个虚拟头节点
+     * 注意：返回值和动态删除的节点
+     */
+    private ListNode removeEle(ListNode head, int target) {
+        ListNode dynamic = new ListNode(0);
+        dynamic.next = head;
+
+        ListNode temp = dynamic;
+        while (temp.next != null) {
+            if (temp.next.value == target) {
+                temp.next = temp.next.next;
+            } else {
+                temp = temp.next;
+            }
+        }
+        return dynamic.next;
+    }
+
+    /**
      * 删除链表中等于给定值 val 的所有节点。
      * <p>
      * 这里以链表 1 4 2 4  来举例，移除元素1。
@@ -51,7 +70,7 @@ public class _08链表删除 {
      * 直接使用原来的链表进行删除操作
      * 要特殊处理头节点的value值等于target值
      */
-    private ListNode removeEle(ListNode head, int target) {
+    private ListNode removeEle_v1(ListNode head, int target) {
         //处理头部
         while (head != null && head.value == target) {
             head = head.next;
@@ -65,24 +84,5 @@ public class _08链表删除 {
             }
         }
         return result;
-    }
-
-    /**
-     * 设置一个虚拟头节点
-     * 注意：返回值和动态删除的节点
-     */
-    private ListNode removeEle2(ListNode head, int target) {
-        ListNode dynamic = new ListNode(0);
-        dynamic.next = head;
-
-        ListNode temp = dynamic;
-        while (temp.next != null) {
-            if (temp.next.value == target) {
-                temp.next = temp.next.next;
-            } else {
-                temp = temp.next;
-            }
-        }
-        return dynamic.next;
     }
 }

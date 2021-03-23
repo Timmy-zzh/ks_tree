@@ -13,12 +13,14 @@ public class _03链表翻转 {
         ListNode listNode5 = new ListNode(5);
         ListNode listNode6 = new ListNode(6);
         ListNode listNode7 = new ListNode(7);
+        ListNode listNode8 = new ListNode(8);
         listNode1.next = listNode2;
         listNode2.next = listNode3;
         listNode3.next = listNode4;
         listNode4.next = listNode5;
         listNode5.next = listNode6;
         listNode6.next = listNode7;
+        listNode7.next = listNode8;
 
         PrintUtils.print(listNode1);
 //        ListNode result = reversion(listNode1);
@@ -71,21 +73,6 @@ public class _03链表翻转 {
         return header.next;
     }
 
-    /**
-     * 翻转单个子链表，返回新的连标头节点
-     */
-    private static ListNode reveSubList(ListNode node) {
-        ListNode pre = null;
-        ListNode curr = node;
-        ListNode temp;
-        while (curr != null) {
-            temp = curr.next;
-            curr.next = pre;
-            pre = curr;
-            curr = temp;
-        }
-        return pre;
-    }
 
     /**
      * 链表翻转： 1->2->3->4->5  结果： 5->4->3->2->1
@@ -95,8 +82,10 @@ public class _03链表翻转 {
      * <p>
      * 每次移动，pre 与 curr同时移动，且curr的next指针指向pre
      */
-    private static ListNode reversion(ListNode node) {
-        ListNode pre = null, temp, curr = node;
+    private static ListNode reveSubList(ListNode node) {
+        ListNode pre = null;
+        ListNode curr = node;
+        ListNode temp;
         while (curr != null) {
             temp = curr.next;
             curr.next = pre;

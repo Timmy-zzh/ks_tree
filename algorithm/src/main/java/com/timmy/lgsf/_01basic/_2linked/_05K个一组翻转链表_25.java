@@ -12,10 +12,16 @@ public class _05K个一组翻转链表_25 {
         ListNode listNode3 = new ListNode(3);
         ListNode listNode4 = new ListNode(4);
         ListNode listNode5 = new ListNode(5);
+        ListNode listNode6 = new ListNode(6);
+        ListNode listNode7 = new ListNode(7);
+        ListNode listNode8 = new ListNode(8);
         head.next = listNode2;
         listNode2.next = listNode3;
         listNode3.next = listNode4;
         listNode4.next = listNode5;
+        listNode5.next = listNode6;
+        listNode6.next = listNode7;
+        listNode7.next = listNode8;
 
         PrintUtils.print(head);
         System.out.println("--------------");
@@ -24,7 +30,78 @@ public class _05K个一组翻转链表_25 {
         PrintUtils.print(res);
     }
 
+    /**
+     * 1。理解题意
+     * -输入一个链表和需要翻转的间隔个数，求翻转后的新链表
+     * 2。解题思路
+     * -创建虚拟头节点指向链表的真实头节点，然后虚拟头节点不动，
+     * --最后返回虚拟头节点的下一个节点为最终结果，新建一个节点指向虚拟头节点
+     * -因为原始链表需要按照k个一组进行翻转，所以解题思路重点是将 k个一组链表进行处理
+     * --保留k个一组前继节点和他的后继节点，找到K个一组的 头节点和尾节点 然后进行翻转，翻转后再进行链接
+     * 3。边界和细节问题
+     * -k个一组进行翻转，最后没有到达k个，则不用反转，直接链接上
+     *
+     * @param head
+     * @param k
+     * @return
+     */
     public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode curr = dummyHead.next;
+        //k个一组的前继,和后继节点
+        ListNode prev = dummyHead;
+        ListNode tail;
+        //k组中的前后节点
+        ListNode start = curr;
+        ListNode end = curr;
+
+        while (curr != null) {
+            System.out.println("---curr:" + curr.value + " ,start:" + start.value + " ,end:" + end.value);
+            // k个一组的开头和结尾: start end
+            for (int i = 1; i < k; i++) {
+                end = end.next;
+                if (end == null) {
+                    return dummyHead.next;
+                }
+            }
+            tail = end.next;
+            //start 与 end 翻转
+            System.out.println("before --- ,start:" + start.value + " ,end:" + end.value);
+            ListNode[] res = reverse(start, end);
+            start = res[0];
+            end = res[1];
+            System.out.println("after --- ,start:" + start.value + " ,end:" + end.value);
+
+            prev.next = start;
+            end.next = tail;
+
+            prev = end;
+            curr = end.next;
+            start = curr;
+            end = curr;
+        }
+
+        return dummyHead.next;
+    }
+
+    private ListNode[] reverse(ListNode start, ListNode end) {
+        //保留后继节点
+        ListNode last = end.next;
+        //反转使用到的三个节点 prev，curr，next
+        ListNode curr = start;
+        ListNode prev = null, next;
+        while (curr != last) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        start.next = last;
+        return new ListNode[]{prev, start};
+    }
+
+    public ListNode reverseKGroup_v1(ListNode head, int k) {
         ListNode pre, next;
         ListNode curr = head;
         int n;

@@ -1,4 +1,4 @@
-package com.timmy.algorithm._03queue;
+package com.timmy.lgsf._01basic._4queue;
 
 import com.timmy.common.PrintUtils;
 
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class _02前K个高频元素 {
+public class _05前K个高频元素 {
 
     public static void main(String[] args) {
         int[] nums = {1, 1, 1, 2, 2, 3};

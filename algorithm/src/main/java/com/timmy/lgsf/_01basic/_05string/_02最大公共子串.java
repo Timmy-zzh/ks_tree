@@ -1,4 +1,4 @@
-package com.timmy.algorithm._05string;
+package com.timmy.lgsf._01basic._05string;
 
 public class _02最大公共子串 {
 

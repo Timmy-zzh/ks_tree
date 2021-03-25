@@ -1,8 +1,8 @@
-package com.timmy.algorithm._04array;
+package com.timmy.lgsf._01basic._1array;
 
 import com.timmy.common.PrintUtils;
 
-public class _01删除重复元素 {
+public class _03删除重复元素 {
 
     public static void main(String[] args) {
 //        int[] nums = new int[]{1, 1, 2};

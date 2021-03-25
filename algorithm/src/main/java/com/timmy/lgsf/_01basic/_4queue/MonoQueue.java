@@ -1,4 +1,4 @@
-package com.timmy.algorithm._03queue;
+package com.timmy.lgsf._01basic._4queue;
 
 import java.util.ArrayDeque;
 

@@ -2,10 +2,10 @@ package com.timmy._00review._03month;
 
 import com.timmy.common.PrintUtils;
 
-public class _0323二维区域和检索_矩阵不可变_304 {
+public class _23二维区域和检索_矩阵不可变_304 {
 
     public static void main(String[] args) {
-        _0323二维区域和检索_矩阵不可变_304 demo = new _0323二维区域和检索_矩阵不可变_304();
+        _23二维区域和检索_矩阵不可变_304 demo = new _23二维区域和检索_矩阵不可变_304();
 
         demo.init();
 //        int res = demo.sumRegion(2, 1, 4, 3);

@@ -1,10 +1,10 @@
-package com.timmy.algorithm._03queue;
+package com.timmy.lgsf._01basic._4queue;
 
 import com.timmy.common.PrintUtils;
 
 import java.util.LinkedList;
 
-public class _01约瑟夫环问题 {
+public class _04约瑟夫环问题 {
 
     public static void main(String[] args) {
         ring(10, 5, 3);

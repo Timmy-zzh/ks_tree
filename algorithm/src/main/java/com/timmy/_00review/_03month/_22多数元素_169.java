@@ -6,10 +6,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class _0322多数元素_169 {
+public class _22多数元素_169 {
 
     public static void main(String[] args) {
-        _0322多数元素_169 demo = new _0322多数元素_169();
+        _22多数元素_169 demo = new _22多数元素_169();
         int[] nums = {2, 2, 1, 1, 1, 2, 2};
         int res = demo.magorityElement(nums);
         System.out.println("res:" + res);

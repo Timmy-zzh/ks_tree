@@ -2,10 +2,10 @@ package com.timmy._00review._03month;
 
 import com.timmy.common.PrintUtils;
 
-public class _0318最大子序和_53 {
+public class _18最大子序和_53 {
 
     public static void main(String[] args) {
-        _0318最大子序和_53 demo = new _0318最大子序和_53();
+        _18最大子序和_53 demo = new _18最大子序和_53();
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         int res = demo.maxSubArray(nums);
         System.out.println("res:" + res);

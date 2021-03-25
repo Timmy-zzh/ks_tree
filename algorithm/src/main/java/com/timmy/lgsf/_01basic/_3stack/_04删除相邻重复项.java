@@ -1,8 +1,8 @@
-package com.timmy.algorithm._02stack;
+package com.timmy.lgsf._01basic._3stack;
 
 import java.util.Stack;
 
-public class _02删除相邻重复项 {
+public class _04删除相邻重复项 {
 
     public static void main(String[] args) {
         String result = removeDuplicates("abbaca");

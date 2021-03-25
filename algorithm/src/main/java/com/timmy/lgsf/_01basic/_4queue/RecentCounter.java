@@ -28,6 +28,8 @@ package com.timmy.lgsf._01basic._4queue;
  * 保证每次对 ping 调用所使用的 t 值都 严格递增
  * 至多调用 ping 方法 10的4次方
  */
+
+
 public class RecentCounter {
 
     public RecentCounter() {

@@ -1,8 +1,8 @@
-package com.timmy.algorithm._03queue;
+package com.timmy.lgsf._01basic._4queue;
 
 import com.timmy.common.PrintUtils;
 
-public class _03滑动窗口最大值 {
+public class _03滑动窗口最大值_239 {
 
     public static void main(String[] args) {
         //        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};

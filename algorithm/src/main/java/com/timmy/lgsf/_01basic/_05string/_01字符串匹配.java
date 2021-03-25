@@ -1,4 +1,4 @@
-package com.timmy.algorithm._05string;
+package com.timmy.lgsf._01basic._05string;
 
 public class _01字符串匹配 {
 

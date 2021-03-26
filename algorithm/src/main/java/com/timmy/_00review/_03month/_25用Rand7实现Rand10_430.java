@@ -6,10 +6,10 @@ import java.util.Random;
  * 经典题解：
  * https://leetcode-cn.com/problems/implement-rand10-using-rand7/solution/cong-pao-ying-bi-kai-shi-xun-xu-jian-jin-ba-zhe-da/#comment
  */
-public class _25用Rand7实现Rand10_470 {
+public class _25用Rand7实现Rand10_430 {
 
     public static void main(String[] args) {
-        _25用Rand7实现Rand10_470 demo = new _25用Rand7实现Rand10_470();
+        _25用Rand7实现Rand10_430 demo = new _25用Rand7实现Rand10_430();
 
         //求抛硬币的结果[0,1]概率
         int n = 10000;

@@ -80,7 +80,7 @@ public class PrintUtils {
         if (root == null) {
             return;
         }
-        System.out.print(root.val + ",");
+        System.out.print(root.val + ", ");
         printPre(root.left);
         printPre(root.right);
     }
@@ -91,7 +91,7 @@ public class PrintUtils {
             return;
         }
         printMid(root.left);
-        System.out.print(root.val + ",");
+        System.out.print(root.val + ", ");
         printMid(root.right);
     }
 
@@ -102,7 +102,7 @@ public class PrintUtils {
         }
         printNex(root.left);
         printNex(root.right);
-        System.out.print(root.val + ",");
+        System.out.print(root.val + ", ");
     }
 
     public static void print(String[] arr) {

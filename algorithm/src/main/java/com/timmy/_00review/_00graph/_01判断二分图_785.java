@@ -5,29 +5,107 @@ import com.timmy.common.PrintUtils;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class _01判断二分图_785 {
 
     public static void main(String[] args) {
         _01判断二分图_785 demo = new _01判断二分图_785();
-        int[][] graph = {
-                {1, 2, 3}, {0, 2}, {0, 1, 3}, {0, 2}
-        };
-//        int[][] graph = {
-//                {1, 3}, {0, 2}, {1, 3}, {0, 2}
-//        };
+//        int[][] graph = {{1, 2, 3}, {0, 2}, {0, 1, 3}, {0, 2}};
+        int[][] graph = {{1, 3}, {0, 2}, {1, 3}, {0, 2}};
         boolean bipartite = demo.isBipartite(graph);
         System.out.println("res:" + bipartite);
+    }
 
+
+    /**
+     * 深度优先遍历：迭代实现
+     * -使用栈数据结构保存中间遍历到的节点
+     */
+    public boolean isBipartite(int[][] graph) {
+        int[] color = new int[graph.length];
+        Arrays.fill(color, uncolor);
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < graph.length; i++) {
+            if (color[i] == uncolor) {
+                color[i] = red;
+                stack.push(i);
+                while (!stack.isEmpty()) {
+                    Integer pop = stack.pop();
+                    //根据pop节点的颜色给相邻节点着色
+                    int wantColor = color[pop] == red ? green : red;
+                    int[] linkNodes = graph[pop];
+                    for (int j = 0; j < linkNodes.length; j++) {
+                        int linkNode = linkNodes[j];
+                        //linkNode为相邻节点，再判断相邻节点的颜色
+                        if (color[linkNode] == uncolor) {
+                            color[linkNode] = wantColor;
+                            stack.push(linkNode);
+                        } else if (color[linkNode] != wantColor) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 1.
+     * 2.采用深度优先遍历方式进行遍历:递归实现
+     * 一条道走到黑的办法
+     * -从节点0开始遍历与之相邻的所有节点，并从第一个相邻的节点往下遍历，根据当前节点的颜色，对相邻节点颜色进行着色
+     * --如果相邻节点之前未着色，则着色不同的颜色
+     * --如果相邻节点已着色，则判断是否与希望着色的颜色一致；不一致，则不是二分图，退出循环
+     */
+    private static final int uncolor = 0;
+    private static final int red = 1;
+    private static final int green = 2;
+    boolean isValid = true;
+
+    public boolean isBipartite_v3(int[][] graph) {
+        int[] color = new int[graph.length];
+        Arrays.fill(color, uncolor);
+        for (int i = 0; i < graph.length; i++) {
+            if (color[i] == uncolor) {
+                color[i] = red;
+                dfs(color, i, graph);
+            }
+        }
+        return isValid;
+    }
+
+    /**
+     * 深度优先遍历：
+     * curr 为当前已着色节点，根据已着色节点i需要对相邻节点的集合进行着色，
+     */
+    private void dfs(int[] color, int curr, int[][] graph) {
+        System.out.println("curr:" + curr);
+        int wantColor = color[curr] == red ? green : red;
+        //相邻的节点
+        int[] linkNodes = graph[curr];
+        for (int j = 0; j < linkNodes.length; j++) {
+            // node为下一层的相邻节点的集合
+            int node = linkNodes[j];
+            if (color[node] == uncolor) {
+                color[node] = wantColor;
+                dfs(color, node, graph);
+                if (!isValid) {
+                    return;
+                }
+            } else if (color[node] != wantColor) {
+                isValid = false;
+                return;
+            }
+        }
     }
 
     /**
      * 前面的广度优先遍历，存在一种情况，如果图中节点不是联通图时，会遍历不到，所有需要进行处理
+     * TODO: 广度优先遍历都需要借助队列进行中间数据的存储
      */
-    public boolean isBipartite(int[][] graph) {
-        int uncolor = 0;
-        int red = 1;
-        int green = 2;
+    public boolean isBipartite_v2(int[][] graph) {
 
         int n = graph.length;
         int[] color = new int[n];
@@ -84,10 +162,6 @@ public class _01判断二分图_785 {
      * --如果相邻节点已经着色了，则判断是否与希望着色的颜色一致，否则就不是一个二分图
      */
     public boolean isBipartite_v1(int[][] graph) {
-        int uncolor = 0;
-        int red = 1;
-        int green = 2;
-
         int n = graph.length;
         int[] color = new int[n];
         //默认都是未着色节点

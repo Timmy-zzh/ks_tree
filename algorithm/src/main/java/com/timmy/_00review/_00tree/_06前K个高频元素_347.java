@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+/**
+ * 优先级堆；大顶堆，小顶堆
+ */
 public class _06前K个高频元素_347 {
 
     public static void main(String[] args) {
@@ -56,7 +59,7 @@ public class _06前K个高频元素_347 {
 
         int[] resArr = new int[queue.size()];
         int i = 0;
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             resArr[i++] = queue.poll().getKey();
         }
 

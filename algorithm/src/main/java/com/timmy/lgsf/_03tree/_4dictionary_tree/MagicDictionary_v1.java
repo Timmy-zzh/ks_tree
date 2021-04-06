@@ -4,7 +4,7 @@ package com.timmy.lgsf._03tree._4dictionary_tree;
 import com.timmy.common.TrieNode;
 
 /**
- * 字典树封城
+ * 字典树封装
  * -实现构造，遍历，搜索
  * 1。构造
  * -输入一些列字符串数组，然后将这些字符串都插入到字典树中
@@ -38,7 +38,7 @@ public class MagicDictionary_v1 {
                 }
                 head = head.children[ch - 'a'];
             }
-            head.isWord = true;
+            head.isEnd = true;
         }
     }
 
@@ -49,7 +49,7 @@ public class MagicDictionary_v1 {
      * <p>
      * 从字典树中判断是否存在存在一个字符串，改变其中的一个字符，就可以和输入的字符串相同
      * 例如：字典树中存在字符串 hello，输入hhllo，
-     * -其中第一个字符相等，第二个字符不想等，后面的自负又相等
+     * -其中第一个字符相等，第二个字符不想等，后面的字符又相等
      * <p>
      * 2。实现思路：
      * -遍历字符数组，从字典树根节点开始遍历，判断是否存在满足条件的字符
@@ -89,7 +89,7 @@ public class MagicDictionary_v1 {
             }
             root = root.children[pos];
         }
-        return root.isWord;
+        return root.isEnd;
     }
 
 }

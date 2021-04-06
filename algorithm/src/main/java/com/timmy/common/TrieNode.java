@@ -10,11 +10,18 @@ package com.timmy.common;
 public class TrieNode {
 
     private static final int SIZE = 26;
-    public boolean isWord;
+    public boolean isEnd;
     public TrieNode[] children;
+    //到该节点时的字符串是什么
+    public String word;
 
     public TrieNode() {
-        isWord = false;
+        isEnd = false;
         children = new TrieNode[SIZE];
+        word = "";
+    }
+
+    public void setEnd(String newWord) {
+        word = newWord;
     }
 }

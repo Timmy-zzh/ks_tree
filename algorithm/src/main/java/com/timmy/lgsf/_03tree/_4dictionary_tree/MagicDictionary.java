@@ -34,7 +34,7 @@ public class MagicDictionary {
                 }
                 head = head.children[ch - 'a'];
             }
-            head.isWord = true;
+            head.isEnd = true;
         }
     }
 
@@ -49,7 +49,7 @@ public class MagicDictionary {
                 TrieNode child = children[i];
                 char ch = (char) ('a' + i);
                 System.out.println(ch);
-                if (child.isWord) {
+                if (child.isEnd) {
                     System.out.println("---end---");
                 }
                 preOrder(child);
@@ -73,7 +73,7 @@ public class MagicDictionary {
             }
             head = head.children[index];
         }
-        head.isWord = true;
+        head.isEnd = true;
     }
 
     /**
@@ -92,7 +92,7 @@ public class MagicDictionary {
             //存在该元素，往下递归遍历
             head = head.children[index];
         }
-        return head.isWord;
+        return head.isEnd;
     }
 
     public void print() {

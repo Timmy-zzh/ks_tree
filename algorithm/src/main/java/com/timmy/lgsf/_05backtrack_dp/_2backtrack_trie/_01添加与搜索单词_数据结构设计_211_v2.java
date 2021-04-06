@@ -60,7 +60,7 @@ public class _01添加与搜索单词_数据结构设计_211_v2 {
                 curr = curr.children[pos];
             }
             //最后一个单词
-            curr.isWord = true;
+            curr.isEnd = true;
         }
 
         /**
@@ -96,7 +96,7 @@ public class _01添加与搜索单词_数据结构设计_211_v2 {
                 //存在当前字符节点，往下移动，继续判断下一个字符
                 curr = curr.children[pos];
             }
-            return curr.isWord;
+            return curr.isEnd;
         }
     }
 

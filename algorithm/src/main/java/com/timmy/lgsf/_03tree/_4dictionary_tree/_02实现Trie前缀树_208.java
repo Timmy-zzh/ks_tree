@@ -25,7 +25,7 @@ public class _02实现Trie前缀树_208 {
                 }
                 head = head.children[index];
             }
-            head.isWord = true;
+            head.isEnd = true;
         }
 
         boolean search(String word) {
@@ -37,7 +37,7 @@ public class _02实现Trie前缀树_208 {
                 }
                 head = head.children[index];
             }
-            return head.isWord;
+            return head.isEnd;
         }
 
         boolean startsWith(String prefix) {

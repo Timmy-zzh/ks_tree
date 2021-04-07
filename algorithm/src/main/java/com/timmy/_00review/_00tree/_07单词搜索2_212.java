@@ -4,7 +4,6 @@ import com.timmy.common.PrintUtils;
 import com.timmy.common.TrieNode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -65,7 +64,7 @@ class _07单词搜索2_212 {
     public List<String> findWords(char[][] board, String[] words) {
         List<String> res = new ArrayList<>();
         Set<String> set = new HashSet<>();
-        DictionaryTree dictionaryTree = new DictionaryTree();
+        _07DictionaryTree dictionaryTree = new _07DictionaryTree();
         dictionaryTree.build(words);
         dictionaryTree.print();
         boolean[][] visited;
@@ -141,7 +140,7 @@ class _07单词搜索2_212 {
      */
     public List<String> findWords_v1(char[][] board, String[] words) {
         List<String> res = new ArrayList<>();
-        DictionaryTree dictionaryTree = new DictionaryTree();
+        _07DictionaryTree dictionaryTree = new _07DictionaryTree();
         dictionaryTree.build(words);
         dictionaryTree.print();
 

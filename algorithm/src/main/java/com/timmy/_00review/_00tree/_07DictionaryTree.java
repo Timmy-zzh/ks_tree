@@ -11,11 +11,11 @@ import java.util.Stack;
  * -根节点为空，
  * -输入一个字符串数组，然后遍历这个字符串数组，遍历字符串时，遍历字符串的每个字符，构建字典树
  */
-public class DictionaryTree {
+public class _07DictionaryTree {
 
     TrieNode root;
 
-    public DictionaryTree() {
+    public _07DictionaryTree() {
         root = new TrieNode();
     }
 

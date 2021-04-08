@@ -1,13 +1,17 @@
-package com.timmy.lgsf._05backtrack_dp._1backtrack;
+package com.timmy._00review._00backtracking;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class _01N皇后_51_v2 {
+/**
+ * 回溯算法：经典题目
+ * N皇后
+ */
+public class _02N皇后_51 {
     public static void main(String[] args) {
-        _01N皇后_51_v2 demo = new _01N皇后_51_v2();
+        _02N皇后_51 demo = new _02N皇后_51();
         List<List<String>> lists = demo.solveNQueens(4);
         for (List<String> list : lists) {
             for (String s : list) {

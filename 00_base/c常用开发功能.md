@@ -31,3 +31,9 @@ char *file_path = "/Users/.../xxx.text";
 FILE *fp = fopen(file_path, "rb");
 ~~~
 
+##### 3.退出mac终端
+
+~~~c
+ctrl + c
+~~~
+

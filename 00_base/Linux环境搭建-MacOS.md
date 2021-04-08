@@ -6,4 +6,3 @@
   - https://www.virtualbox.org/wiki/Downloads
 - Linux系统镜像下载
   - http://isoredirect.centos.org/centos/7/isos/x86_64/
-  - 

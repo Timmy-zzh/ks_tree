@@ -2,10 +2,10 @@ package com.timmy._00review._04month;
 
 import com.timmy.common.PrintUtils;
 
-class _08寻找两个正序数组的中位数_4 {
+class _xx09寻找两个正序数组的中位数_4 {
 
     public static void main(String[] args) {
-        _08寻找两个正序数组的中位数_4 demo = new _08寻找两个正序数组的中位数_4();
+        _xx09寻找两个正序数组的中位数_4 demo = new _xx09寻找两个正序数组的中位数_4();
 //        int[] nums1 = {1, 3};
 //        int[] nums2 = {2};
         int[] nums1 = {1, 2};

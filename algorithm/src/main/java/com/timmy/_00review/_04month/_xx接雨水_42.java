@@ -1,6 +1,6 @@
 package com.timmy._00review._04month;
 
-class _xx04接雨水_42 {
+class _xx接雨水_42 {
 
     public static void main(String[] args) {
         System.out.println("---_04接雨水_42--");

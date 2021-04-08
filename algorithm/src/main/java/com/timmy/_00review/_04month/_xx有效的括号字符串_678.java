@@ -3,10 +3,10 @@ package com.timmy._00review._04month;
 /**
  * TODO 未实现
  */
-public class _xx23有效的括号字符串_678 {
+public class _xx有效的括号字符串_678 {
 
     public static void main(String[] args) {
-        _xx23有效的括号字符串_678 demo = new _xx23有效的括号字符串_678();
+        _xx有效的括号字符串_678 demo = new _xx有效的括号字符串_678();
         boolean res = demo.checkValidString("(*)");
         System.out.println("res:" + res);
     }

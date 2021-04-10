@@ -20,9 +20,7 @@ class _03K站中转内最便宜的航班_787 {
         /**
          * 4
          * [[0,1,1],[0,2,5],[1,2,1],[2,3,1]]
-         * 0
-         * 3
-         * 1
+         * 0  3  1
          */
         int[][] flights = {{0, 1, 1}, {0, 2, 5}, {1, 2, 1}, {2, 3, 1}};
         int res = demo.findCheapestPrice(4, flights, 0, 3, 1);
@@ -31,9 +29,91 @@ class _03K站中转内最便宜的航班_787 {
     }
 
     /**
+     * 1。理解题意
+     * -输入二维数组表示n个城市之间的m个航班组成的图结构，从城市节点src出发到城市dst，求路程的最少花销，
+     * --要求航班中转次数最多为K次
+     * 2。解题思路
+     * -该问题可以转化为：图中节点src到dst节点的最短路径，但是有个条件是中转次数不能超过K次
+     * 深度优先算法+回溯算法
+     * -先使用邻接表表示图结构，从src开始深度优先遍历，从src出发的花费为0，
+     * --dfs的写法参数中，找出src的相邻节点，继续深度优先遍历，并做好回溯工作，bool[] visited状态恢复
+     * -当遍历到目标节点时记录当前路径的花费，
+     * -如果当前深度优先遍历路径的中转次数达到K次，进行处理
+     * 3。边界和细节问题
+     * TODO ：核心思想--在每条路径上去寻找可以到达目标城市dst的路径，并求取路径的花费
+     * --为防止存在环情况，需要使用visited判断防止死循环
+     * -中转次数K，表示需要经过的节点为K+1
+     */
+    int resPrice = Integer.MAX_VALUE;// 最终所求的最低价格，到达不了目标城市返回-1
+
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+        List<List<int[]>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<int[]>());
+        }
+        for (int[] flight : flights) {
+            int start = flight[0];
+            int end = flight[1];
+            int price = flight[2];
+            adj.get(start).add(new int[]{end, price});
+        }
+
+        boolean visited[] = new boolean[n];
+        visited[src] = true;
+        dfs(adj, src, dst, K + 1, 0, visited);
+
+        return resPrice == Integer.MAX_VALUE ? -1 : resPrice;
+    }
+
+    /**
+     * @param adj     邻接表
+     * @param src     上一次开始的节点
+     * @param dst     最总需要达到的目标节点
+     * @param k       中转节点
+     * @param price   深度优先到src节点时，该条路径的花费
+     * @param visited 防止出现环，并进行回溯控制
+     */
+    private void dfs(List<List<int[]>> adj, int src, int dst, int k, int price, boolean[] visited) {
+        System.out.println("src:" + src + " ,k:" + k + " ,price:" + price);
+        PrintUtils.print(visited);
+        if (src == dst) {
+            //1。该条路径到达目标节点，结束遍历，并保存这条路径上的花费
+            resPrice = price;
+            return;
+        }
+        if (k == 0) {  //2。中转次数的节点为0，路径不能再继续往下延伸了
+            return;
+        }
+        //3。查找src节点的相邻节点集合，并继续遍历
+        List<int[]> linkNodes = adj.get(src);
+        for (int i = 0; i < linkNodes.size(); i++) {
+            int[] linkNode = linkNodes.get(i);
+            int node = linkNode[0];
+            int edgePrice = linkNode[1];
+
+            //4.1.判断该相邻节点是否遍历过
+            if (visited[node]) {
+                continue;
+            }
+            //4.2.剪枝--判断已走过的路径，在加上这段边edge的花费是否超过已知路径花费，超过的话，这条路径页没必要延伸了
+            if (price + edgePrice > resPrice) {
+                continue;
+            }
+            visited[node] = true;
+
+            //5。路径往node相邻节点延伸
+            dfs(adj, node, dst, k - 1, price + edgePrice, visited);
+
+            //6。回溯处理
+            visited[node] = false;
+        }
+    }
+
+    /**
+     * TODO 深度优先算法--失败
      * 使用深度优先算法
      */
-    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+    public int findCheapestPrice_v2(int n, int[][] flights, int src, int dst, int K) {
         List<List<int[]>> adj = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
             adj.add(new ArrayList<int[]>());
@@ -50,13 +130,13 @@ class _03K站中转内最便宜的航班_787 {
         Arrays.fill(prices, Integer.MAX_VALUE);
         prices[src] = 0;
         int count = 0;  //中转次数
-        dfs(adj, K, prices, src, count);
+        dfs_v2(adj, K, prices, src, count);
 
         PrintUtils.print(prices);
         return prices[dst] == Integer.MAX_VALUE ? -1 : prices[dst];
     }
 
-    private void dfs(List<List<int[]>> adj, int K, int[] prices, int preNode, int count) {
+    private void dfs_v2(List<List<int[]>> adj, int K, int[] prices, int preNode, int count) {
         if (count > K) {
             return;
         }
@@ -69,12 +149,13 @@ class _03K站中转内最便宜的航班_787 {
             if (prices[preNode] + edgPrice < prices[edgNode]) {
                 prices[edgNode] = prices[preNode] + edgPrice;
             }
-            dfs(adj, K, prices, edgNode, count + 1);
+            dfs_v2(adj, K, prices, edgNode, count + 1);
         }
     }
 
 
     /**
+     * TODO 广度优先算法--失败
      * 1.理解题意
      * -给定由n个城市和m个航班，组成的图结构，现在要求从src城市出发到达dst城市，费用最低
      * --并且只可以中转k值

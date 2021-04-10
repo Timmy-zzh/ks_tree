@@ -11,6 +11,8 @@ import com.timmy.ks_tree.Test;
 import com.timmy.ks_tree.hotfix.HotFixActivity;
 import com.timmy.ks_tree.retrofit.RetrofitStu;
 
+import java.util.concurrent.Semaphore;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Semaphore semaphore;
     }
 
     private void testClassLoader() {

@@ -3,8 +3,8 @@ package com.timmy.javalib._4concurrent;
 public class _02_2SynchronizedMethod {
 
     public static void main(String[] args) {
-        _02_2SynchronizedMethod demo1 = new _02_2SynchronizedMethod();
-        _02_2SynchronizedMethod demo2 = new _02_2SynchronizedMethod();
+        final _02_2SynchronizedMethod demo1 = new _02_2SynchronizedMethod();
+        final _02_2SynchronizedMethod demo2 = new _02_2SynchronizedMethod();
 
         Thread thread1 = new Thread(new Runnable() {
             @Override

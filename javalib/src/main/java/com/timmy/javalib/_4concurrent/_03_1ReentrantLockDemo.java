@@ -7,7 +7,7 @@ public class _03_1ReentrantLockDemo {
     ReentrantLock reentrantLock = new ReentrantLock();
 
     public static void main(String[] args) {
-        _03_1ReentrantLockDemo demo1 = new _03_1ReentrantLockDemo();
+        final _03_1ReentrantLockDemo demo1 = new _03_1ReentrantLockDemo();
 
         Thread thread1 = new Thread(new Runnable() {
             @Override

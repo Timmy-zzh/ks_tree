@@ -17,8 +17,10 @@ import java.nio.charset.StandardCharsets;
 class SocketClient1 {
 
     public static void main(String[] args) throws IOException {
+        System.out.println("SocketClient1 -----------");
         //1。客户端创建socket连接
         String host = "127.0.0.1";
+//        String host = "localhost";
         int port = 55556;
         System.out.println("client socket start 1111 ");
         Socket socket = new Socket(host, port);
@@ -29,7 +31,7 @@ class SocketClient1 {
         String message = "我是客户端1，请求连接 -- hello server";
         outputStream.write(message.getBytes(StandardCharsets.UTF_8));
 
-//        socket.shutdownOutput();
+        socket.shutdownOutput();
 
         //3。获取服务端返回的数据
         InputStream inputStream = socket.getInputStream();

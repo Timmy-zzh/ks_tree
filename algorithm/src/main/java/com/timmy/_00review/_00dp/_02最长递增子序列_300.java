@@ -6,7 +6,7 @@ class _02最长递增子序列_300 {
 
     public static void main(String[] args) {
         _02最长递增子序列_300 demo = new _02最长递增子序列_300();
-        int[] nums = {10, 9, 2, 5, 3, 7, 101, 18};
+        int[] nums = {10, 9, 2, 5, 3, 7, 101, 3, 18};
         int res = demo.lengthOfLIS(nums);
         System.out.println("res:" + res);
     }

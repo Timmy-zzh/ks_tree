@@ -55,6 +55,7 @@ public class _30合并区间_56 {
         for (int i = 0; i < list.size(); i++) {
             resArr[i] = list.get(i);
         }
+//        list.toArray(new int[])
         return resArr;
     }
 

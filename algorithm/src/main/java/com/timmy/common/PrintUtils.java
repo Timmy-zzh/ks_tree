@@ -66,6 +66,13 @@ public class PrintUtils {
         System.out.println();
     }
 
+    public static void printCh(List<Character> list) {
+        for (Character integer : list) {
+            System.out.print(integer + ", ");
+        }
+        System.out.println();
+    }
+
     public static void printStr(List<String> lists) {
         for (String integer : lists) {
             System.out.print(integer + ", ");

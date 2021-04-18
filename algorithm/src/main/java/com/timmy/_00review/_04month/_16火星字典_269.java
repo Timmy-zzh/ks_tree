@@ -10,6 +10,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+/**
+ * 1.根据字符串出现顺序，构建图-邻接表
+ * 2。根据邻接表进行深度优先遍历，并获取路径上的字符
+ */
 public class _16火星字典_269 {
 
     public static void main(String[] args) {
@@ -127,7 +131,7 @@ public class _16火星字典_269 {
         List<Character> linkNodes = adj.get(preCh);
         for (int i = 0; i < linkNodes.size(); i++) {
             Character linkNode = linkNodes.get(i);
-            if (loop.contains(linkNode)) {   //相邻节点已在dfs路径上，退出
+            if (loop.contains(linkNode)) {   //相邻节点已在dfs路径上，存在环，退出
                 return false;
             }
             if (!visited.contains(linkNode)) {

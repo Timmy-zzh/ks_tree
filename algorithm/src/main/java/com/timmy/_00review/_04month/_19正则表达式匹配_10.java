@@ -1,11 +1,69 @@
 package com.timmy._00review._04month;
 
+import com.timmy.common.PrintUtils;
+
 public class _19正则表达式匹配_10 {
 
     public static void main(String[] args) {
         _19正则表达式匹配_10 demo = new _19正则表达式匹配_10();
-        boolean res = demo.isMatch("aa", "a*");
+//        boolean res = demo.isMatch("aa", "a*");
+        boolean res = demo.isMatch("aab", "c*a*b");
         System.out.println("res:" + res);
+    }
+
+    /**
+     * 1.正则表达式匹配
+     * 2。动态规划解法
+     * -原问题拆分为子问题
+     * --字符串s，和p 拆分成从左到右，长度很小的字符串进行匹配，并且新增字符串进行匹配时，可以借助之前的匹配结果，进行推导
+     * -状态转移方程式: boolean dp[i][j] 表示字符串s的i位置，与字符串p的j位置的匹配结果
+     * --dp[0][0] = true; 表示字符串s与p都为空，所以匹配成功
+     * -dp[i][j] 表示的是s的第i个字符=s[i-1]的字符；与 字符p的第j个字符=p[j-1]的字符的匹配结果
+     * --情况1：p的第j个字符不是*，
+     * ---如果s的第i个字符和p的第j个字符相同，dp[i][j]的值等于 dp[i-1][j-1] (前面字符串匹配的结果 )
+     * ---如果s的第i个字符和p的第j个字符不相同，则dp[i][j]=false
+     * --情况2：p的第j个字符为*
+     * --例如p字符串为(a*)，把他看作一个整体，他可以为空情况，也可以为一个a，两个aa，多个aaa...
+     * ---将(a*)看作空字符，dp[i][j] = dp[i][j-2]
+     * ---将(a*)看作多个字符，如果s的i个字符和p的第j-1个字符相等，dp[i][j]的值等于 dp[i][j-2] || dp[i-1][j]
+     */
+    public boolean isMatch(String s, String p) {
+        int m = s.length();
+        int n = p.length();
+
+        //s，p字符串的位置
+        boolean dp[][] = new boolean[m + 1][n + 1];
+
+        dp[0][0] = true;
+        //如果s字符串为空
+        for (int i = 1; i <= n; i++) {
+            dp[0][i] = n > 1 && p.charAt(i - 1) == '*' && dp[0][i - 2];
+        }
+        PrintUtils.print(dp);
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                //判断j位置的 p[j-1]字符是否为*
+                if (p.charAt(j - 1) == '*') {
+                    //情况1: (a*)为空
+                    //情况2：(a*)与s[i-1]相等
+                    dp[i][j] = dp[i][j - 2] || (isMatchChar(s, i, p, j - 1) && dp[i - 1][j]);
+                } else {
+                    //不为*，则判断两两字符判断是否匹配
+                    dp[i][j] = dp[i - 1][j - 1] && isMatchChar(s, i, p, j);
+                }
+            }
+        }
+        System.out.println("-------");
+        PrintUtils.print(dp);
+        return dp[m][n];
+    }
+
+    private boolean isMatchChar(String s, int i, String p, int j) {
+        if (p.charAt(j - 1) == '.') {
+            return true;
+        } else {
+            return s.charAt(i - 1) == p.charAt(j - 1);
+        }
     }
 
     /**
@@ -26,9 +84,9 @@ public class _19正则表达式匹配_10 {
      * -3。p[j+1] 等于字符'*',则有两种情况零个字符，或者n个重复字符（n>0）
      * --第三种情况通过回溯法进行
      */
-    public boolean isMatch(String s, String p) {
-        if (s.isEmpty() && p.isEmpty()) {
-            return true;
+    public boolean isMatch_v1(String s, String p) {
+        if (s == null || p == null) {
+            return false;
         }
         return isMatch(s, p, 0, 0);
     }

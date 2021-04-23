@@ -7,7 +7,8 @@ public class _00通配符匹配_44 {
     public static void main(String[] args) {
         _00通配符匹配_44 demo = new _00通配符匹配_44();
 //        boolean res = demo.isMatch("adceb", "*a*b");
-        boolean res = demo.isMatch("acdcb", "a*c?b");
+//        boolean res = demo.isMatch("acdcb", "a*c?b");
+        boolean res = demo.isMatch("", "******");
         System.out.println("res:" + res);
     }
 
@@ -35,17 +36,6 @@ public class _00通配符匹配_44 {
     public boolean isMatch(String s, String p) {
         System.out.println(s);
         System.out.println(p);
-        //为空处理
-        if (s == null || s.isEmpty()) {
-            if (p == null || p.isEmpty()) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if (p == null || p.isEmpty()) {
-            return false;
-        }
-
         //字符串转成字符数组
         char[] sChars = s.toCharArray();
         char[] pChars = p.toCharArray();
@@ -61,6 +51,7 @@ public class _00通配符匹配_44 {
                 break;
             }
         }
+        PrintUtils.print(dp);
 
         //两层for循环，进行字符串与匹配串比较
         for (int i = 1; i <= m; i++) {
@@ -68,12 +59,12 @@ public class _00通配符匹配_44 {
                 if (sChars[i - 1] == pChars[j - 1] || pChars[j - 1] == '?') {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else if (pChars[j - 1] == '*') {
-                    dp[i][j] = dp[i][j - 1] || dp[i-1][j];
+                    dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
                 }
             }
         }
+        System.out.println("-----");
         PrintUtils.print(dp);
-
         return dp[m][n];
     }
 

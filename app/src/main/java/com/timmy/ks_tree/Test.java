@@ -94,6 +94,9 @@ public class Test {
                 .get()
                 .build();
 
+//        Request.Builder builder1 =new Request.Builder()
+//                .dns
+
         //3.1.同步请求
 //        try {
 //            Response response = client.newCall(request).execute();

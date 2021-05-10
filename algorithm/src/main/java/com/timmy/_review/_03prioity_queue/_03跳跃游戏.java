@@ -1,5 +1,8 @@
 package com.timmy._review._03prioity_queue;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class _03跳跃游戏 {
 
     public static void main(String[] args) {
@@ -10,6 +13,72 @@ public class _03跳跃游戏 {
     }
 
     /**
+     * 1。理解题意
+     * -输入一个数组，数组元素表示每个阶梯的高度，现在要从第一个阶梯往后移动
+     * -移动规则如下：
+     * --后面阶梯更低，则直接移动
+     * --后面阶梯更高，可以使用砖块，和梯子，其中砖块数量一定，梯子可以忽略高度差，且数量一定
+     * 2。模拟运行
+     * 优先级队列解法：使用优先级队列保存每个阶梯的高度差
+     * -遍历所有阶梯，如果下一个阶梯更低，则直接移动
+     * -如果下一个阶梯更高，则将高度差保存到优先级队列中（大顶堆），然后判断砖块的总体消耗数
+     * -如果砖块够用，则往后移动，如果砖块不够用，则用梯子，梯子也用完了，则移动不了了
+     * 2.2.核心：先用砖块，再用梯子
+     * -使用梯子要用梯子消耗掉最大的高度
+     * 3。复杂度分析
+     * -时间：n
+     * -空间：n
+     * 4。总结
+     * -优先级队列保存了所有的高度差，相当于记事本一样的功能
+     * -当砖块不够用的时候，这个时候需要使用梯子，那梯子消耗在哪一个高度差，才能使位置移动最靠后？
+     * -使用优先级队列保存所有的高度差，当使用梯子时，消耗掉最大的高度差
+     */
+    public int furthestBuilding(int[] heights, int bricks, int ladders) {
+        int res = 0;
+
+        //大顶堆保存所有的高度差，
+        PriorityQueue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer t1, Integer t2) {
+                return t2 - t1;
+            }
+        });
+
+        int preH = heights[0];
+        int diffH;//高度差
+        int costSum = 0;//需要消耗的砖块总数
+
+        for (int i = 1; i < heights.length; i++) {
+            diffH = heights[i] - preH;
+
+            if (diffH <= 0) {
+                res = i;
+            } else {
+                //如果砖块不够用，则需要使用梯子
+                costSum += diffH;
+                queue.add(diffH);
+
+                while (!queue.isEmpty() && costSum > bricks && ladders > 0) {
+                    //先用梯子消耗掉最高的高度差
+                    costSum -= queue.poll();
+                    ladders--;
+                }
+
+                //砖块
+                if (costSum <= bricks) {
+                    res = i;
+                } else {
+                    break;
+                }
+            }
+            preH = heights[i];
+        }
+
+        return res;
+    }
+
+    /**
+     * todo error
      * 1.理解题意
      * -输入一个数组，表示阶梯的高度，现在需要从第一个阶梯开始往后移动，如果后面的阶梯低或高度相等，可直接移动
      * -如果后面的阶梯更高，可使用砖块或梯子进行移动，不过砖块和梯子数目有限
@@ -17,8 +86,12 @@ public class _03跳跃游戏 {
      * -遍历所有阶梯，当遇到后面阶梯更高时，可以使用砖块或梯子进行移动，因为梯子可以无视高度差
      * -所以需要先使用砖块进行替补，如果砖块不够再使用梯子
      * 3。复杂度分析
+     * 4。总结：
+     * -砖块够用，就用砖块，这个逻辑是不对的，当砖块够多时，前面出现的大的高度差使用了砖块填充，
+     * -会导致后面小的高度差不够砖块而使用梯子进行消耗，而这个提交消耗的高度差可能很小
+     * --解决方法：将所有的高度差进行保存，当砖块不够时，是用梯子消耗掉最大的高度差
      */
-    public int furthestBuilding(int[] heights, int bricks, int ladders) {
+    public int furthestBuilding_v1(int[] heights, int bricks, int ladders) {
         int res = 0;
         int preH = heights[0];
         for (int i = 1; i < heights.length; i++) {
@@ -40,7 +113,6 @@ public class _03跳跃游戏 {
                 }
             }
         }
-
         return res;
     }
 

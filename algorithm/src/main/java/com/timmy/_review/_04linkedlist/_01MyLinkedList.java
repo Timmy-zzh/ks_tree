@@ -42,7 +42,7 @@ public class _01MyLinkedList {
         }
 
         ListNode preNode = getPreNode(index);
-        return preNode.next.value;
+        return preNode.next.val;
     }
 
     /**
@@ -141,7 +141,7 @@ public class _01MyLinkedList {
         System.out.println("-------");
         ListNode node = dummyHead.next;
         while (node != null) {
-            System.out.print(node.value + " ,");
+            System.out.print(node.val + " ,");
             node = node.next;
         }
         System.out.println();

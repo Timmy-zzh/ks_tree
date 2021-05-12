@@ -52,8 +52,8 @@ public class _00两数相加_2 {
         int offset = 0; //进位
         while (p != null || q != null) {
             //链表节点的数值
-            int x = p == null ? 0 : p.value;
-            int y = q == null ? 0 : q.value;
+            int x = p == null ? 0 : p.val;
+            int y = q == null ? 0 : q.val;
 
             //将链表节点的数值相加，并获取到是否有进位
             int sum = x + y + offset;
@@ -85,7 +85,7 @@ public class _00两数相加_2 {
         while (p != null) {
             //10的n次方
             double powValue = Math.pow(10, pow);
-            int value = p.value;
+            int value = p.val;
             num1 = (int) (num1 + value * powValue);
             pow++;
             p = p.next;
@@ -98,7 +98,7 @@ public class _00两数相加_2 {
         while (q != null) {
             //10的n次方
             double powValue = Math.pow(10, pow);
-            int value = q.value;
+            int value = q.val;
             num2 = (int) (num2 + value * powValue);
             pow++;
             q = q.next;

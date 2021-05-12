@@ -1,6 +1,5 @@
 package com.timmy.common;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class PrintUtils {
@@ -43,7 +42,7 @@ public class PrintUtils {
 
     public static void print(ListNode listNode) {
         while (listNode != null) {
-            System.out.print(listNode.value + ", ");
+            System.out.print(listNode.val + ", ");
             listNode = listNode.next;
         }
         System.out.println();

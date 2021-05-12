@@ -59,7 +59,7 @@ public class _MyLinkedList {
         while (index-- > 0) {
             cur = cur.next;
         }
-        return cur.value;
+        return cur.val;
     }
 
     public void addAtHead(int val) {
@@ -121,7 +121,7 @@ public class _MyLinkedList {
     public void printL() {
         ListNode node = dynamicHead.next;
         while (node != null) {
-            System.out.print(node.value + " ,");
+            System.out.print(node.val + " ,");
             node = node.next;
         }
         System.out.println();

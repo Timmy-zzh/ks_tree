@@ -43,7 +43,7 @@ public class _14合并K个升序链表_23 {
         PriorityQueue<ListNode> queue = new PriorityQueue<>(K, new Comparator<ListNode>() {
             @Override
             public int compare(ListNode node, ListNode t1) {
-                return node.value - t1.value;
+                return node.val - t1.val;
             }
         });
         for (ListNode list : lists) {
@@ -109,7 +109,7 @@ public class _14合并K个升序链表_23 {
     }
 
     private ListNode merge(ListNode node1, ListNode node2) {
-        System.out.println("merge-- node1:" + node1.value + " ,node2:" + node2.value);
+        System.out.println("merge-- node1:" + node1.val + " ,node2:" + node2.val);
         ListNode header = new ListNode();
         ListNode node = header;
         while (node1 != null || node2 != null) {
@@ -120,7 +120,7 @@ public class _14合并K个升序链表_23 {
                 node.next = node1;
                 node1 = node1.next;
             } else {
-                if (node1.value < node2.value) {
+                if (node1.val < node2.val) {
                     node.next = node1;
                     node1 = node1.next;
                 } else {

@@ -53,8 +53,8 @@ public class _01删除排序链表中的重复元素II_82 {
         ListNode node = head;
 
         while (node != null) {
-            if (node.next != null && node.value == node.next.value) {
-                while (node.next != null && node.value == node.next.value) {
+            if (node.next != null && node.val == node.next.val) {
+                while (node.next != null && node.val == node.next.val) {
                     node = node.next;
                 }
                 node = node.next;

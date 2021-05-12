@@ -37,7 +37,7 @@ public class MyQueue {
         if (head == null) {
             return Integer.MIN_VALUE;
         }
-        int value = head.value;
+        int value = head.val;
         ListNode next = head.next;
         head.next = null;// 断开链接
         head = next;
@@ -55,7 +55,7 @@ public class MyQueue {
         if (head == null) {
             return Integer.MIN_VALUE;
         }
-        return head.value;
+        return head.val;
     }
 
     public int size() {

@@ -37,7 +37,7 @@ public class MinStack {
         if (head.next == null) {
             return Integer.MIN_VALUE;
         }
-        return head.next.value;
+        return head.next.val;
     }
 
     //遍历，找到最小的数值
@@ -45,8 +45,8 @@ public class MinStack {
         int min = Integer.MAX_VALUE;
         ListNode node = head.next;
         while (node != null) {
-            if (node.value < min) {
-                min = node.value;
+            if (node.val < min) {
+                min = node.val;
             }
             node = node.next;
         }

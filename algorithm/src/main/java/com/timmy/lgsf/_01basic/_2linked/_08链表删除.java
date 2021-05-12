@@ -23,7 +23,7 @@ public class _08链表删除 {
 
         ListNode tempNode = head;
         while (tempNode != null) {
-            System.out.print(tempNode.value + " ,");
+            System.out.print(tempNode.val + " ,");
             tempNode = tempNode.next;
         }
         System.out.println();
@@ -32,11 +32,11 @@ public class _08链表删除 {
         _08链表删除 prac = new _08链表删除();
 //        ListNode result = prac.removeEle(head, 1);
         ListNode result = prac.removeEle(head, 1);
-        System.out.println("reslult:" + result.value);
+        System.out.println("reslult:" + result.val);
 
         tempNode = result;
         while (tempNode != null) {
-            System.out.print(tempNode.value + " ,");
+            System.out.print(tempNode.val + " ,");
             tempNode = tempNode.next;
         }
         System.out.println();
@@ -52,7 +52,7 @@ public class _08链表删除 {
 
         ListNode temp = dynamic;
         while (temp.next != null) {
-            if (temp.next.value == target) {
+            if (temp.next.val == target) {
                 temp.next = temp.next.next;
             } else {
                 temp = temp.next;
@@ -72,12 +72,12 @@ public class _08链表删除 {
      */
     private ListNode removeEle_v1(ListNode head, int target) {
         //处理头部
-        while (head != null && head.value == target) {
+        while (head != null && head.val == target) {
             head = head.next;
         }
         ListNode result = head;
         while (head != null && head.next != null) {
-            if (head.next.value == target) {
+            if (head.next.val == target) {
                 head.next = head.next.next;
             } else {
                 head = head.next;

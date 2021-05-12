@@ -57,7 +57,7 @@ public class _05K个一组翻转链表_25 {
         ListNode end = curr;
 
         while (curr != null) {
-            System.out.println("---curr:" + curr.value + " ,start:" + start.value + " ,end:" + end.value);
+            System.out.println("---curr:" + curr.val + " ,start:" + start.val + " ,end:" + end.val);
             // k个一组的开头和结尾: start end
             for (int i = 1; i < k; i++) {
                 end = end.next;
@@ -67,11 +67,11 @@ public class _05K个一组翻转链表_25 {
             }
             tail = end.next;
             //start 与 end 翻转
-            System.out.println("before --- ,start:" + start.value + " ,end:" + end.value);
+            System.out.println("before --- ,start:" + start.val + " ,end:" + end.val);
             ListNode[] res = reverse(start, end);
             start = res[0];
             end = res[1];
-            System.out.println("after --- ,start:" + start.value + " ,end:" + end.value);
+            System.out.println("after --- ,start:" + start.val + " ,end:" + end.val);
 
             prev.next = start;
             end.next = tail;

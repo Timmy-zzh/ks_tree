@@ -18,7 +18,7 @@ public class _06找链表中间元素 {
 
         PrintUtils.print(listNode1);
         ListNode result = findMidNode(listNode1);
-        System.out.println(result.value);
+        System.out.println(result.val);
     }
 
     /**

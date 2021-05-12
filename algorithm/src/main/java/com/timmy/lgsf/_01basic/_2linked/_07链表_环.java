@@ -35,7 +35,7 @@ public class _07链表_环 {
                     temp = temp.next;
                     slow = slow.next;
                 }
-                return temp.value;
+                return temp.val;
             }
         }
         return -1;

@@ -3,10 +3,10 @@ package com.timmy._review._05tree;
 import com.timmy.common.PrintUtils;
 import com.timmy.common.TreeNode;
 
-public class _02验证二叉搜索树_98 {
+public class _01验证二叉搜索树_98 {
 
     public static void main(String[] args) {
-        _02验证二叉搜索树_98 demo = new _02验证二叉搜索树_98();
+        _01验证二叉搜索树_98 demo = new _01验证二叉搜索树_98();
         TreeNode treeNode4 = new TreeNode(4, new TreeNode(3), new TreeNode(6));
 //        TreeNode root = new TreeNode(5, new TreeNode(1), treeNode4);
         TreeNode root = new TreeNode(2, new TreeNode(1), new TreeNode(3));

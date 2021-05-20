@@ -14,6 +14,7 @@ class _01矩阵中的最长递增路径_329 {
                 {6, 6, 8},
                 {2, 1, 1},
         };
+        PrintUtils.print(matrix);
         int result = demo.longestIncreasingPath(matrix);
         System.out.println("result:" + result);
     }
@@ -86,6 +87,8 @@ class _01矩阵中的最长递增路径_329 {
                 }
             }
             res++;
+            PrintUtils.print(inputMatrix);
+            System.out.println("res:" + res);
         }
 
         return res;

@@ -1,6 +1,10 @@
 package com.timmy.common;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class PrintUtils {
 
@@ -124,4 +128,37 @@ public class PrintUtils {
         }
         System.out.println();
     }
+
+    public static void printLevel(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+//        Queue<TreeNode> queue = new ArrayDeque<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root != null) {
+            queue.add(root);
+        }
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList<>(size);
+            for (int i = 0; i < size; i++) {
+                TreeNode poll = queue.poll();
+                if (poll != null) {
+                    list.add(poll.val);
+                    if (poll.left != null) {
+                        queue.add(poll.left);
+                    }
+                    if (poll.right != null) {
+                        queue.add(poll.right);
+                    }
+                }
+            }
+            res.add(list);
+        }
+        for (List<Integer> re : res) {
+            for (Integer val : re) {
+                System.out.print(val + " ,");
+            }
+            System.out.println();
+        }
+    }
+
 }

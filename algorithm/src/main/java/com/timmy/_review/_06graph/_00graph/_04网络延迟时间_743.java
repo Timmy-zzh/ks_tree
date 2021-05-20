@@ -1,4 +1,4 @@
-package com.timmy._review._00graph;
+package com.timmy._review._06graph._00graph;
 
 class _04网络延迟时间_743 {
 

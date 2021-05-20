@@ -1,16 +1,67 @@
 package com.timmy._review._05tree;
 
+import com.timmy.common.PrintUtils;
 import com.timmy.common.TreeNode;
 
 public class _08二叉树的最近公共祖先_236 {
 
     public static void main(String[] args) {
         _08二叉树的最近公共祖先_236 demo = new _08二叉树的最近公共祖先_236();
+        TreeNode node2 = new TreeNode(2, new TreeNode(7), new TreeNode(4));
+        TreeNode node5 = new TreeNode(5, new TreeNode(6), node2);
+        TreeNode node1 = new TreeNode(1, new TreeNode(0), new TreeNode(8));
+        TreeNode root = new TreeNode(3, node5, node1);
+
+        System.out.println("层序遍历");
+        PrintUtils.printLevel(root);
+        System.out.println();
+//        TreeNode node = demo.lowestCommonAncestor(root, node5, node1);
+        TreeNode node = demo.lowestCommonAncestor(root, node5, node2);
+        System.out.println("res:" + node.val);
+
     }
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    /**
+     * 1.理解题意
+     * -输入一个二叉树，和两个节点，求两个节点的最近公共祖先
+     * 2。解题思路
+     * -两个节点的公共祖先也是一个节点：存在两种情况
+     * --p在祖先的左子树中，q在祖先的右子树中
+     * --p，q在同一子树中
+     * 2。1。采用二叉树的后序遍历法
+     * -判断左子树中和右子树中是否有包含p，或q的？存在的话返回1，不存在或遍历到空节点返回0
+     */
 
-        return null;
+    TreeNode res = null;
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return null;
+        }
+        postOrder(root, p, q);
+        return res;
+    }
+
+    private int postOrder(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return 0;
+        }
+        //先遍历获取左右子树的数量
+        int ln = postOrder(root.left, p, q);
+        int rn = postOrder(root.right, p, q);
+
+        if (ln == 1 && rn == 1) {
+            res = root;
+        } else if (ln == 1 || rn == 1) { //有一个为1
+            //根节点等于其中一个
+            if (root == p || root == q) {   //p,q 公用同一个节点
+                res = root;
+            }
+        }
+
+        //返回当前节点表示的p，q数量
+        int cn = ln + rn + ((root == p || root == q) ? 1 : 0);
+        return cn;
     }
 
     /**

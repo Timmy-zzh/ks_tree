@@ -28,6 +28,9 @@ public class _03_1ReentrantLockDemo {
 
     private void printLog() {
         try {
+            reentrantLock.tryLock();
+
+
             reentrantLock.lock();
             for (int i = 0; i < 5; i++) {
                 System.out.println("Thread Name:" + Thread.currentThread().getName() + " --- i:" + i);

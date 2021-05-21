@@ -10,9 +10,9 @@ public class _05ThreadPool {
 
     public static void main(String[] args) {
 //        singleThreadPool();
-//        cacheThreadPool();
+        cacheThreadPool();
 //        newFixedThreadPool();
-        newScheduledThreadPool();
+//        newScheduledThreadPool();
     }
 
     private static void newScheduledThreadPool() {

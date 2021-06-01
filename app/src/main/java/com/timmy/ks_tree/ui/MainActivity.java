@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Semaphore semaphore;
+        try {
+            Class.forName("");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void testClassLoader() {

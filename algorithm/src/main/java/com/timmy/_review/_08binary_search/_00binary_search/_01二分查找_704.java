@@ -1,4 +1,4 @@
-package com.timmy._review._00binary_search;
+package com.timmy._review._08binary_search._00binary_search;
 
 public class _01二分查找_704 {
 

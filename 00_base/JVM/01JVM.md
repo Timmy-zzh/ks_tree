@@ -3,7 +3,7 @@
 2. LLVM： 编译器
 3. ART ： Android Run Time ：安卓运行时环境
    	- 使用Clang 进行编译
-   	- gcc ： Linux编译器   -s ， 替代llvm
+      	- gcc ： Linux编译器   -s ， 替代llvm
 4. 垃圾回收：
    - GC触发的机制
 5. 垃圾回收算法

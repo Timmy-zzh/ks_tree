@@ -1,13 +1,12 @@
 package com.timmy._review._09double_point;
 
-import java.util.HashMap;
-
 public class _02替换后的最长重复字符_424 {
 
     public static void main(String[] args) {
         _02替换后的最长重复字符_424 demo = new _02替换后的最长重复字符_424();
 //        int res = demo.characterReplacement("ABAB", 2);
-        int res = demo.characterReplacement("AABABBA", 1);
+//        int res = demo.characterReplacement("AABABBA", 1);
+        int res = demo.characterReplacement("BAAAB", 2);
         System.out.println("res:" + res);
     }
 
@@ -17,8 +16,8 @@ public class _02替换后的最长重复字符_424 {
      * 2。解题思路
      * 双指针解法: 通过双指针控制区间，且区间中的字符最多有k个字符不同，
      * -右端指针固定移动，移动前后保证区间里面的字符最多k个不同，左侧根据区间不同字符的长度进行右移
-     * -右移到那个位置去呢？
-     * todo error
+     * -记录每个字符出现的次数，然后在检索区间范围内减去字符出现的次数，就可以计算出来有多少个不同的字符，
+     * --当不同字符个数 大于k时，则区间左侧指针右移一位
      */
     public int characterReplacement(String s, int k) {
         System.out.println(s);
@@ -27,21 +26,18 @@ public class _02替换后的最长重复字符_424 {
         }
         int left = -1;
         int res = 0;
-        //使用map保存每个字符保存的位置
-        //map 只保存区间内字符出现的第一次出现的位置
-        HashMap<Character, Integer> map = new HashMap<>();
+        int maxCharLength = 0;
+        int[] count = new int[256];//   记录字符的个数
         char[] chars = s.toCharArray();
         for (int right = 0; right < chars.length; right++) {
-            char ch = chars[right];
+            int ch = chars[right];
+            count[ch]++;
 
-            if (!map.containsKey(ch)) {  //遇到新的字符，在区间中没有出现过的
-                map.put(ch, right);
-                //是否要移动left
-                if (k >= 0) {
-                    k--;
-                } else {
-                    left = map.get(ch);
-                }
+            maxCharLength = Math.max(count[ch], maxCharLength);
+
+            if (right - left - maxCharLength > k) {
+                char leftCh = chars[++left];    //往右移动一位
+                count[leftCh]--;                //之前的字符个数减少1
             }
             res = Math.max(res, right - left);
         }

@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void testClassLoader() {
         ClassLoader classLoader = MainActivity.this.getClassLoader();
+        try {
+            classLoader.loadClass("");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         Log.e("Tim", classLoader.toString());
     }
 

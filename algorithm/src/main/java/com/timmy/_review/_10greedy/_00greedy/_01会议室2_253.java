@@ -1,4 +1,4 @@
-package com.timmy._review._00greedy;
+package com.timmy._review._10greedy._00greedy;
 
 import java.util.Arrays;
 import java.util.Comparator;

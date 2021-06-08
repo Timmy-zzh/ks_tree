@@ -24,6 +24,10 @@ public class _04无重叠区间_435 {
      * -现在要从未处理的区间中取出一个区间，和不重叠区间进行比较（已知不重叠区间的结束值），
      * --如果新区间的开始值大于等于已处理区间的结束值，则新区间可以添加到不重叠区间的集合中去，并且赋值新的结束值
      * -问题？如何从未处理区间中取出一个区间呢？--按照区间的结束值进行升序排序
+     * 3。总结
+     * -按照区间结束位置进行所有区间的升序排序
+     * -将区间分为两个部分，已处理区间集合，并记录变化的标示
+     * --未处理的区间按照排序顺序进行单个处理，处理后添加到已处理集合中
      */
     public int eraseOverlapIntervals(int[][] intervals) {
         int resNum = 0; //标示不重叠区间的个数
@@ -37,9 +41,9 @@ public class _04无重叠区间_435 {
 
         int maxEnd = Integer.MIN_VALUE;
         for (int i = 0; i < intervals.length; i++) {
-            if (maxEnd <= intervals[i][0]) {
+            if (maxEnd <= intervals[i][0]) {        //intervals[i][0] 新区间开始位置
                 resNum++;
-                maxEnd = intervals[i][1];
+                maxEnd = intervals[i][1];           //更新一处理集合的区间结束位置
             }
         }
         return resNum;

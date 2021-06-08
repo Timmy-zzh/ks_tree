@@ -9,8 +9,9 @@ public class _05划分字母区间_763 {
 
     public static void main(String[] args) {
         _05划分字母区间_763 demo = new _05划分字母区间_763();
-        List<Integer> res = demo.partitionLabels("ababcbacadefegdehijhklij");
+//        List<Integer> res = demo.partitionLabels("ababcbacadefegdehijhklij");
 //        List<Integer> res = demo.partitionLabels("caedbdedda");
+        List<Integer> res = demo.partitionLabels("eaaaabaaec");
         PrintUtils.print(res);
     }
 
@@ -37,15 +38,14 @@ public class _05划分字母区间_763 {
         for (int i = 0; i < chars.length; i++) {
             int chIndex = indexs[chars[i] - 'a'];// 当前字符的最大距离
             System.out.println("i:" + i + " ,chars[i]:" + chars[i] + " ,chIndex:" + chIndex + " ,endIndex:" + endIndex);
-            if (i == endIndex) {      //到达最远记录位置
+            if (i == endIndex && chIndex == i) {      //到达最远记录位置
                 System.out.println("--:" + (i - last));
-                res.add(i - last + 1);
+                res.add(i - last);
                 last = i;
             } else if (endIndex < chIndex) {    //存在更远的位置，更新
                 endIndex = chIndex;
             }
         }
-
         return res;
     }
 

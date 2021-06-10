@@ -10,9 +10,10 @@ public class _05组合总和_39 {
 
     public static void main(String[] args) {
         _05组合总和_39 demo = new _05组合总和_39();
-        int[] candidates = {2, 3, 6, 7};
+//        int[] candidates = {2, 3, 6, 7};
+        int[] candidates = {2, 3, 5};
         PrintUtils.print(candidates);
-        List<List<Integer>> res = demo.combinationSum(candidates, 7);
+        List<List<Integer>> res = demo.combinationSum(candidates, 8);
         for (List<Integer> re : res) {
             PrintUtils.print(re);
         }

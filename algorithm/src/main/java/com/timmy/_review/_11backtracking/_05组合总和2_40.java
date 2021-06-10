@@ -39,6 +39,7 @@ public class _05组合总和2_40 {
 
         for (int i = start; i < candidates.length; i++) {
             if (i > start && candidates[i] == candidates[i - 1]) {
+                // i>start 控制了当前元素可以选择，当前元素与前一个元素相等则避免了相等的结果集出现
                 continue;
             }
             path.add(candidates[i]);

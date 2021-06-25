@@ -11,7 +11,7 @@ public class _04零钱兑换_322 {
         int[] coins = {1, 2, 5};
 //        int[] coins = {2};
         PrintUtils.print(coins);
-        int res = demo.coinChange(coins, 100);
+        int res = demo.coinChange_v1(coins, 100);
         System.out.println("res:" + res);
     }
 

@@ -7,33 +7,47 @@ public class _02打家劫舍2_213 {
     public static void main(String[] args) {
         _02打家劫舍2_213 demo = new _02打家劫舍2_213();
 //        int[] nums = {2, 3, 2};
-//        int[] nums = {1, 2, 3, 1};
-        int[] nums = {2, 1, 1, 2};
+        int[] nums = {1, 2, 3, 1};
+//        int[] nums = {2, 1, 1, 2};
         PrintUtils.print(nums);
         int rob = demo.rob(nums);
         System.out.println("res:" + rob);
     }
 
     /**
-     * 判断房间是偶数还是奇数
+     * 1.理解题意
+     * -输入一个数组，数组中每个元素代表一个房间存放的金额，现在所有的房间头尾相连围成一圈，且相邻的房间不可以同时被盗
+     * --求小偷盗窃的最高金额是多少？
+     * 2。解题思路
+     * -如果只有一个房间，那就直接偷盗
+     * -如果有两个房间，只能偷盗一个房间，选择其中金额更多的房间
+     * -如果房间超过2个，因为首尾房间不能同时被盗，所以有两种选择，偷盗第一间房到倒数第二间房，最后一间房不偷盗 [0,n-2]
+     * --获取第一间房不偷盗，偷盗最后一间房 [1,n-1]
+     * 2.2.最后一种情况的两种选择，求最高金额结果
      */
     public int rob(int[] nums) {
-        int len = nums.length;
-        if (len == 1) {
-            return nums[0];
+        int N = nums.length;
+        if (N == 1) {
+            return Math.max(0, nums[0]);
         }
-        int[] dp = new int[len];
-        dp[0] = Math.max(0, nums[0]);
-        dp[1] = Math.max(nums[0], nums[1]);
+        if (N == 2) {
+            return Math.max(nums[0], nums[1]);
+        }
+        return Math.max(robR(nums, 0, N - 2), robR(nums, 1, N - 1));
+    }
 
-        for (int i = 2; i < len; i++) {
-            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+    private int robR(int[] nums, int start, int end) {
+        //相邻的两间房不能同时被盗
+        int first = nums[start];
+        int second = Math.max(nums[start], nums[start + 1]);
+        for (int i = start + 2; i <= end; i++) {
+            // start+2 该房间可以偷 -- first + num[start+2]
+            // 或不偷 -- second
+            int temp = second;
+            second = Math.max(second, first + nums[i]);
+            first = temp;
         }
-        PrintUtils.print(dp);
-        if (len % 2 == 1) {
-            return dp[len - 2];
-        }
-        return dp[len - 1];
+        return second;
     }
 
     /**

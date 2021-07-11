@@ -98,12 +98,12 @@ public class Test {
 //                .dns
 
         //3.1.同步请求
-//        try {
-//            Response response = client.newCall(request).execute();
-//            String String = response.body().string();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Response response = client.newCall(request).execute();
+            String String = response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //3.2.异步请求
         client.newCall(request).enqueue(new Callback() {

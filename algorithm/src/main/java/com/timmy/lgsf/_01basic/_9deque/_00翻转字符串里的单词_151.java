@@ -12,9 +12,9 @@ public class _00翻转字符串里的单词_151 {
     public static void main(String[] args) {
         _00翻转字符串里的单词_151 demo = new _00翻转字符串里的单词_151();
 //        String result = demo.reverseWords("the sky is blue");
-//        String result = demo.reverseWords("  hello world!  ");
+        String result = demo.reverseWords_v1("  hello world!  ");
 //        String result = demo.reverseWords("a good   example");
-        String result = demo.reverseWords("  Bob    Loves  Alice   ");
+//        String result = demo.reverseWords_v1("  Bob    Loves  Alice   ");
         System.out.println("result:" + result);
     }
 
@@ -75,7 +75,7 @@ public class _00翻转字符串里的单词_151 {
         List<String> list = new ArrayList<>();
         for (int i = split.length - 1; i >= 0; i--) {
             String subStr = split[i].trim();
-            System.out.println("subStr:" + subStr);
+            System.out.println("subStr:" + subStr + "--");
             if (subStr.length() != 0) {
                 list.add(subStr);
             }

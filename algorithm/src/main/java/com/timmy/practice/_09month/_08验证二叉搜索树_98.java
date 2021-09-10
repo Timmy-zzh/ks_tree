@@ -7,33 +7,92 @@ public class _08验证二叉搜索树_98 {
 
     public static void main(String[] args) {
         _08验证二叉搜索树_98 demo = new _08验证二叉搜索树_98();
-        TreeNode root = new TreeNode(2, new TreeNode(1), new TreeNode(3));
-        PrintUtils.printLevel(root);
+//        TreeNode root = new TreeNode(2, new TreeNode(1), new TreeNode(3));
+//        PrintUtils.printLevel(root);
 
 //        TreeNode ndoe4 = new TreeNode(4, new TreeNode(3), new TreeNode(6));
 //        TreeNode root = new TreeNode(5, new TreeNode(1), ndoe4);
 //        PrintUtils.printLevel(root);
 
+        TreeNode ndoe4 = new TreeNode(4, new TreeNode(3), null);
+        TreeNode root = new TreeNode(5, new TreeNode(1), ndoe4);
+        PrintUtils.printLevel(root);
+
         boolean res = demo.isValidBST(root);
         System.out.println("res:" + res);
     }
 
+    private static class Result {
+        public int min;
+        public int max;
+        public boolean isBst;
+
+        public Result(int min, int max, boolean isBst) {
+            this.min = min;
+            this.max = max;
+            this.isBst = isBst;
+        }
+
+        @Override
+        public String toString() {
+            return "Result{" +
+                    "min=" + min +
+                    ", max=" + max +
+                    ", isBst=" + isBst +
+                    '}';
+        }
+    }
+
     /**
      * 2.后续遍历解法
-     * -先遍历左右子树，
-     * @param root
-     * @return
+     * -先遍历左右子树，并记录子树范围的最大最小值，和当前子树是否是一颗二叉搜索树
+     * -最后返回
      */
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;
         }
-        boolean leftBst = isValidBST(root.left);
-        if (!leftBst || preVal >= root.val) {
-            return false;
+        Result res = isValidBstPost(root);
+        System.out.println(res.toString());
+        return res.isBst;
+    }
+
+    private Result isValidBstPost(TreeNode root) {
+        if (root == null) {
+            return null;
         }
-        preVal = root.val;
-        return isValidBST(root.right);
+        Result leftRes = isValidBstPost(root.left);
+        Result rightRes = isValidBstPost(root.right);
+        /**
+         * 情况1：两棵子树都为空，
+         * 情况2：两棵子树其中一棵为空
+         * 情况3：两颗子树都不为空
+         */
+        if (leftRes == null && rightRes == null) {
+            return new Result(root.val, root.val, true);
+        }
+        if (leftRes == null && (!rightRes.isBst || root.val > rightRes.min)) {
+            return new Result(root.val, rightRes.max, false);
+        }
+        if (rightRes == null && (!leftRes.isBst || leftRes.max >= root.val)) {
+            return new Result(leftRes.min, root.val, false);
+        }
+        int lMax = leftRes == null ? Integer.MIN_VALUE : leftRes.max;
+        int rMin = rightRes == null ? Integer.MAX_VALUE : rightRes.min;
+        if (lMax >= root.val || root.val > rMin) {
+            return new Result(0, 0, false);
+        }
+
+        int nMin = leftRes == null ? root.val : leftRes.min;
+        int nMax = rightRes == null ? root.val : rightRes.max;
+
+        return new Result(nMin, nMax, true);
+//        Result nRes = new Result(nMin, nMax, true);
+//        System.out.println("leftRes" + (leftRes == null ? "null" : leftRes.toString()));
+//        System.out.println("node:" + root.val);
+//        System.out.println("rightRes:" + (rightRes == null ? "null" : rightRes.toString()));
+//        System.out.println("newRes:" + nRes.toString());
+//        return nRes;
     }
 
     /**

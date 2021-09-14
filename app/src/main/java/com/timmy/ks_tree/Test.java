@@ -7,7 +7,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
+import android.os.MessageQueue;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.util.SparseArray;
@@ -140,6 +142,12 @@ public class Test {
             @Override
             public void run() {
 
+            }
+        });
+        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+            @Override
+            public boolean queueIdle() {
+                return false;
             }
         });
 

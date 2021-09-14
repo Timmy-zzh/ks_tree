@@ -16,17 +16,65 @@ public class _06二叉搜索子树的最大键值和_1373 {
         System.out.println("res:" + res);
     }
 
+    private static class Result {
+        int min;
+        int max;
+        int sum;
+        boolean isBst;
+
+        public Result(int min, int max, int sum, boolean isBst) {
+            this.min = min;
+            this.max = max;
+            this.sum = sum;
+            this.isBst = isBst;
+        }
+    }
+
     /**
-     * todo 查看 com.timmy.practice._09month._08验证二叉搜索树_98 的思路
+     * todo 查看 com.timmy.pctice._09month._08验证二叉搜索树_98 的思路
      * <p>
      * 1。理解题意
-     * -
+     * -输入一棵二叉树，找到二叉树中的子树为bst，并且计算出bst的最大键值和
      * 2。解题思路
-     * 先判断当前根节点的树是否是一棵二叉搜索树，然后再计算这棵二叉搜索树的键值和
+     * -先判断当前根节点的树是否是一棵二叉搜索树，然后再计算这棵二叉搜索树的键值和
+     * -后序遍历二叉树，并计算得到子树的键值和
      */
-    public int maxSumBST(TreeNode root) {
+    int resSum = 0;
 
-        return 0;
+    public int maxSumBST(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        maxSumBstPost(root);
+        return resSum;
+    }
+
+    private Result maxSumBstPost(TreeNode root) {
+        //1.遍历到叶子节点的子节点，直接返回null
+        if (root == null) {
+            return null;
+        }
+        //2.后序遍历，获取左右子树的结果
+        Result leftRes = maxSumBstPost(root.left);
+        Result rightRes = maxSumBstPost(root.right);
+        //3.判断左子节点和根节点的关系是否是一个bst
+        if (leftRes != null && (!leftRes.isBst || leftRes.max >= root.val)) {
+            return new Result(0, 0, 0, false);
+        }
+        if (rightRes != null && (!rightRes.isBst || root.val >= rightRes.min)) {
+            return new Result(0, 0, 0, false);
+        }
+        //4.到这里说明当前根节点子树是一棵bst，计算min，max，sum值
+        //有可能左右子树返回的结果为null
+        int nMin = leftRes == null ? root.val : leftRes.min;
+        int nMax = rightRes == null ? root.val : rightRes.max;
+        int nSum = root.val;
+        nSum += leftRes == null ? 0 : leftRes.sum;
+        nSum += rightRes == null ? 0 : rightRes.sum;
+        if (nSum > resSum) {
+            resSum = nSum;
+        }
+        return new Result(nMin, nMax, nSum, true);
     }
 
     /**

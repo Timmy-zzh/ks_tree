@@ -22,6 +22,7 @@ public class TrieNode {
     }
 
     public void setEnd(String newWord) {
+        isEnd = true;
         word = newWord;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.timmy.ks_tree.R;
 import com.timmy.ks_tree.Test;
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        TextView textView = new TextView(this);
+        textView.setText("123");
     }
 
     private void testClassLoader() {

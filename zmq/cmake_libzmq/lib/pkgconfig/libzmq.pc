@@ -1,0 +1,12 @@
+prefix=/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq
+exec_prefix=/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq
+libdir=/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib
+includedir=/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/include
+
+Name: libzmq
+Description: 0MQ c++ library
+Version: 4.3.5
+Libs: -L${libdir} -lzmq
+Libs.private: -lstdc++  -lrt
+Requires.private: 
+Cflags: -I${includedir} 

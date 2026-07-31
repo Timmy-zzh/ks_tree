@@ -1,0 +1,4 @@
+/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles/service.dir
+/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles/client.dir
+/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles/edit_cache.dir
+/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles/rebuild_cache.dir

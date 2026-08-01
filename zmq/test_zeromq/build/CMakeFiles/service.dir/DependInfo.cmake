@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service.cpp" "CMakeFiles/service.dir/service.cpp.o" "gcc" "CMakeFiles/service.dir/service.cpp.o.d"
+  "/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service_router.cpp" "CMakeFiles/service.dir/service_router.cpp.o" "gcc" "CMakeFiles/service.dir/service_router.cpp.o.d"
   )
 
 # Targets to which this target links.

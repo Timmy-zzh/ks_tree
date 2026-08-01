@@ -69,28 +69,28 @@ include CMakeFiles/service.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/service.dir/flags.make
 
-CMakeFiles/service.dir/service.cpp.o: CMakeFiles/service.dir/flags.make
-CMakeFiles/service.dir/service.cpp.o: ../service.cpp
-CMakeFiles/service.dir/service.cpp.o: CMakeFiles/service.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/service.dir/service.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/service.dir/service.cpp.o -MF CMakeFiles/service.dir/service.cpp.o.d -o CMakeFiles/service.dir/service.cpp.o -c /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service.cpp
+CMakeFiles/service.dir/service_router.cpp.o: CMakeFiles/service.dir/flags.make
+CMakeFiles/service.dir/service_router.cpp.o: ../service_router.cpp
+CMakeFiles/service.dir/service_router.cpp.o: CMakeFiles/service.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/service.dir/service_router.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/service.dir/service_router.cpp.o -MF CMakeFiles/service.dir/service_router.cpp.o.d -o CMakeFiles/service.dir/service_router.cpp.o -c /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service_router.cpp
 
-CMakeFiles/service.dir/service.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/service.dir/service.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service.cpp > CMakeFiles/service.dir/service.cpp.i
+CMakeFiles/service.dir/service_router.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/service.dir/service_router.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service_router.cpp > CMakeFiles/service.dir/service_router.cpp.i
 
-CMakeFiles/service.dir/service.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/service.dir/service.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service.cpp -o CMakeFiles/service.dir/service.cpp.s
+CMakeFiles/service.dir/service_router.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/service.dir/service_router.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service_router.cpp -o CMakeFiles/service.dir/service_router.cpp.s
 
 # Object files for target service
 service_OBJECTS = \
-"CMakeFiles/service.dir/service.cpp.o"
+"CMakeFiles/service.dir/service_router.cpp.o"
 
 # External object files for target service
 service_EXTERNAL_OBJECTS =
 
-service: CMakeFiles/service.dir/service.cpp.o
+service: CMakeFiles/service.dir/service_router.cpp.o
 service: CMakeFiles/service.dir/build.make
 service: CMakeFiles/service.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable service"

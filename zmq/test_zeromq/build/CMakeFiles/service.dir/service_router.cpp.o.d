@@ -1,5 +1,5 @@
-CMakeFiles/client.dir/client.cpp.o: \
- /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client.cpp \
+CMakeFiles/service.dir/service_router.cpp.o: \
+ /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/service_router.cpp \
  /usr/include/stdc-predef.h \
  /home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/include/zmq.h \
  /usr/include/errno.h /usr/include/features.h \

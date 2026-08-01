@@ -21,9 +21,9 @@ link_directories(${ZeroMQ_ROOT}/lib)
 # target_link_libraries(test_zeromap zmq)
 
 # 服务端
-add_executable(service service.cpp)
+add_executable(service service_router.cpp)
 target_link_libraries(service zmq)
 
 # 客户端
-add_executable(client client.cpp)
+add_executable(client client_dealer.cpp)
 target_link_libraries(client zmq)

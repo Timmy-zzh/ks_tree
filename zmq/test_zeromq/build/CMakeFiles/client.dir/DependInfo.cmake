@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client.cpp" "CMakeFiles/client.dir/client.cpp.o" "gcc" "CMakeFiles/client.dir/client.cpp.o.d"
+  "/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client_dealer.cpp" "CMakeFiles/client.dir/client_dealer.cpp.o" "gcc" "CMakeFiles/client.dir/client_dealer.cpp.o.d"
   )
 
 # Targets to which this target links.

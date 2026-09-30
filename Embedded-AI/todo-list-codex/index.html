@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>待办清单</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="todo-container">
+    <h1>我的待办清单</h1>
+    <p class="subtitle">记录要做的事情，让每一天更有条理。</p>
+
+    <form id="todoForm" class="input-area">
+      <label class="visually-hidden" for="todoInput">待办事项</label>
+      <input id="todoInput" type="text" placeholder="请输入待办事项" autocomplete="off">
+      <button id="addButton" type="submit" disabled>添加</button>
+    </form>
+
+    <ul id="todoList" class="todo-list"></ul>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

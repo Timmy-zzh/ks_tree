@@ -1,0 +1,4 @@
+interface:
+  display_name: "市场 MRD 分析师"
+  short_description: "用实时证据和机会点对齐生成 MRD"
+  default_prompt: "使用 $market-mrd-analyst 先做 MRD intake gate，确认产品边界、起步人群、地区、场景和资源约束；通过后继续 discovery、market brief、证据实时性检查、机会点对齐、red-team 和完整 MRD。"

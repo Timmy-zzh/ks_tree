@@ -1,0 +1,122 @@
+/* 页面基本样式 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #eaf2ff, #f8fbff);
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  color: #263238;
+}
+
+/* 待办清单的主要区域 */
+.todo-box {
+  width: 100%;
+  max-width: 520px;
+  padding: 36px;
+  background-color: #ffffff;
+  border: 1px solid #e5edf8;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(52, 89, 130, 0.12);
+}
+
+h1 {
+  margin: 0 0 28px;
+  color: #1f3a5f;
+  text-align: center;
+  font-size: 30px;
+}
+
+/* 输入框和按钮 */
+.input-area {
+  display: flex;
+  gap: 12px;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0 15px;
+  border: 1px solid #cbd8e6;
+  border-radius: 8px;
+  outline: none;
+  color: #263238;
+  font-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus {
+  border-color: #5b9df9;
+  box-shadow: 0 0 0 3px rgba(91, 157, 249, 0.16);
+}
+
+button {
+  height: 48px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4285f4;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #2f6fd6;
+  transform: translateY(-1px);
+}
+
+/* 待办事项列表 */
+.todo-list {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-list li {
+  margin-bottom: 10px;
+  padding: 14px 16px;
+  border: 1px solid #edf1f5;
+  border-radius: 8px;
+  background-color: #fbfcfe;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.todo-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4285f4;
+  cursor: pointer;
+}
+
+/* 勾选后给已完成事项添加删除线 */
+.todo-item input[type="checkbox"]:checked + span {
+  color: #9aa7b3;
+  text-decoration: line-through;
+}
+
+@media (max-width: 480px) {
+  body {
+    align-items: flex-start;
+    padding: 24px 14px;
+  }
+
+  .todo-box {
+    padding: 28px 20px;
+  }
+}

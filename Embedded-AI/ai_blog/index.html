@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="栈间笔记——记录嵌入式、AI 与产品思考的个人技术博客。"
+    />
+    <meta name="theme-color" content="#08111f" />
+    <title>栈间笔记</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2308111f'/%3E%3Cpath d='M18 20h28M18 32h20M18 44h14' stroke='%235be2c2' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="返回首页">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="brand-copy">
+            <strong id="brandName">栈间笔记</strong>
+            <small>BETWEEN CODE &amp; LIFE</small>
+          </span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="主导航">
+          <a href="#/" data-route="home">文章</a>
+          <a href="#/about" data-route="about">关于</a>
+        </nav>
+
+        <div class="nav-actions">
+          <label class="nav-search" aria-label="搜索文章">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-4-4"></path>
+            </svg>
+            <input id="searchInput" type="search" placeholder="搜索笔记…" autocomplete="off" />
+            <kbd>/</kbd>
+          </label>
+          <button class="icon-button" id="themeToggle" type="button" aria-label="切换主题">
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.4 15.4A8 8 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z"></path>
+            </svg>
+          </button>
+          <button class="menu-button" id="menuToggle" type="button" aria-label="打开菜单" aria-expanded="false">
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航">
+        <a href="#/">文章</a>
+        <a href="#/about">关于</a>
+      </nav>
+    </header>
+
+    <main id="app" tabindex="-1"></main>
+
+    <footer class="site-footer">
+      <div class="footer-shell">
+        <div>
+          <a class="footer-brand" href="#/" id="footerBrand">栈间笔记</a>
+          <p id="footerDescription">写给持续构建、持续好奇的人。</p>
+        </div>
+        <div class="footer-meta">
+          <p>Built with HTML · CSS · JavaScript</p>
+          <p>© <span id="currentYear"></span> <span id="footerAuthor">Lin</span></p>
+        </div>
+      </div>
+    </footer>
+
+    <button class="back-top" id="backTop" type="button" aria-label="返回顶部">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"></path></svg>
+    </button>
+
+    <noscript>此网站需要启用 JavaScript 才能读取 Markdown 文章。</noscript>
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

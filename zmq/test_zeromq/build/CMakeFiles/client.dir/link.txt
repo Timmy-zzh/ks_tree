@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/client.dir/client_dealer.cpp.o -o client   -L/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib  -Wl,-rpath,/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib -lzmq 
+/usr/bin/c++ CMakeFiles/client.dir/client_req.cpp.o -o client   -L/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib  -Wl,-rpath,/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib -lzmq 

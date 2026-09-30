@@ -142,53 +142,53 @@ client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
 .PHONY : client/fast
 
-client_dealer.o: client_dealer.cpp.o
-.PHONY : client_dealer.o
+client_req.o: client_req.cpp.o
+.PHONY : client_req.o
 
 # target to build an object file
-client_dealer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client_dealer.cpp.o
-.PHONY : client_dealer.cpp.o
+client_req.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client_req.cpp.o
+.PHONY : client_req.cpp.o
 
-client_dealer.i: client_dealer.cpp.i
-.PHONY : client_dealer.i
+client_req.i: client_req.cpp.i
+.PHONY : client_req.i
 
 # target to preprocess a source file
-client_dealer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client_dealer.cpp.i
-.PHONY : client_dealer.cpp.i
+client_req.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client_req.cpp.i
+.PHONY : client_req.cpp.i
 
-client_dealer.s: client_dealer.cpp.s
-.PHONY : client_dealer.s
+client_req.s: client_req.cpp.s
+.PHONY : client_req.s
 
 # target to generate assembly for a file
-client_dealer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client_dealer.cpp.s
-.PHONY : client_dealer.cpp.s
+client_req.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/client_req.cpp.s
+.PHONY : client_req.cpp.s
 
-service_router.o: service_router.cpp.o
-.PHONY : service_router.o
+service_rep.o: service_rep.cpp.o
+.PHONY : service_rep.o
 
 # target to build an object file
-service_router.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/service_router.cpp.o
-.PHONY : service_router.cpp.o
+service_rep.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/service_rep.cpp.o
+.PHONY : service_rep.cpp.o
 
-service_router.i: service_router.cpp.i
-.PHONY : service_router.i
+service_rep.i: service_rep.cpp.i
+.PHONY : service_rep.i
 
 # target to preprocess a source file
-service_router.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/service_router.cpp.i
-.PHONY : service_router.cpp.i
+service_rep.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/service_rep.cpp.i
+.PHONY : service_rep.cpp.i
 
-service_router.s: service_router.cpp.s
-.PHONY : service_router.s
+service_rep.s: service_rep.cpp.s
+.PHONY : service_rep.s
 
 # target to generate assembly for a file
-service_router.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/service_router.cpp.s
-.PHONY : service_router.cpp.s
+service_rep.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/service_rep.cpp.s
+.PHONY : service_rep.cpp.s
 
 # Help Target
 help:
@@ -200,12 +200,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... client"
 	@echo "... service"
-	@echo "... client_dealer.o"
-	@echo "... client_dealer.i"
-	@echo "... client_dealer.s"
-	@echo "... service_router.o"
-	@echo "... service_router.i"
-	@echo "... service_router.s"
+	@echo "... client_req.o"
+	@echo "... client_req.i"
+	@echo "... client_req.s"
+	@echo "... service_rep.o"
+	@echo "... service_rep.i"
+	@echo "... service_rep.s"
 .PHONY : help
 
 

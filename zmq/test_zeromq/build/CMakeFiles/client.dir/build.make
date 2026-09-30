@@ -69,28 +69,28 @@ include CMakeFiles/client.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/client.dir/flags.make
 
-CMakeFiles/client.dir/client_dealer.cpp.o: CMakeFiles/client.dir/flags.make
-CMakeFiles/client.dir/client_dealer.cpp.o: ../client_dealer.cpp
-CMakeFiles/client.dir/client_dealer.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/client_dealer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client_dealer.cpp.o -MF CMakeFiles/client.dir/client_dealer.cpp.o.d -o CMakeFiles/client.dir/client_dealer.cpp.o -c /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client_dealer.cpp
+CMakeFiles/client.dir/client_req.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/client_req.cpp.o: ../client_req.cpp
+CMakeFiles/client.dir/client_req.cpp.o: CMakeFiles/client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/client_req.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/client.dir/client_req.cpp.o -MF CMakeFiles/client.dir/client_req.cpp.o.d -o CMakeFiles/client.dir/client_req.cpp.o -c /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client_req.cpp
 
-CMakeFiles/client.dir/client_dealer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client_dealer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client_dealer.cpp > CMakeFiles/client.dir/client_dealer.cpp.i
+CMakeFiles/client.dir/client_req.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/client_req.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client_req.cpp > CMakeFiles/client.dir/client_req.cpp.i
 
-CMakeFiles/client.dir/client_dealer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client_dealer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client_dealer.cpp -o CMakeFiles/client.dir/client_dealer.cpp.s
+CMakeFiles/client.dir/client_req.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/client_req.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/client_req.cpp -o CMakeFiles/client.dir/client_req.cpp.s
 
 # Object files for target client
 client_OBJECTS = \
-"CMakeFiles/client.dir/client_dealer.cpp.o"
+"CMakeFiles/client.dir/client_req.cpp.o"
 
 # External object files for target client
 client_EXTERNAL_OBJECTS =
 
-client: CMakeFiles/client.dir/client_dealer.cpp.o
+client: CMakeFiles/client.dir/client_req.cpp.o
 client: CMakeFiles/client.dir/build.make
 client: CMakeFiles/client.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhuzhonghua/zzh/github/ks_tree/zmq/test_zeromq/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable client"

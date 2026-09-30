@@ -9,7 +9,7 @@ set(ZeroMQ_ROOT "/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq")
 
 # 添加头文件搜索路径
 include_directories(${ZeroMQ_ROOT}/include
-                    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include
 )
 
 # 添加库文件搜索路径
@@ -20,10 +20,20 @@ link_directories(${ZeroMQ_ROOT}/lib)
 # # 链接 libzmq 库
 # target_link_libraries(test_zeromap zmq)
 
+
 # 服务端
-add_executable(service service_router.cpp)
+add_executable(service service_rep.cpp)
 target_link_libraries(service zmq)
 
 # 客户端
-add_executable(client client_dealer.cpp)
+add_executable(client client_req.cpp)
 target_link_libraries(client zmq)
+
+
+# # 服务端
+# add_executable(service service_router.cpp)
+# target_link_libraries(service zmq)
+
+# # 客户端
+# add_executable(client client_dealer.cpp)
+# target_link_libraries(client zmq)

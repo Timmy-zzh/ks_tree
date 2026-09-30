@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/service.dir/service_router.cpp.o -o service   -L/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib  -Wl,-rpath,/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib -lzmq 
+/usr/bin/c++ CMakeFiles/service.dir/service_rep.cpp.o -o service   -L/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib  -Wl,-rpath,/home/zhuzhonghua/zzh/github/ks_tree/zmq/cmake_libzmq/lib -lzmq 
